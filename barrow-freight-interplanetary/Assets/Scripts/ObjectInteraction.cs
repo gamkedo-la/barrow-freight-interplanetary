@@ -23,13 +23,13 @@ public class ObjectInteraction : MonoBehaviour
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit rhInfo;
 
-            if (Physics.Raycast(mouseRay, out rhInfo, 2.0f)) {
+            if (Physics.Raycast(mouseRay, out rhInfo, 3.0f)) {
                 if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
                     Debug.Log("Mouse ray hit bay " + rhInfo.collider.gameObject.name + " at " + rhInfo.point);
                     placeObject(rhInfo.collider.gameObject);
                 } else if (isHoldingObject) {
                     dropObject();
-                } else if (Physics.Raycast(mouseRay, out rhInfo, 2.0f)) {
+                } else if (Physics.Raycast(mouseRay, out rhInfo, 3.0f)) {
                     Debug.Log("Mouse ray hit " + rhInfo.collider.gameObject.name + " at " + rhInfo.point);
                     if (rhInfo.collider.gameObject.tag == "MovableObject") {
                         pickUpObject(rhInfo.collider.gameObject);
@@ -74,6 +74,9 @@ public class ObjectInteraction : MonoBehaviour
         heldObject.transform.position = bay.transform.position;
         heldObject.transform.rotation = bay.transform.rotation;
         Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+
+        TerminalBay targetBay = bay.GetComponent<TerminalBay>();
+        targetBay.installModule();
     }
 
     void toggleGravity() {
