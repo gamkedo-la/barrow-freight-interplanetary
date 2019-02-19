@@ -1,0 +1,65 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ObjectInteraction : MonoBehaviour
+{
+
+    bool isHoldingObject = false;
+    GameObject heldObject;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) {
+            Debug.Log("Mouse Clicked");
+
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit rhInfo;
+
+            if (isHoldingObject) {
+                dropObject();
+            } else if (Physics.Raycast(mouseRay, out rhInfo, 2.0f)) {
+                Debug.Log("Mouse ray hit " + rhInfo.collider.gameObject.name + " at " + rhInfo.point);
+                pickUpObject(rhInfo.collider.gameObject);
+                //holdObject();
+            } else {
+                Debug.Log("Mouse ray hit nothing.");
+            }
+        }
+    }
+
+    void pickUpObject(GameObject targetObject) {
+
+        isHoldingObject = true;
+
+        heldObject = targetObject;
+        heldObject.transform.SetParent(this.transform);
+
+        Vector3 pos = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y - 0.5f, Camera.main.transform.localPosition.z + 1f);
+        heldObject.transform.localPosition = pos;
+        heldObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+        toggleGravity();
+
+    }
+
+    void dropObject() {
+        isHoldingObject = false;
+        heldObject.transform.SetParent(null);
+
+        toggleGravity();
+    }
+
+    void toggleGravity() {
+        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+        rb.useGravity = !rb.useGravity;
+        rb.isKinematic = !rb.isKinematic;
+    }
+}
