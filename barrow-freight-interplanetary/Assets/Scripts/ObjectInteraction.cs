@@ -23,15 +23,23 @@ public class ObjectInteraction : MonoBehaviour
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit rhInfo;
 
-            if (isHoldingObject) {
-                dropObject();
-            } else if (Physics.Raycast(mouseRay, out rhInfo, 2.0f)) {
-                Debug.Log("Mouse ray hit " + rhInfo.collider.gameObject.name + " at " + rhInfo.point);
-                pickUpObject(rhInfo.collider.gameObject);
-                //holdObject();
-            } else {
-                Debug.Log("Mouse ray hit nothing.");
+            if (Physics.Raycast(mouseRay, out rhInfo, 2.0f)) {
+                if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
+                    Debug.Log("Mouse ray hit bay " + rhInfo.collider.gameObject.name + " at " + rhInfo.point);
+                    placeObject(rhInfo.collider.gameObject);
+                } else if (isHoldingObject) {
+                    dropObject();
+                } else if (Physics.Raycast(mouseRay, out rhInfo, 2.0f)) {
+                    Debug.Log("Mouse ray hit " + rhInfo.collider.gameObject.name + " at " + rhInfo.point);
+                    if (rhInfo.collider.gameObject.tag == "MovableObject") {
+                        pickUpObject(rhInfo.collider.gameObject);
+                    }
+                } else {
+                    Debug.Log("Mouse ray hit nothing.");
+                }
             }
+
+   
         }
     }
 
@@ -46,8 +54,10 @@ public class ObjectInteraction : MonoBehaviour
         heldObject.transform.localPosition = pos;
         heldObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-        toggleGravity();
-
+        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+        if (rb.useGravity) {
+            toggleGravity();
+        }
     }
 
     void dropObject() {
@@ -55,6 +65,15 @@ public class ObjectInteraction : MonoBehaviour
         heldObject.transform.SetParent(null);
 
         toggleGravity();
+    }
+
+    void placeObject(GameObject bay) {
+        isHoldingObject = false;
+        heldObject.transform.SetParent(null);
+
+        heldObject.transform.position = bay.transform.position;
+        heldObject.transform.rotation = bay.transform.rotation;
+        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
     }
 
     void toggleGravity() {
