@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script may not be needed, but it is currently used to find an empty bay's transform
 public class TerminalBay : MonoBehaviour
 {
 
@@ -19,11 +20,4 @@ public class TerminalBay : MonoBehaviour
         
     }
 
-    //public void installModule() {
-    //    isModuleInstalled = true;
-    //}
-
-    //public void uninstallModule() {
-    //    isModuleInstalled = false;
-    //}
 }
