@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public int efficiency = 0;
-    public int baseEfficiency = 0;
+    public int powerOutput = 0;
+    public int basePowerOutput = 0;
 
     public string textOutput;
 
@@ -18,13 +18,13 @@ public class Ship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textOutput = "Ship Efficiency at " + efficiency + "%";
-        MainlMonitor monitor = GetComponentInChildren<MainMonitor>();
+        textOutput = "Barrow Freight Interplanetary \n\n\nShip Power Output at " + powerOutput + "Gw";
+        TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();
         monitor.WriteToMonitor(textOutput);
-        efficiency = baseEfficiency;
+        powerOutput = basePowerOutput;
     }
 
-    public void IncreaseEfficiency(int value) {
-        efficiency += value;
+    public void IncreaseShipPowerOutput(int value) {
+        powerOutput += value;
     }
 }

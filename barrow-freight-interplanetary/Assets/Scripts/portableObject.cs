@@ -19,7 +19,7 @@ public class portableObject : MonoBehaviour
     {
         if (isInstalled) {
             Terminal parentTerminal = GetComponentInParent<Terminal>();
-            parentTerminal.IncreaseEfficiency(efficiencyBonus);
+            parentTerminal.IncreasePowerOutput(efficiencyBonus);
         }
     }
 

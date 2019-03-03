@@ -11,29 +11,30 @@ public class Terminal : MonoBehaviour
 
     public string textOutput;
 
-    public int baseEfficiency = 0;
-    public int efficiency = 0;
+    public int basePowerOutput = 0;
+    public int powerOutput = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        powerOutput = basePowerOutput;
     }
 
     // Update is called once per frame
     void Update()
     {
-        textOutput = "Terminal Efficiency at " + efficiency + "%";
+        textOutput = "Terminal Power Output at " + powerOutput + "Gw";
         TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();
         monitor.WriteToMonitor(textOutput);
-        efficiency = baseEfficiency;
 
         Ship ship = GetComponentInParent<Ship>();
-        ship.IncreaseEfficiency(efficiencyBonus);
+        ship.IncreaseShipPowerOutput(powerOutput);
+
+        powerOutput = basePowerOutput;
     }
 
-    public void IncreaseEfficiency(int value) {
-        efficiency += value;
+    public void IncreasePowerOutput(int value) {
+        powerOutput += value;
     }
 }
