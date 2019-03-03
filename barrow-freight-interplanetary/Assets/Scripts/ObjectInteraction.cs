@@ -50,6 +50,9 @@ public class ObjectInteraction : MonoBehaviour
         heldObject = targetObject;
         heldObject.transform.SetParent(this.transform);
 
+        portableObject po = heldObject.GetComponent<portableObject>();
+        po.PickupObject();
+
         Vector3 pos = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y - 0.5f, Camera.main.transform.localPosition.z + 1f);
         heldObject.transform.localPosition = pos;
         heldObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -64,6 +67,9 @@ public class ObjectInteraction : MonoBehaviour
         isHoldingObject = false;
         heldObject.transform.SetParent(null);
 
+        portableObject po = heldObject.GetComponent<portableObject>();
+        po.DropObject();
+
         toggleGravity();
     }
 
@@ -76,7 +82,14 @@ public class ObjectInteraction : MonoBehaviour
         Rigidbody rb = heldObject.GetComponent<Rigidbody>();
 
         TerminalBay targetBay = bay.GetComponent<TerminalBay>();
-        targetBay.installModule();
+        //targetBay.installModule();
+
+        //GameObject terminal = targetBay.getParent()
+
+        heldObject.transform.SetParent(targetBay.transform.parent.gameObject.transform);
+
+        portableObject po = heldObject.GetComponent<portableObject>();
+        po.InstallObject();
     }
 
     void toggleGravity() {

@@ -19,11 +19,11 @@ public class TerminalBay : MonoBehaviour
         
     }
 
-    public void installModule() {
-        isModuleInstalled = true;
-    }
+    //public void installModule() {
+    //    isModuleInstalled = true;
+    //}
 
-    public void uninstallModule() {
-        isModuleInstalled = false;
-    }
+    //public void uninstallModule() {
+    //    isModuleInstalled = false;
+    //}
 }
