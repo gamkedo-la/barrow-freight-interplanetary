@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public int powerOutput = 0;
-    public int basePowerOutput = 0;
+    public float excessPower = 0;
+    public float basePowerOutput = 0;
 
     public string textOutput;
 
@@ -21,15 +21,15 @@ public class Ship : MonoBehaviour
     void Update()
     {
         //Sets text output and sends it to the ship's main monitor.
-        textOutput = "Barrow Freight Interplanetary \n\n\nShip Power Output at " + powerOutput + "Gw";
+        textOutput = "Barrow Freight Interplanetary \n\n\nExcess Power Capacity " + excessPower + "Gw";
         TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();
         monitor.WriteToMonitor(textOutput);
 
         //Reset current power output, so that it does not continue to increase every frame.
-        powerOutput = basePowerOutput;
+        excessPower = basePowerOutput;
     }
 
-    public void IncreaseShipPowerOutput(int value) {
-        powerOutput += value;
+    public void IncreaseShipPowerOutput(float value) {
+        excessPower += value;
     }
 }

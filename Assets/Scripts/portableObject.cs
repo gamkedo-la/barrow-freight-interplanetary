@@ -6,7 +6,7 @@ public class portableObject : MonoBehaviour
 {
     public bool isHeld = false;
     public bool isInstalled = false;
-    public int powerBonus;
+    public float efficiencyBonus;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class portableObject : MonoBehaviour
         //If this module is installed in a terminal, it sends its stat values to the terminal
         if (isInstalled) {
             Terminal parentTerminal = GetComponentInParent<Terminal>();
-            parentTerminal.IncreasePowerOutput(powerBonus);
+            parentTerminal.IncreaseEfficiency(efficiencyBonus);
         }
     }
 
