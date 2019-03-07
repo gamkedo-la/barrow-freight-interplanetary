@@ -340,12 +340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042a78d742f77e34caafbd2bdeb6f71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redStatus: offline
-  blueStatus: offline
-  greenStatus: offline
   textOutput: 
-  baseEfficiency: 0
-  efficiency: 0
+  basePowerOutput: 0
+  powerOutput: 0
 --- !u!1 &1825230208
 GameObject:
   m_ObjectHideFlags: 0

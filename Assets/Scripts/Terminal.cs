@@ -10,11 +10,31 @@ public class Terminal : MonoBehaviour
     public int basePowerOutput = 0;
     public int powerOutput = 0;
 
+    public enum TerminalTypes { PowerGenerator, CoolingUnit, EngineControl, NAVCOMComputer };
+    public TerminalTypes terminalType;
+
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
 
+        Renderer rend = GetComponent<Renderer>();
+
+        switch (terminalType) {
+            case TerminalTypes.PowerGenerator:
+                rend.material.color = Color.yellow;
+                break;
+            case TerminalTypes.CoolingUnit:
+                rend.material.color = Color.blue;
+                break;
+            case TerminalTypes.EngineControl:
+                rend.material.color = Color.red;
+                break;
+            case TerminalTypes.NAVCOMComputer:
+                rend.material.color = Color.green;
+                break;
+            default:
+            break;
+        }
     }
 
     // Update is called once per frame
