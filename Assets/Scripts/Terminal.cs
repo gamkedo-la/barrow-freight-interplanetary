@@ -96,9 +96,9 @@ public class Terminal : MonoBehaviour
         TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();
         monitor.WriteToMonitor(textOutput);
 
-        //sends terminal total values to the Ship script.
+        //sends power consumption value to the Ship script.
         Ship ship = GetComponentInParent<Ship>();
-        ship.IncreaseShipPowerOutput(-powerConsumption);
+        ship.UpdateShipPowerConsumption(-powerConsumption);
 
         //Reset current positiveAttribute and efficiency values, so they does not continue to increase every frame.
         positiveAttribute = basePositiveAttribute;

@@ -29,7 +29,7 @@ public class Ship : MonoBehaviour
         excessPower = basePowerOutput;
     }
 
-    public void IncreaseShipPowerOutput(float value) {
+    public void UpdateShipPowerConsumption(float value) {
         excessPower += value;
     }
 }
