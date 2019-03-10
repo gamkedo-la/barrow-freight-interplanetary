@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 55f55eff0d3d26e49af1ee7d54b3c6b5, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.23009804, g: 0.207935, b: 0.16229525, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -206,8 +206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textOutput: 
-  basePowerOutput: 0
-  powerOutput: 0
   shipAttributeType: 0
   terminalType: 2
 --- !u!1 &9505703
@@ -5400,8 +5398,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textOutput: 
-  basePowerOutput: 0
-  powerOutput: 0
   shipAttributeType: 0
   terminalType: 1
 --- !u!1 &407671929 stripped
@@ -5775,8 +5771,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textOutput: 
-  basePowerOutput: 0
-  powerOutput: 0
   shipAttributeType: 0
   terminalType: 0
 --- !u!1 &568257811 stripped
@@ -7100,8 +7094,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textOutput: 
-  basePowerOutput: 0
-  powerOutput: 0
   shipAttributeType: 0
   terminalType: 3
 --- !u!1 &1381231407 stripped
@@ -7122,8 +7114,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74bb2eef9ed63c4b96639a6fdf6edea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  excessPower: 0
-  basePowerOutput: 0
+  baseShipPowerCapacity: 150
+  currentShipPowerCapacity: 0
+  currentShipPowerConsumption: 0
+  internalShipTemp: 0
+  currentShipCoolingRate: 0
+  maxShipSpeed: 0
+  currentShipSpeed: 10
+  totalShipCargoCapacity: 100
+  consumedShipCargoCapacity: 0
+  maxShipComRange: 50
   textOutput: 
 --- !u!4 &1381231409 stripped
 Transform:
