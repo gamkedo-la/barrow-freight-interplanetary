@@ -5,21 +5,18 @@ using UnityEngine;
 public class Terminal : MonoBehaviour
 {
 
-    public string textOutput;
-
-    public int basePowerOutput = 0;
-    public int powerOutput = 0;
-
-    private string label;
-
     private float powerConsumption = 0;
+    private float powerCapacity = 0;
     private float heatGeneration = 0;
+    private float coolingRate = 0;
     private float efficiencyRating = 0;
     private float engineSpeed = 0;
     private float navSpeedBonus = 0;
     private float comRangeBoost = 0;
     private float efficiencyBonus = 1;
 
+    public string textOutput;
+    private string label;
     private string positiveAttributeLabel;
     private float positiveAttribute;
     private string positiveAttributeUnit;
@@ -41,19 +38,19 @@ public class Terminal : MonoBehaviour
             case TerminalTypes.PowerGenerator:
                 rend.material.color = Color.yellow;
                 label = "Power Generator";
-                powerConsumption = -1000;
+                powerCapacity = 1000;
                 heatGeneration = 500;
                 positiveAttributeLabel = "Power Generated:\n";
-                positiveAttribute = -powerConsumption;
+                positiveAttribute = powerCapacity;
                 positiveAttributeUnit = "Gw";
                 break;
             case TerminalTypes.CoolingUnit:
                 rend.material.color = Color.blue;
                 label = "Cooling Unit";
                 powerConsumption = 100;
-                heatGeneration = -300;
-                positiveAttributeLabel = "Heat Dissipated:\n";
-                positiveAttribute = -heatGeneration;
+                coolingRate = 300;
+                positiveAttributeLabel = "Heat Dissipated:\n"; 
+                positiveAttribute = coolingRate;
                 positiveAttributeUnit = "BTUs";
                 break;
             case TerminalTypes.EngineControl:
@@ -84,11 +81,15 @@ public class Terminal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Ship ship = GetComponentInParent<Ship>();
+
         basePositiveAttribute = positiveAttribute;
         positiveAttribute *= efficiencyBonus;
 
         if (terminalType == TerminalTypes.PowerGenerator) {
-            powerConsumption = -positiveAttribute;
+
+            ship.UpdateShipPowerCapacity(positiveAttribute);
+
         }
 
         //Sets text output and sends it to the terminal's monitor.
@@ -97,8 +98,7 @@ public class Terminal : MonoBehaviour
         monitor.WriteToMonitor(textOutput);
 
         //sends power consumption value to the Ship script.
-        Ship ship = GetComponentInParent<Ship>();
-        ship.UpdateShipPowerConsumption(-powerConsumption);
+        ship.UpdateShipPowerConsumption(powerConsumption);
 
         //Reset current positiveAttribute and efficiency values, so they does not continue to increase every frame.
         positiveAttribute = basePositiveAttribute;
