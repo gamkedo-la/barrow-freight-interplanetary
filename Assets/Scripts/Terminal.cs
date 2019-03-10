@@ -87,9 +87,23 @@ public class Terminal : MonoBehaviour
         positiveAttribute *= efficiencyBonus;
 
         if (terminalType == TerminalTypes.PowerGenerator) {
-
+            //sends power capacity value to the Ship script.
             ship.UpdateShipPowerCapacity(positiveAttribute);
+        }
 
+        if (terminalType == TerminalTypes.CoolingUnit) {
+            //sends cooling rate value to the Ship script.
+            ship.UpdateShipCoolingRate(positiveAttribute);
+        }
+
+        if (terminalType == TerminalTypes.EngineControl) { 
+            //sends engine speed value to the Ship script.
+            ship.UpdateCurrentShipSpeed(positiveAttribute);
+        }
+
+        if (terminalType == TerminalTypes.NAVCOMComputer) {
+            //sends com range value to the Ship script.
+            ship.UpdateShipMaxComRange(positiveAttribute);
         }
 
         //Sets text output and sends it to the terminal's monitor.
@@ -99,6 +113,14 @@ public class Terminal : MonoBehaviour
 
         //sends power consumption value to the Ship script.
         ship.UpdateShipPowerConsumption(powerConsumption);
+
+        //sends heat generation value to the Ship script.
+        ship.UpdateInternalShipTemp(heatGeneration);
+
+
+
+
+        
 
         //Reset current positiveAttribute and efficiency values, so they does not continue to increase every frame.
         positiveAttribute = basePositiveAttribute;
