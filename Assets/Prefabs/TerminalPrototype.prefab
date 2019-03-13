@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 845739034}
   - component: {fileID: 845739035}
   - component: {fileID: 845739036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bay2
   m_TagString: TerminalBay
   m_Icon: {fileID: 0}
@@ -341,8 +341,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textOutput: 
-  basePowerOutput: 0
-  powerOutput: 0
+  shipAttributeType: 0
+  terminalType: 0
 --- !u!1 &1825230208
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 1901015528}
   - component: {fileID: 1901015529}
   - component: {fileID: 1901015530}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bay3
   m_TagString: TerminalBay
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 956700034217546699}
   - component: {fileID: 956700034217546696}
   - component: {fileID: 956700034217546704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bay1
   m_TagString: TerminalBay
   m_Icon: {fileID: 0}
