@@ -8,6 +8,8 @@ public class portableObject : MonoBehaviour
     public bool isInstalled = false;
     public float efficiencyBonus;
 
+    private AudioSource audioData;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,16 @@ public class portableObject : MonoBehaviour
         isHeld = true;
         isInstalled = false;
         gameObject.layer = 2;  //prevents held objects from blocking raycasts.
+        audioData = GetComponent<AudioSource>();
+        if (audioData != null)
+        {
+            audioData.Play();
+        }
+        else
+        {
+            Debug.Log("No SFX found");
+        }
+
     }
 
     public void DropObject() {
