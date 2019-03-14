@@ -7,18 +7,26 @@ public class ObjectInteraction : MonoBehaviour
 
     bool isHoldingObject = false;
     float interactionRange = 3.0f;
+    float objectMovementStartTime;
+    float objectMovementDistance;
+
+    Vector3 handPosition;
 
     GameObject heldObject;
+    portableObject po;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        handPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y - 0.5f, Camera.main.transform.localPosition.z + 1f);
+
         if (Input.GetMouseButtonDown(0)) {
             //Debug.Log("Mouse Clicked");
 
@@ -28,7 +36,6 @@ public class ObjectInteraction : MonoBehaviour
             if (Physics.Raycast(mouseRay, out rhInfo, interactionRange)) {
                 if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
 
-                    //Debug.Log("Mouse ray hit bay " + rhInfo.collider.gameObject.name + " at " + rhInfo.point);
                     placeObject(rhInfo.collider.gameObject);
 
                 } else if (isHoldingObject) { //end of if isHoldingObject and target is TerminalBay.
@@ -36,10 +43,10 @@ public class ObjectInteraction : MonoBehaviour
                     dropObject();
 
                 } else if (Physics.Raycast(mouseRay, out rhInfo, 3.0f)) { //end of if isHoldingObject
-
-                    //Debug.Log("Mouse ray hit " + rhInfo.collider.gameObject.name + " at " + rhInfo.point);
                     if (rhInfo.collider.gameObject.tag == "MovableObject") {
+
                         pickUpObject(rhInfo.collider.gameObject);
+
                     } //end of if hit object is movable
 
                 } else { //end of if raycast hits object
@@ -49,23 +56,28 @@ public class ObjectInteraction : MonoBehaviour
                 } //end of else
             } //end of if a raycast hits something
         } // end of if mouse button 0 is pressed
+
+        if (isHoldingObject) {
+            MoveObjectToHands();
+        }
+
     } // end of Update()
 
     void pickUpObject(GameObject targetObject) {
+
+        objectMovementStartTime = Time.time;
 
         isHoldingObject = true;
 
         heldObject = targetObject;
         heldObject.transform.SetParent(this.transform);
+        objectMovementDistance = Vector3.Distance(heldObject.transform.position, handPosition);
 
         //notifies the heldObject that is has been picked up.
         portableObject po = heldObject.GetComponent<portableObject>();
         po.PickupObject();
 
-        //Holds the object in position relative to the player camera
-        Vector3 pos = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y - 0.5f, Camera.main.transform.localPosition.z + 1f);
-        heldObject.transform.localPosition = pos;
-        heldObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        MoveObjectToHands();
 
         Rigidbody rb = heldObject.GetComponent<Rigidbody>();
         if (rb.useGravity) {
@@ -80,7 +92,7 @@ public class ObjectInteraction : MonoBehaviour
         //notifies the heldObject that is has been dropped.
         portableObject po = heldObject.GetComponent<portableObject>();
         po.DropObject();
-
+        po = null;
         toggleGravity();
     }
 
@@ -106,5 +118,19 @@ public class ObjectInteraction : MonoBehaviour
         Rigidbody rb = heldObject.GetComponent<Rigidbody>();
         rb.useGravity = !rb.useGravity;
         rb.isKinematic = !rb.isKinematic;
+    }
+
+    void MoveObjectToHands() {
+        float speed = 1.0F;
+
+        // Distance moved = time * speed.
+        float distCovered = (Time.time - objectMovementStartTime) * speed;
+
+        // Fraction of journey completed = current distance divided by total distance.
+        float fracJourney = distCovered / objectMovementDistance;
+
+        // Set object position as a fraction of the distance between the object and hand position.
+        heldObject.transform.localPosition = Vector3.Lerp(heldObject.transform.localPosition, handPosition, fracJourney);
+        heldObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }
