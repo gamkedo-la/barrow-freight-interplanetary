@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//This script may not be needed, but it is currently used to find an empty bay's transform
 public class TerminalBay : MonoBehaviour
 {
 
-    public bool isModuleInstalled = false;
+    private bool isModuleInstalled = false;
+    private GameObject installedObject;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,24 @@ public class TerminalBay : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AttachObjectToBay(GameObject go) {
+        installedObject = go;
+        isModuleInstalled = true;
+    }
+
+    public void DetachObjectToBay(GameObject go) {
+        installedObject = null;
+        isModuleInstalled = false;
+    }
+
+    public bool IsModuleInstalled() {
+        return isModuleInstalled;
+    }
+
+    public GameObject GetInstalledObject() {
+        return installedObject;
     }
 
 }

@@ -6,7 +6,10 @@ public class portableObject : MonoBehaviour
 {
     public bool isHeld = false;
     public bool isInstalled = false;
+    public bool isActivated = false;
     public float efficiencyBonus;
+    public Vector3 initialPosition;
+    public Vector3 activatedPosition;
 
     private AudioSource audioData;
 
@@ -52,5 +55,24 @@ public class portableObject : MonoBehaviour
         isHeld = false;
         isInstalled = true;
         gameObject.layer = 0;
+        initialPosition = transform.position;
+    }
+
+    public void ActivateObject() {
+        activatedPosition = initialPosition + new Vector3(0,0,-10);
+        transform.Translate(new Vector3(-0.7f,0,0));
+    }
+
+    public void DeactivateObject() {
+        activatedPosition = initialPosition + new Vector3(0, 0, 10);
+        transform.Translate(new Vector3(0.7f, 0, 0));
+    }
+
+    public bool IsObjectInstalled() {
+        return isInstalled;
+    }
+
+    public bool IsObjectActivated() {
+        return isActivated;
     }
 }

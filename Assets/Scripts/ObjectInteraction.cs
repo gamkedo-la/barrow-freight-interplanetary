@@ -14,6 +14,7 @@ public class ObjectInteraction : MonoBehaviour
 
     GameObject heldObject;
     portableObject po;
+    TerminalBay targetBay;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,15 @@ public class ObjectInteraction : MonoBehaviour
 
                     placeObject(rhInfo.collider.gameObject);
 
+                } else if (!isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
+
+                    targetBay = rhInfo.collider.gameObject.GetComponent<TerminalBay>();
+                    if (targetBay.IsModuleInstalled()) {
+                        GameObject installedObject = targetBay.GetInstalledObject();
+                        portableObject po = installedObject.GetComponent<portableObject>();
+                        po.DeactivateObject();
+                    }
+
                 } else if (isHoldingObject) { //end of if isHoldingObject and target is TerminalBay.
 
                     dropObject();
@@ -45,7 +55,13 @@ public class ObjectInteraction : MonoBehaviour
                 } else if (Physics.Raycast(mouseRay, out rhInfo, 3.0f)) { //end of if isHoldingObject
                     if (rhInfo.collider.gameObject.tag == "MovableObject") {
 
-                        pickUpObject(rhInfo.collider.gameObject);
+                        portableObject po = rhInfo.collider.gameObject.GetComponent<portableObject>();
+                        if (!po.IsObjectInstalled()) {
+                            pickUpObject(rhInfo.collider.gameObject);
+                        } else {
+                            po.ActivateObject();
+                        }
+
 
                     } //end of if hit object is movable
 
@@ -106,6 +122,7 @@ public class ObjectInteraction : MonoBehaviour
 
         TerminalBay targetBay = bay.GetComponent<TerminalBay>();
 
+        targetBay.AttachObjectToBay(heldObject);
         heldObject.transform.SetParent(targetBay.transform.parent.gameObject.transform);
 
         //notifies the heldObject that is has been installed in a terminal.
