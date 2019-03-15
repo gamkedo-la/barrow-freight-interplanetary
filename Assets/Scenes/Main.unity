@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.23009804, g: 0.207935, b: 0.16229525, a: 1}
+  m_IndirectSpecularColor: {r: 0.23017147, g: 0.20789477, b: 0.16238892, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -555,7 +555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &78336945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -632,7 +631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &96534098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5925,7 +5923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &354371377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6125,7 +6122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &417106295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6392,6 +6388,102 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 311718640721109398}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &523304726
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523304725}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e15811be5beb94b24bdde3b0c7cba23c, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &523304731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6679,7 +6771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &588854597
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7104,7 +7195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &774260084
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7233,7 +7323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &803351647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7305,7 +7394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &804091402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9511,7 +9599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &1426609898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9933,7 +10020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &1457394039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15289,7 +15375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &1941265143
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16070,7 +16155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &2084378776
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16366,7 +16450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!114 &2497428848052547560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16673,7 +16756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!1 &2497428848759821118
 GameObject:
   m_ObjectHideFlags: 0
@@ -16704,7 +16786,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &3453776935389196561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16807,7 +16888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!224 &6934033694366668558
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17053,7 +17133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!65 &7889254816531335657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17111,4 +17190,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
