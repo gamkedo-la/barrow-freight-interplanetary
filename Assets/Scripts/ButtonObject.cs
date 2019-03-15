@@ -1,30 +1,103 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
-public class ButtonObject : MonoBehaviour
+enum ButtonType
 {
-	void Start ()
+	Standard,
+	Toggle,
+	Hold
+}
+
+public class ButtonObject : MonoBehaviour, IInteractable
+{
+	[SerializeField] private Animator animator = null;
+	[SerializeField] private GameObject highlight = null;
+	[SerializeField] private ButtonType buttonType = ButtonType.Standard;
+	[SerializeField] private bool isOn = false;
+	[Header("Events")]
+	[SerializeField] private UnityEvent OnEvent = null;
+	[SerializeField] private UnityEvent OffEvent = null;
+
+
+	void Start( )
 	{
-		//Assert.IsNotNull(  );
+		Assert.IsNotNull( animator );
+		Assert.IsNotNull( highlight );
 	}
 
-	void Update ()
+	public void OnPress( )
 	{
+		switch ( buttonType )
+		{
+			case ButtonType.Standard:
+			animator.SetTrigger( "OnPress" );
+			isOn = !isOn;
+			if ( isOn )
+				OnEvent.Invoke( );
+			else
+				OffEvent.Invoke( );
+			break;
 
+			case ButtonType.Toggle:
+			isOn = !isOn;
+			if ( isOn )
+			{
+				animator.SetTrigger( "OnPress" );
+				OnEvent.Invoke( );
+			}
+			else
+			{
+				animator.SetTrigger( "OnRelease" );
+				OffEvent.Invoke( );
+			}
+			break;
+
+			case ButtonType.Hold:
+			animator.SetTrigger( "OnPress" );
+			isOn = true;
+			OnEvent.Invoke( );
+			break;
+
+			default:
+			break;
+		}
 	}
 
-	private void OnMouseOver( )
+	public void OnRelease( )
 	{
-		Debug.Log( "OnMouseOver" );
+		switch ( buttonType )
+		{
+			case ButtonType.Standard:
+			animator.SetTrigger( "OnRelease" );
+			break;
+
+			case ButtonType.Toggle:
+			break;
+
+			case ButtonType.Hold:
+			animator.SetTrigger( "OnRelease" );
+			isOn = false;
+			OffEvent.Invoke( );
+			break;
+
+			default:
+			break;
+		}
 	}
 
-	private void OnMouseDown( )
+	public void OnOverEnter( )
 	{
-		Debug.Log( "OnMouseDown" );
+		highlight.SetActive( true );
 	}
 
-	private void OnMouseUp( )
+	public void OnOverExit( )
 	{
-		Debug.Log( "OnMouseUp" );
+		highlight.SetActive( false );
+	}
+
+	public void PressDone()
+	{
+
 	}
 }
