@@ -47,6 +47,7 @@ public class ButtonObject : MonoBehaviour, IInteractable
                     ButtonPressSound.Play();
                     LightStartingSound.Play();
                     LightLoopingSound.Play();
+
                 }
                 else
                 {
