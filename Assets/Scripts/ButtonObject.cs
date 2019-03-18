@@ -18,13 +18,21 @@ public class ButtonObject : MonoBehaviour, IInteractable
 	[Header("Events")]
 	[SerializeField] private UnityEvent OnEvent = null;
 	[SerializeField] private UnityEvent OffEvent = null;
+    private AudioSource[] buttonSFX;
+    private AudioSource ButtonPressSound;
+    private AudioSource LightStartingSound;
+    private AudioSource LightLoopingSound;
 
 
-	void Start( )
+    void Start( )
 	{
 		Assert.IsNotNull( animator );
 		Assert.IsNotNull( highlight );
-	}
+        buttonSFX = GetComponents<AudioSource>();
+         ButtonPressSound = buttonSFX[0];
+         LightStartingSound = buttonSFX[1];
+        LightLoopingSound = buttonSFX[2];
+    }
 
 	public void OnPress( )
 	{
@@ -33,10 +41,19 @@ public class ButtonObject : MonoBehaviour, IInteractable
 			case ButtonType.Standard:
 			animator.SetTrigger( "OnPress" );
 			isOn = !isOn;
-			if ( isOn )
-				OnEvent.Invoke( );
-			else
-				OffEvent.Invoke( );
+                if (isOn)
+                {
+                    OnEvent.Invoke();
+                    ButtonPressSound.Play();
+                    LightStartingSound.Play();
+                    LightLoopingSound.Play();
+                }
+                else
+                {
+                    OffEvent.Invoke();
+                    ButtonPressSound.Play();
+                    LightLoopingSound.Pause();
+                }
 			break;
 
 			case ButtonType.Toggle:
