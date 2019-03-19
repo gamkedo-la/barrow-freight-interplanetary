@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine;
 
 public class ObjectInteraction : MonoBehaviour
@@ -10,16 +11,20 @@ public class ObjectInteraction : MonoBehaviour
     float objectMovementStartTime;
     float objectMovementDistance;
 
+    bool viewLocked = false;
+
     Vector3 handPosition;
 
     GameObject heldObject;
     portableObject po;
     TerminalBay targetBay;
+    TerminalMonitor targetMonitor;
+    Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -28,6 +33,11 @@ public class ObjectInteraction : MonoBehaviour
 
         handPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y - 0.5f, Camera.main.transform.localPosition.z + 1f);
 
+        if (Input.GetMouseButtonDown(1)){
+            viewLocked = false;
+            GetComponent<FirstPersonController>().enabled = true;
+        }
+
         if (Input.GetMouseButtonDown(0)) {
             //Debug.Log("Mouse Clicked");
 
@@ -35,7 +45,15 @@ public class ObjectInteraction : MonoBehaviour
             RaycastHit rhInfo;
 
             if (Physics.Raycast(mouseRay, out rhInfo, interactionRange)) {
-                if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
+
+                if (rhInfo.collider.gameObject.tag == "TerminalMonitor") {
+
+                    Debug.Log("Monitor Clicked");
+                    viewLocked = true;
+                    targetMonitor = rhInfo.collider.gameObject.GetComponent<TerminalMonitor>();
+
+
+                } else if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
 
                     placeObject(rhInfo.collider.gameObject);
 
@@ -75,6 +93,17 @@ public class ObjectInteraction : MonoBehaviour
 
         if (isHoldingObject) {
             MoveObjectToHands();
+        }
+
+        if (viewLocked) {
+
+            GetComponent<FirstPersonController>().enabled = false;
+            mainCamera.transform.LookAt(targetMonitor.transform);
+            Vector3 lockedPos = new Vector3(targetMonitor.transform.position.x, transform.position.y, targetMonitor.transform.position.z + 0.75f);
+            transform.position = lockedPos;
+
+            //transform.Translate(Vector3.back);
+
         }
 
     } // end of Update()
