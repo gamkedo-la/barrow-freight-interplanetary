@@ -151,7 +151,9 @@ public class ObjectInteraction : MonoBehaviour
 
         TerminalBay targetBay = bay.GetComponent<TerminalBay>();
 
-        targetBay.AttachObjectToBay(heldObject);
+		SpeechService.Instance.SpeakMessage( $"{heldObject.name} inserted in to {bay.name}", 1, 0, 1, 1, true );
+
+		targetBay.AttachObjectToBay(heldObject);
         heldObject.transform.SetParent(targetBay.transform.parent.gameObject.transform);
 
         //notifies the heldObject that is has been installed in a terminal.
