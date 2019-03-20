@@ -10,27 +10,51 @@ public class LanguageTerminal : MonoBehaviour
 	{
 		Assert.IsNotNull( monitor );
 
-		Invoke( "Warmup", 1f );
-		Invoke( "InitTerminal", 3f );
+		Invoke( "InitTerminal", 1.5f );
 	}
 
-	private void Warmup( )
+	public void ChangeLanguage()
 	{
-		SpeechService.Instance.SpeakMessage( "On", 0.1f, 0, 1, 1, true );
+		List<string> voices = SpeechService.Instance.GetAvailableVoices( );
+		int langID = SpeechService.Instance.SelectedVoice;
+		langID++;
+		langID = langID >= voices.Count ? 0 : langID;
+		SpeechService.Instance.SelectedVoice = langID;
+
+		OutputSpeachData( voices, langID );
+
+		SpeechService.Instance.SpeakMessage( "New voice selected" );
 	}
 
 	private void InitTerminal()
 	{
 		List<string> voices = SpeechService.Instance.GetAvailableVoices( );
+		int langID = SpeechService.Instance.TryFindEnglishVoice( );
 
-		string output = "";
-		foreach ( var voice in voices )
+		OutputSpeachData( voices, langID );
+
+		SpeechService.Instance.SpeakMessage( "Welcome pilot. Where would you like us to go first?" );
+	}
+
+	private void OutputSpeachData( List<string> voices, int langID )
+	{
+		string output = "Available voices:\n";
+		for ( int i = 0; i < voices.Count; i++ )
 		{
-			output += voice + "\n";
+			if ( i == langID )
+				output += "<b>";
+			output += voices[i] + "\n";
+			if ( i == langID )
+				output += "</b>";
 		}
 
-		monitor.WriteToMonitor( output + "\nEOF" );
+		output += "\n";
+		output += $"Volume: {SpeechService.Instance.Volume}\n";
+		output += $"Pitch: {SpeechService.Instance.Pitch}\n";
+		output += $"Rate: {SpeechService.Instance.Rate}\n";
 
-		SpeechService.Instance.SpeakMessage( "Welcome to Barrow Freight Interplanetary", 1, 0, 1, 1, true );
+		output += $"\n<b><i>Press button below to change voice</i></b>";
+
+		monitor.WriteToMonitor( output );
 	}
 }

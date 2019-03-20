@@ -22,23 +22,49 @@ public class SpeechService : MonoBehaviour
 
 	public static SpeechService Instance { get; private set; }
 
+	public int SelectedVoice { get; set; }
+	public float Pitch { get; set; }
+	public float Volume { get; set; }
+	public float Rate { get; set; }
+
 	private void Awake( )
 	{
 		if ( Instance != null && Instance != this )
 			Destroy( gameObject );
 		else
 			Instance = this;
+
+		SelectedVoice = 0;
+		Pitch = 1.0f;
+		Volume = 1.0f;
+		Rate = 1.0f;
+	}
+
+	private void Start( )
+	{
+		Invoke( "WarmUp", 0.5f );
+		Invoke( "Init", 0.8f );
 	}
 
 	private void OnDestroy( ) { if ( this == Instance ) { Instance = null; } }
 
-	public void SpeakMessage( string message, float vol = 1.0f, int voice = 0, float pitch = 1.0f, float rate = 1.0f, bool tryEnglish = false )
+	public void SpeakMessage( string message )
+	{
+		SpeakMessage( message, Volume, SelectedVoice, Pitch, Rate );
+	}
+
+	public void SpeakMessage( string message, float vol, float pitch, float rate )
+	{
+		SpeakMessage( message, vol, SelectedVoice, pitch, rate );
+	}
+
+	private void SpeakMessage( string message, float vol = 1.0f, int voice = 0, float pitch = 1.0f, float rate = 1.0f, bool tryEnglish = false )
 	{
 		if ( !SpeechServiceAvailable( ) )
 			return;
 
 		if ( tryEnglish )
-			voice = TryFindEnglish( );
+			voice = TryFindEnglishVoice( );
 
 		Speak( message, vol, voice, pitch, rate );
 	}
@@ -60,7 +86,7 @@ public class SpeechService : MonoBehaviour
 	public List<string> GetAvailableVoices()
 	{
 		if ( !SpeechServiceAvailable( ) )
-			return new List<string>( new string[] { "No languages available" } );
+			return new List<string>( new string[] { "None. Service unavailable, please buy a DLC ;)" } );
 
 		int voiceCount = GetVoicesLength( );
 		List<string> voices = new List<string>( );
@@ -71,7 +97,7 @@ public class SpeechService : MonoBehaviour
 		return voices;
 	}
 
-	private int TryFindEnglish()
+	public int TryFindEnglishVoice()
 	{
 		List<string> voices = GetAvailableVoices( );
 
@@ -82,5 +108,15 @@ public class SpeechService : MonoBehaviour
 		}
 
 		return 0;
+	}
+
+	private void WarmUp( )
+	{
+		SpeakMessage( "On", 0.1f, 0, 1, 1, true );
+	}
+
+	private void Init( )
+	{
+		SelectedVoice = TryFindEnglishVoice( );
 	}
 }

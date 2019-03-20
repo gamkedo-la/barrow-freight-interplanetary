@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 417106295}
   - component: {fileID: 417106294}
   m_Layer: 9
-  m_Name: Bay3
+  m_Name: Bay 3
   m_TagString: TerminalBay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 1457394039}
   - component: {fileID: 1457394038}
   m_Layer: 9
-  m_Name: Bay2
+  m_Name: Bay 2
   m_TagString: TerminalBay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 2084378776}
   - component: {fileID: 2084378775}
   m_Layer: 9
-  m_Name: Bay1
+  m_Name: Bay 1
   m_TagString: TerminalBay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

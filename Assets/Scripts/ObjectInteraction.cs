@@ -151,7 +151,7 @@ public class ObjectInteraction : MonoBehaviour
 
         TerminalBay targetBay = bay.GetComponent<TerminalBay>();
 
-		SpeechService.Instance.SpeakMessage( $"{heldObject.name} inserted in to {bay.name}", 1, 0, 1, 1, true );
+		SpeechService.Instance.SpeakMessage( $"{heldObject.name} inserted in to {bay.name}" );
 
 		targetBay.AttachObjectToBay(heldObject);
         heldObject.transform.SetParent(targetBay.transform.parent.gameObject.transform);

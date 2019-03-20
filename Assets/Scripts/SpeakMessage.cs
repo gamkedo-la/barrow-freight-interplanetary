@@ -7,17 +7,14 @@ public class SpeakMessage : MonoBehaviour
 	[SerializeField, Range(0,1)] private float volume = 1.0f;
 	[SerializeField, Range(0.5f,1.5f)] private float pitch = 1.0f;
 	[SerializeField, Range(0.1f,2f)] private float rate = 1.0f;
-	[SerializeField] private bool useEnglishIfAvailable = true;
-	[Tooltip("You can force set language here. 0 is usually system language. Only works in English above is set to false.")]
-	[SerializeField] private int languageID = 0;
 
 	public void SayOnMessage ()
 	{
-		SpeechService.Instance.SpeakMessage( onMessage, volume, 0, pitch, rate, useEnglishIfAvailable );
+		SpeechService.Instance.SpeakMessage( onMessage, volume, pitch, rate );
 	}
 
 	public void SayOffMessage( )
 	{
-		SpeechService.Instance.SpeakMessage( offMessage, volume, 0, pitch, rate, useEnglishIfAvailable );
+		SpeechService.Instance.SpeakMessage( offMessage, volume, pitch, rate );
 	}
 }
