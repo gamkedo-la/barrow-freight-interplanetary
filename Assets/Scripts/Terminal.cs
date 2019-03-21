@@ -25,9 +25,8 @@ public class Terminal : MonoBehaviour
     public enum ShipAttributeTypes { PowerCapacity, Temperature, Speed, CargoCapacity, ComRange };
     public ShipAttributeTypes shipAttributeType;
 
-    public enum TerminalTypes { PowerGenerator, CoolingUnit, EngineControl, NAVCOMComputer };
+    public enum TerminalTypes { PowerGenerator, CoolingUnit, EngineControl, NAVCOMComputer, Other };
     public TerminalTypes terminalType;
-
 
     // Start is called before the first frame update
     void Start() {
@@ -107,20 +106,16 @@ public class Terminal : MonoBehaviour
         }
 
         //Sets text output and sends it to the terminal's monitor.
-        textOutput = label + "\n"+ positiveAttributeLabel + positiveAttribute + positiveAttributeUnit;
-        TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();
-        monitor.WriteToMonitor(textOutput);
-
+        if (terminalType != TerminalTypes.Other) {
+            textOutput = label + "\n" + positiveAttributeLabel + positiveAttribute + positiveAttributeUnit;
+            TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();
+            monitor.WriteToMonitor(textOutput);  
+        }
         //sends power consumption value to the Ship script.
         ship.UpdateShipPowerConsumption(powerConsumption);
 
         //sends heat generation value to the Ship script.
         ship.UpdateInternalShipTemp(heatGeneration);
-
-
-
-
-        
 
         //Reset current positiveAttribute and efficiency values, so they does not continue to increase every frame.
         positiveAttribute = basePositiveAttribute;

@@ -10,6 +10,8 @@ public class ObjectInteraction : MonoBehaviour
     float interactionRange = 3.0f;
     float objectMovementStartTime;
     float objectMovementDistance;
+    Vector3 lockedCameraPosition;
+    Vector3 initialPlayerPosition;
 
     bool viewLocked = false;
 
@@ -19,6 +21,7 @@ public class ObjectInteraction : MonoBehaviour
     portableObject po;
     TerminalBay targetBay;
     TerminalMonitor targetMonitor;
+    Terminal targetTerminal;
     Camera mainCamera;
 
     // Start is called before the first frame update
@@ -51,7 +54,11 @@ public class ObjectInteraction : MonoBehaviour
                     Debug.Log("Monitor Clicked");
                     viewLocked = true;
                     targetMonitor = rhInfo.collider.gameObject.GetComponent<TerminalMonitor>();
+                    targetTerminal = targetMonitor.GetComponentInParent<Terminal>();
 
+                    initialPlayerPosition = transform.position;
+                    lockedCameraPosition = targetTerminal.transform.TransformPoint(Vector3.left * 1.25f);
+                    lockedCameraPosition.y = initialPlayerPosition.y;
 
                 } else if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
 
@@ -99,10 +106,10 @@ public class ObjectInteraction : MonoBehaviour
 
             GetComponent<FirstPersonController>().enabled = false;
             mainCamera.transform.LookAt(targetMonitor.transform);
-            Vector3 lockedPos = new Vector3(targetMonitor.transform.position.x, transform.position.y, targetMonitor.transform.position.z + 0.75f);
-            transform.position = lockedPos;
+            //Vector3 lockedPos = targetTerminal.transform.TransformPoint(Vector3.left);
 
-            //transform.Translate(Vector3.back);
+            
+            transform.position = lockedCameraPosition;
 
         }
 
