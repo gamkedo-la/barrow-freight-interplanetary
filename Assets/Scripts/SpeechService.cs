@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEngine.Assertions;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class UnityEventSpeachMessage: UnityEvent<string, float> { }
 
 public class SpeechService : MonoBehaviour
 {
@@ -26,6 +29,8 @@ public class SpeechService : MonoBehaviour
 	public float Pitch { get; set; }
 	public float Volume { get; set; }
 	public float Rate { get; set; }
+
+	[SerializeField] private UnityEventSpeachMessage onMessageRecived = null;
 
 	private void Awake( )
 	{
@@ -60,6 +65,8 @@ public class SpeechService : MonoBehaviour
 
 	private void SpeakMessage( string message, float vol = 1.0f, int voice = 0, float pitch = 1.0f, float rate = 1.0f, bool tryEnglish = false )
 	{
+		onMessageRecived.Invoke( message, rate );
+
 		if ( !SpeechServiceAvailable( ) )
 			return;
 
@@ -112,7 +119,7 @@ public class SpeechService : MonoBehaviour
 
 	private void WarmUp( )
 	{
-		SpeakMessage( "On", 0.1f, 0, 1, 1, true );
+		SpeakMessage( "...", 0.1f, 0, 1, 1, true );
 	}
 
 	private void Init( )
