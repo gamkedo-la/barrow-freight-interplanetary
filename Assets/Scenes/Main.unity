@@ -3616,7 +3616,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2214
+  m_Name: pb_Mesh-1866
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5033,7 +5033,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2222
+  m_Name: pb_Mesh-1874
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5971,27 +5971,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1916933365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 470526560002410970, guid: a9440ee26335c1944996961121b85785,
-    type: 3}
-  m_PrefabInstance: {fileID: 267949088780909567}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1916933366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916933365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 042a78d742f77e34caafbd2bdeb6f71b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textOutput: 
-  shipAttributeType: 0
-  terminalType: 0
 --- !u!1 &1941265140
 GameObject:
   m_ObjectHideFlags: 0
