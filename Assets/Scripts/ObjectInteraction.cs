@@ -24,10 +24,16 @@ public class ObjectInteraction : MonoBehaviour
     Terminal targetTerminal;
     Camera mainCamera;
 
+    private TerminalBeeps terminalBeepsScript;
+    private int randomIndexForTerminalBeepsArray;
+
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
+
+        terminalBeepsScript = GameObject.Find("TerminalBeepsManager").GetComponent<TerminalBeeps>();
+        randomIndexForTerminalBeepsArray = Random.Range(0, 4);
     }
 
     // Update is called once per frame
@@ -59,6 +65,8 @@ public class ObjectInteraction : MonoBehaviour
                     initialPlayerPosition = transform.position;
                     lockedCameraPosition = targetTerminal.transform.TransformPoint(Vector3.left * 1.25f);
                     lockedCameraPosition.y = initialPlayerPosition.y;
+
+                    terminalBeepsScript.terminalBeepsArray[randomIndexForTerminalBeepsArray].Play();
 
                 } else if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
 

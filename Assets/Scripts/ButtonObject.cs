@@ -40,6 +40,7 @@ public class ButtonObject : MonoBehaviour, IInteractable
             {
                 OnEvent.Invoke();
                 buttonSounds.ButtonPressSound.Play();
+                
                 //buttonSounds.LightStartingSound.Play();
                 //buttonSounds.LightLoopingSound.Play();
             }
