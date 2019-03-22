@@ -24,6 +24,9 @@ public class ObjectInteraction : MonoBehaviour
     Terminal targetTerminal;
     Camera mainCamera;
 
+    public GameObject terminalBeepsManager;
+
+
     private TerminalBeeps terminalBeepsScript;
     
     
@@ -34,7 +37,9 @@ public class ObjectInteraction : MonoBehaviour
         mainCamera = Camera.main;
 
         terminalBeepsScript = GameObject.Find("TerminalBeepsManager").GetComponent<TerminalBeeps>();
-        
+        terminalBeepsManager = GameObject.Find("TerminalBeepsManager");
+
+
     }
 
     // Update is called once per frame
@@ -67,6 +72,7 @@ public class ObjectInteraction : MonoBehaviour
                     lockedCameraPosition = targetTerminal.transform.TransformPoint(Vector3.left * 1.25f);
                     lockedCameraPosition.y = initialPlayerPosition.y;
 
+                    terminalBeepsManager.transform.position = targetTerminal.transform.position;
                     terminalBeepsScript.playInitialBeep();
                     terminalBeepsScript.playDelayedBeeps();
 

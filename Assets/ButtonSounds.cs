@@ -11,7 +11,9 @@ public class ButtonSounds : MonoBehaviour
     public AudioSource ButtonPressSecondHalf;
     public AudioSource LightStartingSound;
     public AudioSource LightLoopingSound;
-    
+
+    public Vector3 buttonSoundManagerPosition;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +25,12 @@ public class ButtonSounds : MonoBehaviour
         ButtonPressSecondHalf = buttonSFX[2];
         LightStartingSound = buttonSFX[3];
         LightLoopingSound = buttonSFX[4];
-        
+
+        buttonSoundManagerPosition = transform.position;
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void updateButtonSoundManagerPosition(Vector3 buttonPosition) {
+        transform.position = buttonPosition;
     }
 }

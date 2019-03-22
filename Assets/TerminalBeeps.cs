@@ -18,13 +18,14 @@ public class TerminalBeeps : MonoBehaviour
     private int IndexForBeepArray;
     private float beepDelayMin;
     private float beepDelayMax;
+    private float beepPan;
 
     // Start is called before the first frame update
     void Start()
     {
 
         terminalBeepsArray = GetComponents<AudioSource>();
-        //Debug.Log(buttonSFX);
+        
         A440 = terminalBeepsArray[0];
         B494 = terminalBeepsArray[1];
         CSharp554 = terminalBeepsArray[2];
@@ -34,7 +35,8 @@ public class TerminalBeeps : MonoBehaviour
         G392 = terminalBeepsArray[6];
 
         beepDelayMin = 0f;
-        beepDelayMax = 0.2f;
+        beepDelayMax = 0.3f;
+        beepPan = 1.0f;
     }
 
     private void calculateBeepDelay()
@@ -47,6 +49,7 @@ public class TerminalBeeps : MonoBehaviour
         IndexForBeepArray = Random.Range(0, 6);
         terminalBeepsArray[IndexForBeepArray].volume = Random.Range(0.7f,1.0f);
         terminalBeepsArray[IndexForBeepArray].pitch = Random.Range(0.88f,1.12f);
+        Debug.Log(terminalBeepsArray[IndexForBeepArray].panStereo);
         terminalBeepsArray[IndexForBeepArray].Play();
     }
 
@@ -56,15 +59,31 @@ public class TerminalBeeps : MonoBehaviour
         {
             calculateBeepDelay();
             IndexForBeepArray = Random.Range(0, 6);
-            terminalBeepsArray[IndexForBeepArray].PlayDelayed(beepDelay);
-            terminalBeepsArray[IndexForBeepArray].volume = Random.Range(0.7f,1.0f);
-            terminalBeepsArray[IndexForBeepArray].pitch = Random.Range(0.88f,1.12f);
+            terminalBeepsArray[IndexForBeepArray].volume = Random.Range(0.7f, 1.0f);
+            terminalBeepsArray[IndexForBeepArray].pitch = Random.Range(0.88f, 1.12f);
 
+            if (beepPan == 1.0f)
+            {
+                beepPan = -1.0f;
+            } else
+            {
+                beepPan = 1.0f;
+            }
+
+            terminalBeepsArray[IndexForBeepArray].panStereo = beepPan;
+
+            terminalBeepsArray[IndexForBeepArray].PlayDelayed(beepDelay);
+            Debug.Log(terminalBeepsArray[IndexForBeepArray].panStereo);
             beepDelayMin += 0.1f;
             beepDelayMax+= 0.1f;
+
+
+            //Debug.Log(beepDelayMin);
+            //Debug.Log(beepDelayMax);
+            
         }
         beepDelayMin = 0f;
-        beepDelayMax = 0.2f;
+        beepDelayMax = 0.3f;
     }
 
     // Update is called once per frame

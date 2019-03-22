@@ -21,39 +21,63 @@ public class ButtonObject : MonoBehaviour, IInteractable
 
     private ButtonSounds buttonSounds;
 
+    
+    public Vector3 StandardButtonLightPosition;
+    public Vector3 ToggleButtonLightPosition;
+    public Vector3 HoldButtonLightPosition;
+    public GameObject StandardButtonLight;
+
+
     void Start( )
 	{
 		Assert.IsNotNull( animator );
 		Assert.IsNotNull( highlight );
+        //Assert.IsNotNull(StandardButtonLight);
 
         buttonSounds = GameObject.Find("ButtonSoundManager").GetComponent<ButtonSounds>();
+        //buttonSoundManager = GameObject.Find("ButtonSoundManager");
+        //Debug.Log(buttonSoundManager);
+        
+        //StandardButtonLightPosition = GameObject.Find("Standard Button Test/Buttons Test Light").transform.position;
+        //Debug.Log(StandardButtonLightPosition);
+        //ToggleButtonLightPosition = GameObject.Find("Toggle Button Test/Buttons Test Light").transform.position;
+        //HoldButtonLightPosition = GameObject.Find("Hold Button Test/Buttons Test Light").transform.position;
     }
 
     public void OnPress( )
 	{
         switch ( buttonType )
 		{
+            
 			case ButtonType.Standard:
-			animator.SetTrigger( "OnPress" );
+                //StandardButtonLight = GameObject.Find("Standard Button Test/Buttons Test Light");
+                //Debug.Log(StandardButtonLight);
+                //buttonSounds.updateButtonSoundManagerPosition(StandardButtonLightPosition);
+
+                animator.SetTrigger( "OnPress" );
 			isOn = !isOn;
             if (isOn)
             {
                 OnEvent.Invoke();
                 buttonSounds.ButtonPressSound.Play();
                 
-                //buttonSounds.LightStartingSound.Play();
-                //buttonSounds.LightLoopingSound.Play();
+                buttonSounds.LightStartingSound.Play();
+                buttonSounds.LightLoopingSound.Play();
             }
             else
             {
                 OffEvent.Invoke();
                 buttonSounds.ButtonPressSound.Play();
-                //buttonSounds.LightLoopingSound.Pause();
+                buttonSounds.LightLoopingSound.Pause();
             }
 			break;
 
 			case ButtonType.Toggle:
-			isOn = !isOn;
+
+
+                //buttonSounds.updateButtonSoundManagerPosition(ToggleButtonLightPosition);
+
+                isOn = !isOn;
 			if ( isOn )
 			{
 				animator.SetTrigger( "OnPress" );
@@ -72,7 +96,11 @@ public class ButtonObject : MonoBehaviour, IInteractable
 			break;
 
 			case ButtonType.Hold:
-			animator.SetTrigger( "OnPress" );
+
+
+                //buttonSounds.updateButtonSoundManagerPosition(HoldButtonLightPosition);
+
+                animator.SetTrigger( "OnPress" );
 			isOn = true;
 			OnEvent.Invoke( );
             buttonSounds.ButtonPressFirstHalf.Play();
