@@ -45,6 +45,8 @@ public class TerminalBeeps : MonoBehaviour
     public void playInitialBeep()
     {
         IndexForBeepArray = Random.Range(0, 6);
+        terminalBeepsArray[IndexForBeepArray].volume = Random.Range(0.7f,1.0f);
+        terminalBeepsArray[IndexForBeepArray].pitch = Random.Range(0.88f,1.12f);
         terminalBeepsArray[IndexForBeepArray].Play();
     }
 
@@ -55,7 +57,10 @@ public class TerminalBeeps : MonoBehaviour
             calculateBeepDelay();
             IndexForBeepArray = Random.Range(0, 6);
             terminalBeepsArray[IndexForBeepArray].PlayDelayed(beepDelay);
-            beepDelayMin+= 0.1f;
+            terminalBeepsArray[IndexForBeepArray].volume = Random.Range(0.7f,1.0f);
+            terminalBeepsArray[IndexForBeepArray].pitch = Random.Range(0.88f,1.12f);
+
+            beepDelayMin += 0.1f;
             beepDelayMax+= 0.1f;
         }
         beepDelayMin = 0f;
