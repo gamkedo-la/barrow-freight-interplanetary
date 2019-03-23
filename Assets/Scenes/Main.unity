@@ -270,7 +270,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh63852
+  m_Name: pb_Mesh-1530
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -881,7 +881,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh63546
+  m_Name: pb_Mesh-1522
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -3910,6 +3910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 824117942}
   - component: {fileID: 824117943}
+  - component: {fileID: 824117944}
   m_Layer: 0
   m_Name: Toggle Button Test
   m_TagString: Untagged
@@ -3951,6 +3952,19 @@ MonoBehaviour:
   volume: 1
   pitch: 1
   rate: 1
+--- !u!114 &824117944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824117941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb1360ace3d18549a2b0d00a4d69f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleButtonLightPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &835102568 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100046, guid: 4a49b049ab209894d94abfe8ec300cbd,
@@ -4520,6 +4534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1293534278}
   - component: {fileID: 1293534279}
+  - component: {fileID: 1293534280}
   m_Layer: 0
   m_Name: Hold Button Test
   m_TagString: Untagged
@@ -4561,13 +4576,26 @@ MonoBehaviour:
   volume: 1
   pitch: 1
   rate: 1
+--- !u!114 &1293534280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293534277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ad08eaa1dc51640877526c4c2a4e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdButtonLightPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &1296832060
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh63516
+  m_Name: pb_Mesh-1906
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5037,6 +5065,15 @@ MonoBehaviour:
   ButtonPressSecondHalf: {fileID: 0}
   LightStartingSound: {fileID: 0}
   LightLoopingSound: {fileID: 0}
+  buttonSoundManagerPosition: {x: 0, y: 0, z: 0}
+  StandardButtonTest: {fileID: 0}
+  StandardButtonTestLight: {fileID: 0}
+  standardButtonLightScript: {fileID: 0}
+  StandardButtonLightPosition: {x: 0, y: 0, z: 0}
+  toggleButtonLightScript: {fileID: 0}
+  ToggleButtonLightPosition: {x: 0, y: 0, z: 0}
+  holdButtonLightScript: {fileID: 0}
+  HoldButtonLightPosition: {x: 0, y: 0, z: 0}
 --- !u!82 &1431985065
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5093,7 +5130,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5189,7 +5226,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5285,7 +5322,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5381,7 +5418,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5477,7 +5514,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5639,6 +5676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1439637841}
   - component: {fileID: 1439637842}
+  - component: {fileID: 1439637843}
   m_Layer: 0
   m_Name: Standard Button Test
   m_TagString: Untagged
@@ -5680,6 +5718,19 @@ MonoBehaviour:
   volume: 1
   pitch: 1
   rate: 1
+--- !u!114 &1439637843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439637840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c50c21b84597a40b46dbd51b7119bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standardButtonLightPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1455286178
 GameObject:
   m_ObjectHideFlags: 0
@@ -6133,7 +6184,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh64092
+  m_Name: pb_Mesh-1898
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -6841,7 +6892,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh63926
+  m_Name: pb_Mesh-1488
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -8054,7 +8105,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh63872
+  m_Name: pb_Mesh-1480
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2

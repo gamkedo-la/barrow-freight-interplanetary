@@ -32,16 +32,11 @@ public class ButtonObject : MonoBehaviour, IInteractable
 	{
 		Assert.IsNotNull( animator );
 		Assert.IsNotNull( highlight );
-        //Assert.IsNotNull(StandardButtonLight);
-
-        buttonSounds = GameObject.Find("ButtonSoundManager").GetComponent<ButtonSounds>();
-        //buttonSoundManager = GameObject.Find("ButtonSoundManager");
-        //Debug.Log(buttonSoundManager);
         
-        //StandardButtonLightPosition = GameObject.Find("Standard Button Test/Buttons Test Light").transform.position;
-        //Debug.Log(StandardButtonLightPosition);
-        //ToggleButtonLightPosition = GameObject.Find("Toggle Button Test/Buttons Test Light").transform.position;
-        //HoldButtonLightPosition = GameObject.Find("Hold Button Test/Buttons Test Light").transform.position;
+        buttonSounds = GameObject.Find("ButtonSoundManager").GetComponent<ButtonSounds>();
+        StandardButtonLightPosition = buttonSounds.StandardButtonLightPosition;
+        ToggleButtonLightPosition = buttonSounds.ToggleButtonLightPosition;
+        HoldButtonLightPosition = buttonSounds.HoldButtonLightPosition;
     }
 
     public void OnPress( )
@@ -50,9 +45,8 @@ public class ButtonObject : MonoBehaviour, IInteractable
 		{
             
 			case ButtonType.Standard:
-                //StandardButtonLight = GameObject.Find("Standard Button Test/Buttons Test Light");
-                //Debug.Log(StandardButtonLight);
-                //buttonSounds.updateButtonSoundManagerPosition(StandardButtonLightPosition);
+                
+                buttonSounds.updateButtonSoundManagerPosition(StandardButtonLightPosition);
 
                 animator.SetTrigger( "OnPress" );
 			isOn = !isOn;

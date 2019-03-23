@@ -13,7 +13,17 @@ public class ButtonSounds : MonoBehaviour
     public AudioSource LightLoopingSound;
 
     public Vector3 buttonSoundManagerPosition;
+    public GameObject StandardButtonTest;
+    public GameObject StandardButtonTestLight;
 
+    public StandardButtonLightScript standardButtonLightScript;
+    public Vector3 StandardButtonLightPosition;
+
+    public ToggleButtonLightScript toggleButtonLightScript;
+    public Vector3 ToggleButtonLightPosition;
+
+    public HoldButtonLightScript holdButtonLightScript;
+    public Vector3 HoldButtonLightPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +35,16 @@ public class ButtonSounds : MonoBehaviour
         ButtonPressSecondHalf = buttonSFX[2];
         LightStartingSound = buttonSFX[3];
         LightLoopingSound = buttonSFX[4];
+
+        standardButtonLightScript = GameObject.Find("Standard Button Test").GetComponent<StandardButtonLightScript>();
+        StandardButtonLightPosition = standardButtonLightScript.standardButtonLightPosition;
+        Debug.Log(StandardButtonLightPosition);
+
+        toggleButtonLightScript = GameObject.Find("Toggle Button Test").GetComponent<ToggleButtonLightScript>();
+        ToggleButtonLightPosition = toggleButtonLightScript.toggleButtonLightPosition;
+
+        holdButtonLightScript = GameObject.Find("Hold Button Test").GetComponent<HoldButtonLightScript>();
+        HoldButtonLightPosition = holdButtonLightScript.holdButtonLightPosition;
 
         buttonSoundManagerPosition = transform.position;
 
