@@ -21,12 +21,17 @@ public class Subtitles : MonoBehaviour
 		container.SetActive( false );
 	}
 
-	private void Update( )
+	void Update( )
 	{
 		nextSubtitlesDelay -= Time.deltaTime;
 		nextSubtitlesDelay = nextSubtitlesDelay < 0 ? 0 : nextSubtitlesDelay;
 	}
 
+	/// <summary>
+	/// Shows subtitles text/message.
+	/// </summary>
+	/// <param name="message">Text/message to be displayed.</param>
+	/// <param name="rate">Rate of the speech - used to sync with voice-over or speech API.</param>
 	public void DisplaySubtitles( string message, float rate)
 	{
 		float displayTime = ( message.Length * displayTimePerLetter ) / rate;

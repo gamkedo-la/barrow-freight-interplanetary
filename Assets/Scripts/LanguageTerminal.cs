@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 public class LanguageTerminal : MonoBehaviour
 {
-	[SerializeField] private TerminalMonitor monitor;
+	[SerializeField] private TerminalMonitor monitor = null;
 
 	void Start ()
 	{
@@ -13,7 +13,10 @@ public class LanguageTerminal : MonoBehaviour
 		Invoke( "InitTerminal", 1.5f );
 	}
 
-	public void ChangeLanguage()
+	/// <summary>
+	/// Changes voice of the speech API for the next one. Cycles back if the last one was selected.
+	/// </summary>
+	public void ChangeVoice()
 	{
 		List<string> voices = SpeechService.Instance.GetAvailableVoices( );
 		int langID = SpeechService.Instance.SelectedVoice;

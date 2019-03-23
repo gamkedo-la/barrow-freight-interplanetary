@@ -756,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeLanguage
+      value: ChangeVoice
       objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
@@ -781,7 +781,7 @@ PrefabInstance:
     - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeLanguage
+      value: ChangeVoice
       objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
