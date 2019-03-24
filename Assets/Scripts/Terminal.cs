@@ -140,7 +140,23 @@ public class Terminal : MonoBehaviour
     }
 
     public void DisplayJobSelection() {
-        textOutput = jobsManager.jobList[0].jobName;
+        textOutput = "Available Jobs\n\n" +
+                        "Job 1: " + jobsManager.jobList[0].jobName + "\n" +
+                        "Deliver " + jobsManager.jobList[0].cargoName + " to " + jobsManager.jobList[0].destination + "\n" +
+                        " within " + jobsManager.jobList[0].targetDeliveryTime + " days to collect " + jobsManager.jobList[0].cargoValue + " copper coins per cubic meter of cargo." +
+                        "\n\n" +
+                        "Job 2: " + jobsManager.jobList[1].jobName + "\n" +
+                        "Deliver " + jobsManager.jobList[1].cargoName + " to " + jobsManager.jobList[1].destination + "\n" +
+                        " within " + jobsManager.jobList[1].targetDeliveryTime + " days to collect " + jobsManager.jobList[1].cargoValue + " copper coins per cubic meter of cargo." +
+                        "\n\n" +
+                        "Job 1: " + jobsManager.jobList[2].jobName + "\n" +
+                        "Deliver " + jobsManager.jobList[2].cargoName + " to " + jobsManager.jobList[2].destination + "\n" +
+                        " within " + jobsManager.jobList[2].targetDeliveryTime + " days to collect " + jobsManager.jobList[2].cargoValue + " copper coins per cubic meter of cargo." +
+                        "\n\n" +
+                        "(Press job number to accept a job)";
+
+        monitor.ChangeFontSize(28);
+        monitor.ChangeAlignmentToMiddleLeft();
         monitor.WriteToMonitor(textOutput);
     }
 

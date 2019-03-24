@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Jobs : MonoBehaviour
-{
+public class Jobs : MonoBehaviour {
     int numberOfJobs = 3;
     public List<Job> jobList;
 
@@ -15,10 +15,11 @@ public class Jobs : MonoBehaviour
     List<float> cargoValues;
     List<float> targetDeliveryTimes;
     List<int> jobTiers;
-
+    List<bool> alreadyListed;
 
     public class Job {
 
+        public int jobID;
         public string jobName;
         public string destination;
         public string cargoName;
@@ -27,7 +28,8 @@ public class Jobs : MonoBehaviour
         public float targetDeliveryTime;
         public int jobTier;
 
-        public Job(string name, string dest, string cargo, string type, float value, float time, int tier) {
+        public Job(int id, string name, string dest, string cargo, string type, float value, float time, int tier) {
+            jobID = id;
             jobName = name;
             destination = dest;
             cargoName = cargo;
@@ -40,8 +42,7 @@ public class Jobs : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         jobList = new List<Job>();
 
         jobID = new List<int>();
@@ -52,30 +53,42 @@ public class Jobs : MonoBehaviour
         cargoValues = new List<float>();
         targetDeliveryTimes = new List<float>();
         jobTiers = new List<int>();
+        alreadyListed = new List<bool>();
 
         GenerateJobPool();
+        GenerateAvailableJobs();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 
-    public void GenerateAvailableJobs() 
-    {
-        for(int i = 0;i < numberOfJobs; i++) {
+    public void GenerateAvailableJobs() {
+
+        jobList.Clear();
+        for (int i = 0; i < alreadyListed.Count; i++) {
+            alreadyListed[i] = false;
+        }
+
+        for (int i = 0; i < numberOfJobs;) {
             int rand = Random.Range(0, jobID.Count - 1);
-            jobList.Add(new Job(jobNames[rand],
+            if (!alreadyListed[rand]) {
+                jobList.Add(new Job(jobID[rand],
+                                    jobNames[rand],
                                     destinations[rand],
                                     cargoNames[rand],
                                     cargoTypes[rand],
                                     cargoValues[rand],
                                     targetDeliveryTimes[rand],
                                     jobTiers[rand]));
+
+                alreadyListed[rand] = true;
+                i++;
+            }
         }
         Debug.Log(jobList[0].jobName);
-    }
+    } 
 
     void GenerateJobPool() {
 
@@ -89,6 +102,7 @@ public class Jobs : MonoBehaviour
         cargoValues.Add(101f);
         targetDeliveryTimes.Add(1001);
         jobTiers.Add(1);
+        alreadyListed.Add(false);
         i++;
 
         jobID.Add(i);
@@ -99,6 +113,7 @@ public class Jobs : MonoBehaviour
         cargoValues.Add(102f);
         targetDeliveryTimes.Add(1002);
         jobTiers.Add(2);
+        alreadyListed.Add(false);
         i++;
 
         jobID.Add(i);
@@ -109,6 +124,7 @@ public class Jobs : MonoBehaviour
         cargoValues.Add(103f);
         targetDeliveryTimes.Add(1003);
         jobTiers.Add(3);
+        alreadyListed.Add(false);
         i++;
 
         jobID.Add(i);
@@ -119,6 +135,7 @@ public class Jobs : MonoBehaviour
         cargoValues.Add(104f);
         targetDeliveryTimes.Add(1004);
         jobTiers.Add(4);
+        alreadyListed.Add(false);
         i++;
 
         jobID.Add(i);
@@ -129,6 +146,7 @@ public class Jobs : MonoBehaviour
         cargoValues.Add(105f);
         targetDeliveryTimes.Add(1005);
         jobTiers.Add(5);
+        alreadyListed.Add(false);
         i++;
     }
 }
