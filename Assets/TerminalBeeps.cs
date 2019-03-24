@@ -14,6 +14,7 @@ public class TerminalBeeps : MonoBehaviour
     public AudioSource GSharp415;
     public AudioSource G392;
     public AudioSource terminalStartupAndRunningSound;
+    public AudioSource terminalOffSound;
     public float loopStart, loopEnd;
 
     private float beepDelay;
@@ -38,6 +39,7 @@ public class TerminalBeeps : MonoBehaviour
         GSharp415 = terminalBeepsArray[5];
         G392 = terminalBeepsArray[6];
         terminalStartupAndRunningSound = terminalBeepsArray[7];
+        terminalOffSound = terminalBeepsArray[8];
         loopStart = 3.0f;
         loopEnd = 3.9f;
 
@@ -103,6 +105,11 @@ public class TerminalBeeps : MonoBehaviour
         terminalStartupAndRunningSound.Pause();
         terminalStartupAndRunningSound.time = 0f;
 
+    }
+
+    public void playTerminalOffSound()
+    {
+        terminalOffSound.Play();
     }
     // Update is called once per frame
     void Update()
