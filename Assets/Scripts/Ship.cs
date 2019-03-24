@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//It might be possible to combine this script with the Terminal script since they share similar functions.
-
 public class Ship : MonoBehaviour
 {
     public float baseShipPowerCapacity = 150;
@@ -19,10 +17,12 @@ public class Ship : MonoBehaviour
 
     public string textOutput;
 
+    public Vector3 initialShipPosition;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        initialShipPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -73,4 +73,13 @@ public class Ship : MonoBehaviour
     public void UpdateCurrentShipSpeed(float engineSpeedFromTerminal ) {
         currentShipSpeed += engineSpeedFromTerminal;
     }
+
+    public void MoveShipToTerminalView(Vector3 shipTerminalPosition) { 
+        this.transform.position = shipTerminalPosition;
+    }
+
+    public void ReturnShipToInitialPosition() {
+        this.transform.position = initialShipPosition;
+    }
+
 }
