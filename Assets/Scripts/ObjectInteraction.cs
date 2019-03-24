@@ -38,7 +38,7 @@ public class ObjectInteraction : MonoBehaviour
 
         terminalBeepsScript = GameObject.Find("TerminalBeepsManager").GetComponent<TerminalBeeps>();
         terminalBeepsManager = GameObject.Find("TerminalBeepsManager");
-
+        
 
     }
 
@@ -75,6 +75,7 @@ public class ObjectInteraction : MonoBehaviour
                     terminalBeepsManager.transform.position = targetTerminal.transform.position;
                     terminalBeepsScript.playInitialBeep();
                     terminalBeepsScript.playDelayedBeeps();
+                    terminalBeepsScript.playTerminalStartupAndRunningSound();
 
                 } else if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
 

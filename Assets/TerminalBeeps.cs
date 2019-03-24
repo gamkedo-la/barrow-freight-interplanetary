@@ -13,12 +13,15 @@ public class TerminalBeeps : MonoBehaviour
     public AudioSource F699;
     public AudioSource GSharp415;
     public AudioSource G392;
+    public AudioSource terminalStartupAndRunningSound;
 
     private float beepDelay;
     private int IndexForBeepArray;
     private float beepDelayMin;
     private float beepDelayMax;
     private float beepPan;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,7 @@ public class TerminalBeeps : MonoBehaviour
         F699 = terminalBeepsArray[4];
         GSharp415 = terminalBeepsArray[5];
         G392 = terminalBeepsArray[6];
+        terminalStartupAndRunningSound = terminalBeepsArray[7];
 
         beepDelayMin = 0f;
         beepDelayMax = 0.3f;
@@ -86,6 +90,10 @@ public class TerminalBeeps : MonoBehaviour
         beepDelayMax = 0.3f;
     }
 
+    public void playTerminalStartupAndRunningSound()
+    {
+        terminalStartupAndRunningSound.Play();
+    }
     // Update is called once per frame
     void Update()
     {

@@ -245,7 +245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!1 &1197103309
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +342,7 @@ MonoBehaviour:
   textOutput: 
   shipAttributeType: 0
   terminalType: 0
+  terminalStartupAndRunningSound: {fileID: 0}
 --- !u!1 &1825230208
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0
 --- !u!1 &956700034217546703
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,4 +536,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isModuleInstalled: 0

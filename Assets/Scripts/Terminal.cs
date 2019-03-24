@@ -28,7 +28,7 @@ public class Terminal : MonoBehaviour
     public enum TerminalTypes { PowerGenerator, CoolingUnit, EngineControl, NAVCOMComputer, Other };
     public TerminalTypes terminalType;
 
-    
+    public AudioSource terminalStartupAndRunningSound;
 
     // Start is called before the first frame update
     void Start() {
