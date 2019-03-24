@@ -51,6 +51,7 @@ public class ObjectInteraction : MonoBehaviour
         if (Input.GetMouseButtonDown(1)){
             viewLocked = false;
             GetComponent<FirstPersonController>().enabled = true;
+            terminalBeepsScript.resetTerminalStartupAndRunningSound();
         }
 
         if (Input.GetMouseButtonDown(0)) {
