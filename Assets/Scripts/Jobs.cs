@@ -95,10 +95,10 @@ public class Jobs : MonoBehaviour {
         int i = 0;
 
         jobID.Add(i);
-        jobNames.Add("Job Name A");
-        destinations.Add("Destination A");
-        cargoNames.Add("Cargo Name A");
-        cargoTypes.Add("Cargo Type A");
+        jobNames.Add("Sauce Run");
+        destinations.Add("Neptune");
+        cargoNames.Add("Dusty \"Bubs\" DeKat\'s Ol\' Fashsioned Bubby-Que Sauce");
+        cargoTypes.Add("Food");
         cargoValues.Add(101f);
         targetDeliveryTimes.Add(1001);
         jobTiers.Add(1);
@@ -106,10 +106,10 @@ public class Jobs : MonoBehaviour {
         i++;
 
         jobID.Add(i);
-        jobNames.Add("Job Name B");
-        destinations.Add("Destination B");
-        cargoNames.Add("Cargo Name B");
-        cargoTypes.Add("Cargo Type B");
+        jobNames.Add("Gimme Odda Pineapples");
+        destinations.Add("Odda, Norway, Earth");
+        cargoNames.Add("Farmer Helge's Sour Cream & Pineapple Spaghetti Spread");
+        cargoTypes.Add("Food");
         cargoValues.Add(102f);
         targetDeliveryTimes.Add(1002);
         jobTiers.Add(2);
@@ -117,10 +117,10 @@ public class Jobs : MonoBehaviour {
         i++;
 
         jobID.Add(i);
-        jobNames.Add("Job Name C");
-        destinations.Add("Destination C");
-        cargoNames.Add("Cargo Name C");
-        cargoTypes.Add("Cargo Type C");
+        jobNames.Add("Best of Both Worlds");
+        destinations.Add("Saturn");
+        cargoNames.Add("Pizza Cakes");
+        cargoTypes.Add("Food");
         cargoValues.Add(103f);
         targetDeliveryTimes.Add(1003);
         jobTiers.Add(3);
@@ -128,10 +128,10 @@ public class Jobs : MonoBehaviour {
         i++;
 
         jobID.Add(i);
-        jobNames.Add("Job Name D");
-        destinations.Add("Destination D");
-        cargoNames.Add("Cargo Name D");
-        cargoTypes.Add("Cargo Type D");
+        jobNames.Add("Out of the Bag");
+        destinations.Add("Venus");
+        cargoNames.Add("Hand Painted Messenger Bags");
+        cargoTypes.Add("Luxary Item");
         cargoValues.Add(104f);
         targetDeliveryTimes.Add(1004);
         jobTiers.Add(4);
@@ -139,14 +139,26 @@ public class Jobs : MonoBehaviour {
         i++;
 
         jobID.Add(i);
-        jobNames.Add("Job Name E");
-        destinations.Add("Destination E");
-        cargoNames.Add("Cargo Name E");
-        cargoTypes.Add("Cargo Type E");
+        jobNames.Add("We\'ll Get Right On That");
+        destinations.Add("The Center of the Sun");
+        cargoNames.Add("Barrow Freight Health & Safety Grievences");
+        cargoTypes.Add("Mail");
         cargoValues.Add(105f);
         targetDeliveryTimes.Add(1005);
         jobTiers.Add(5);
         alreadyListed.Add(false);
         i++;
+
+        jobID.Add(i);
+        jobNames.Add("Momo\'s Nom Noms");
+        destinations.Add("Mercury");
+        cargoNames.Add("Momo\'s Opaque Nutrition Pellet");
+        cargoTypes.Add("Cat Food");
+        cargoValues.Add(105f);
+        targetDeliveryTimes.Add(1005);
+        jobTiers.Add(5);
+        alreadyListed.Add(false);
+        i++;
+
     }
 }
