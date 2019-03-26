@@ -15,11 +15,16 @@ public class ClapScript : MonoBehaviour
     public GameObject RightArm;
     public GameObject LeftArm;
 
+    public Quaternion temporary_right_arm_rotation;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         Body = this.gameObject;
         RightArm = Body.transform.GetChild(1).gameObject;
+        temporary_right_arm_rotation = RightArm.transform.rotation;
+
         LeftArm = Body.transform.GetChild(2).gameObject;
         Debug.Log(RightArm);
 
@@ -33,9 +38,9 @@ public class ClapScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (RightArm.transform.rotation.y > right_arm_clap_point)
+        if (temporary_right_arm_rotation.y > right_arm_clap_point)
         {
-            RightArm.transform.rotation.y -= clap_animation_rate;
-        }*/
+            temporary_right_arm_rotation.y -= clap_animation_rate;
+        }
     }
 }
