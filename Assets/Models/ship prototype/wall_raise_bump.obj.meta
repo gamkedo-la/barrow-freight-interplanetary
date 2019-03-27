@@ -8,6 +8,9 @@ ModelImporter:
     400000: object1
     400002: //RootNode
     2100000: object1Mat
+    2100002: Default
+    2100004: Orange
+    2100006: Green
     2300000: object1
     3300000: object1
     4300000: object1
