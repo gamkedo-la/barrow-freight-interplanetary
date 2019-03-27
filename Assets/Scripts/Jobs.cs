@@ -152,7 +152,7 @@ public class Jobs : MonoBehaviour {
         jobID.Add(i);
         jobNames.Add("Momo\'s Nom Noms");
         destinations.Add("Mercury");
-        cargoNames.Add("Momo\'s Opaque Nutrition Pellet");
+        cargoNames.Add("Momo\'s Opaque Nutrition Pellets");
         cargoTypes.Add("Cat Food");
         cargoValues.Add(105f);
         targetDeliveryTimes.Add(1005);
@@ -160,5 +160,48 @@ public class Jobs : MonoBehaviour {
         alreadyListed.Add(false);
         i++;
 
+        jobID.Add(i);
+        jobNames.Add("Hang In There");
+        destinations.Add("Moon Base");
+        cargoNames.Add("Motivational Posters");
+        cargoTypes.Add("Luxaries");
+        cargoValues.Add(105f);
+        targetDeliveryTimes.Add(1005);
+        jobTiers.Add(5);
+        alreadyListed.Add(false);
+        i++;
+
+        jobID.Add(i);
+        jobNames.Add("Roll the Bones");
+        destinations.Add("Earth");
+        cargoNames.Add("Dinosaur Bones");
+        cargoTypes.Add("Cat Food");
+        cargoValues.Add(105f);
+        targetDeliveryTimes.Add(1005);
+        jobTiers.Add(5);
+        alreadyListed.Add(false);
+        i++;
+
+        jobID.Add(i);
+        jobNames.Add("A Slow Connection");
+        destinations.Add("Neptune");
+        cargoNames.Add("Software Updates");
+        cargoTypes.Add("Cat Food");
+        cargoValues.Add(105f);
+        targetDeliveryTimes.Add(1005);
+        jobTiers.Add(5);
+        alreadyListed.Add(false);
+        i++;
+
+        jobID.Add(i);
+        jobNames.Add("Plenty of Space");
+        destinations.Add("Mars");
+        cargoNames.Add("Miniature Space Ships");
+        cargoTypes.Add("Machinery");
+        cargoValues.Add(105f);
+        targetDeliveryTimes.Add(1005);
+        jobTiers.Add(5);
+        alreadyListed.Add(false);
+        i++;
     }
 }
