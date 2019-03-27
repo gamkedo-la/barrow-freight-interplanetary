@@ -20,13 +20,13 @@ using UnityEngine;
     public void PlayBassDrum()
         {
             
-            BassDrumSound.Play(0);
+            //BassDrumSound.Play(0);
         Debug.Log("Bass Drum Played");
         }
 
     public void PlaySnareDrum()
     {
-        SnareDrumSound.Play(0);
+        //SnareDrumSound.Play(0);
         Debug.Log("Snare Drum Played");
     }
 
