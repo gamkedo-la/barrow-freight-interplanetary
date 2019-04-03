@@ -7,7 +7,7 @@ public class Jobs : MonoBehaviour {
     int numberOfJobs = 3;
     public List<Job> jobList;
 
-    List<int> jobID;
+    List<int> jobID; 
     List<string> jobNames;
     List<string> destinations;
     List<string> cargoNames;
