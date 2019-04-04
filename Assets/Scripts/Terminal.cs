@@ -14,6 +14,10 @@ public class Terminal : MonoBehaviour
     private float navSpeedBonus = 0;
     private float comRangeBoost = 0;
     private float efficiencyBonus = 1;
+    private float baseFailureRate = 0.03f;
+    private float currentFailureRate;
+    private float failureChanceInterval = 30.0f; //in seconds
+    private bool terminalFailure = false;
 
     public string textOutput;
     private string label;
@@ -35,6 +39,8 @@ public class Terminal : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+
+        currentFailureRate = baseFailureRate;
 
         jobsManager = GameObject.Find("Game Managers").GetComponent<Jobs>();
         terminalStore = GameObject.Find("Game Managers").GetComponent<TerminalStore>();
@@ -99,6 +105,10 @@ public class Terminal : MonoBehaviour
             positiveAttribute = 0;
         }
 
+        if (ship.internalShipTemp > 35.0f){
+            currentFailureRate = baseFailureRate + 0.3f;
+        }
+
         switch (terminalType) {
             case TerminalTypes.PowerGenerator:
                 //sends power capacity value to the Ship script.
@@ -128,6 +138,14 @@ public class Terminal : MonoBehaviour
                 break;
             default:
                 break;
+        }
+
+        failureChanceInterval -= Time.deltaTime;
+        if (failureChanceInterval < 0) {
+            if (Random.Range(0.0f,1.0f) < currentFailureRate) {
+                terminalFailure = true;
+            }
+            failureChanceInterval = 30;
         }
 
         //sends power consumption value to the Ship script.
@@ -181,7 +199,8 @@ public class Terminal : MonoBehaviour
 
     //Sets text output and sends it to the terminal's monitor.
     public void DisplayTerminalInfo() {
-        textOutput = label + "\n" + positiveAttributeLabel + positiveAttribute + positiveAttributeUnit;
+        textOutput = label + "\n" + positiveAttributeLabel + positiveAttribute + positiveAttributeUnit +
+                        "\nTerminal Failure: " + terminalFailure;
         monitor.WriteToMonitor(textOutput);
     }
 }
