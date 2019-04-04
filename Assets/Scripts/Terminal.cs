@@ -95,6 +95,10 @@ public class Terminal : MonoBehaviour
         basePositiveAttribute = positiveAttribute;
         positiveAttribute *= efficiencyBonus;
 
+        if (ship.currentShipPowerConsumption > ship.currentShipPowerCapacity && terminalType != TerminalTypes.PowerGenerator) {
+            positiveAttribute = 0;
+        }
+
         switch (terminalType) {
             case TerminalTypes.PowerGenerator:
                 //sends power capacity value to the Ship script.
