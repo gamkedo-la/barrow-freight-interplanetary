@@ -29,6 +29,7 @@ public class ObjectInteraction : MonoBehaviour
     private TerminalBeeps terminalBeepsScript;
 
     private Jobs jobsManager;
+    private TerminalStore terminalStore;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class ObjectInteraction : MonoBehaviour
         terminalBeepsScript = GameObject.Find("TerminalBeepsManager").GetComponent<TerminalBeeps>();
         terminalBeepsManager = GameObject.Find("TerminalBeepsManager");
         jobsManager = GameObject.Find("Game Managers").GetComponent<Jobs>();
+        terminalStore = GameObject.Find("Game Managers").GetComponent<TerminalStore>();
 
     }
 
@@ -80,7 +82,10 @@ public class ObjectInteraction : MonoBehaviour
 
                     if (targetTerminal.terminalType == Terminal.TerminalTypes.JobSelection) {
                         jobsManager.GenerateAvailableJobs();
-                        Debug.Log("Job Terminal Clicked");
+                    }
+
+                    if (targetTerminal.terminalType == Terminal.TerminalTypes.TerminalStore) {
+                        terminalStore.GenerateAvailableTerminals();
                     }
 
                 } else if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {

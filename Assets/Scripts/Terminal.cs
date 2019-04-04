@@ -25,10 +25,11 @@ public class Terminal : MonoBehaviour
     public enum ShipAttributeTypes { PowerCapacity, Temperature, Speed, CargoCapacity, ComRange };
     public ShipAttributeTypes shipAttributeType;
 
-    public enum TerminalTypes { PowerGenerator, CoolingUnit, EngineControl, NAVCOMComputer, JobSelection, TerminalManager, Other };
+    public enum TerminalTypes { PowerGenerator, CoolingUnit, EngineControl, NAVCOMComputer, JobSelection, TerminalStore, Other };
     public TerminalTypes terminalType;
 
     private Jobs jobsManager;
+    private TerminalStore terminalStore;
     private TerminalMonitor monitor;
     public AudioSource terminalStartupAndRunningSound;
 
@@ -36,6 +37,7 @@ public class Terminal : MonoBehaviour
     void Start() {
 
         jobsManager = GameObject.Find("Game Managers").GetComponent<Jobs>();
+        terminalStore = GameObject.Find("Game Managers").GetComponent<TerminalStore>();
         monitor = GetComponentInChildren<TerminalMonitor>();
 
         Renderer rend = GetComponent<Renderer>();
@@ -117,8 +119,8 @@ public class Terminal : MonoBehaviour
             case TerminalTypes.JobSelection:
                 DisplayJobSelection();
                 break;
-            case TerminalTypes.TerminalManager:
-
+            case TerminalTypes.TerminalStore:
+                DisplayTerminalSelection();
                 break;
             default:
                 break;
@@ -154,6 +156,19 @@ public class Terminal : MonoBehaviour
                         " within " + jobsManager.jobList[2].targetDeliveryTime + " days to collect " + jobsManager.jobList[2].cargoValue + " copper coins per cubic meter of cargo." +
                         "\n\n" +
                         "(Press job number to accept a job)";
+
+        monitor.ChangeFontSize(28);
+        monitor.ChangeAlignmentToMiddleLeft();
+        monitor.WriteToMonitor(textOutput);
+    }
+
+    public void DisplayTerminalSelection() {
+        textOutput = "Available Terminals\n\n" + 
+                        "Terminal 1: " + terminalStore.terminalList[0].terminalType + "(Tier " + terminalStore.terminalList[0].terminalTier + ")" +
+                        "\n\n" +
+                        "Terminal 2: " + terminalStore.terminalList[1].terminalType + "(Tier " + terminalStore.terminalList[1].terminalTier + ")" +
+                        "\n\n" +
+                        "Terminal 3: " + terminalStore.terminalList[2].terminalType + "(Tier " + terminalStore.terminalList[2].terminalTier + ")";
 
         monitor.ChangeFontSize(28);
         monitor.ChangeAlignmentToMiddleLeft();
