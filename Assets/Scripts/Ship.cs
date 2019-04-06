@@ -7,7 +7,11 @@ public class Ship : MonoBehaviour
     public float baseShipPowerCapacity = 150;
     public float currentShipPowerCapacity;
     public float currentShipPowerConsumption;
-    public float internalShipTemp;
+    public float baseShipTemp = 23.0f;
+    public float currentShipTemp;
+    public float finalShipTemp;
+    public float totalShipHeatGeneration;
+    public float baseShipCoolingRate = 1000;
     public float currentShipCoolingRate;
     public float maxShipSpeed;
     public float currentShipSpeed = 10;
@@ -23,18 +27,24 @@ public class Ship : MonoBehaviour
     void Start()
     {
         initialShipPosition = this.transform.position;
+        currentShipTemp = baseShipTemp;
+        finalShipTemp = baseShipTemp;
+        Debug.Log(currentShipTemp);
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateInternalShipTemp();
+
         //Sets text output and sends it to the ship's main monitor.
         textOutput = "Barrow Freight Interplanetary \n\n";
         textOutput += "\nShip Power usage: " + currentShipPowerConsumption + "/" + currentShipPowerCapacity + "Gw";
         textOutput += "\nCurrent  Ship Speed " + currentShipSpeed + "KM/H";
-        textOutput += "\nInternal Ship Temp: " + internalShipTemp + "C";
+        textOutput += "\nCurrent Ship Temp: " + currentShipTemp.ToString("F1") + "C";
         textOutput += "\nCurrent  Ship Cooling Rate: " + currentShipCoolingRate + "";
         textOutput += "\nShip Com Range: " + maxShipComRange + "KM";
+        textOutput += "\nHeat Generation: " + totalShipHeatGeneration;
 
 
         TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();
@@ -44,10 +54,11 @@ public class Ship : MonoBehaviour
         currentShipPowerConsumption = 0;
         currentShipPowerCapacity = baseShipPowerCapacity;
         currentShipSpeed = 10;
-        currentShipCoolingRate = 0;
+        currentShipCoolingRate = baseShipCoolingRate;
         maxShipComRange = 0;
         consumedShipCargoCapacity = 0;
-        internalShipTemp = 0;
+        //currentShipTemp = baseShipTemp;
+        totalShipHeatGeneration = 0;
     }
 
     public void UpdateShipPowerConsumption(float consumedFromTerminal) {
@@ -58,8 +69,18 @@ public class Ship : MonoBehaviour
         currentShipPowerCapacity += capacityFromTerminal;
     }
 
-    public void UpdateInternalShipTemp(float heatGenerationFromTerminal) {
-        internalShipTemp += heatGenerationFromTerminal;
+    public void UpdateTotalShipHeatGeneration(float heatGenerationFromTerminal) {
+        totalShipHeatGeneration += heatGenerationFromTerminal;
+    }
+
+    public void UpdateInternalShipTemp() {
+        finalShipTemp = Mathf.Clamp(baseShipTemp * (totalShipHeatGeneration / currentShipCoolingRate), baseShipTemp , 1000.0f );
+        Debug.Log(finalShipTemp);
+
+        float tempDelta = finalShipTemp - currentShipTemp;
+        currentShipTemp += tempDelta * (Time.deltaTime * 0.001f);
+        Debug.Log(currentShipTemp);
+
     }
 
     public void UpdateShipCoolingRate(float coolingRateFromTerminal) {

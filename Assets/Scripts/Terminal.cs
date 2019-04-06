@@ -105,7 +105,11 @@ public class Terminal : MonoBehaviour
             positiveAttribute = 0;
         }
 
-        if (ship.internalShipTemp > 35.0f){
+        if (terminalFailure) {
+            positiveAttribute = 0;
+        }
+
+        if (ship.currentShipTemp > 35.0f){
             currentFailureRate = baseFailureRate + 0.3f;
         }
 
@@ -152,7 +156,7 @@ public class Terminal : MonoBehaviour
         ship.UpdateShipPowerConsumption(powerConsumption);
 
         //sends heat generation value to the Ship script.
-        ship.UpdateInternalShipTemp(heatGeneration);
+        ship.UpdateTotalShipHeatGeneration(heatGeneration);
 
         //Reset current positiveAttribute and efficiency values, so they does not continue to increase every frame.
         positiveAttribute = basePositiveAttribute;
