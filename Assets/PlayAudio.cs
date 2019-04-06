@@ -9,13 +9,14 @@ using UnityEngine;
     AudioSource[] ArrayOfBoomBotSounds;
     AudioSource BassDrumSound;
     AudioSource SnareDrumSound;
-
+    AudioSource SynthBassSound;
 
     private void Start()
     {
         ArrayOfBoomBotSounds = GetComponents<AudioSource>();
         BassDrumSound = ArrayOfBoomBotSounds[0];
         SnareDrumSound = ArrayOfBoomBotSounds[1];
+        SynthBassSound = ArrayOfBoomBotSounds[2];
     }
     public void PlayBassDrum()
         {
@@ -36,10 +37,16 @@ using UnityEngine;
         SnareDrumSound.Play(0);
     }
 
+    public void PlaySynthBassSound()
+    {
+        //SynthBassSound.Play(0);
+    }
+
     private void OnEnable()
     {
         PlayBassDrum();
         PlaySnareDrum();
+        PlaySynthBassSound();
     }
 
     /*void OnGUI()
