@@ -6,6 +6,7 @@ using UnityEngine;
 public class Jobs : MonoBehaviour {
     int numberOfJobs = 3;
     public List<Job> jobList;
+    public Job activeJob;
 
     List<int> jobID; 
     List<string> jobNames;
@@ -61,7 +62,20 @@ public class Jobs : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (jobList.Count == numberOfJobs) {
 
+            if (Input.GetKeyUp(KeyCode.Alpha1)) {
+                activeJob = jobList[0];
+            }
+
+            if (Input.GetKeyUp(KeyCode.Alpha2)) {
+                activeJob = jobList[1];
+            }
+
+            if (Input.GetKeyUp(KeyCode.Alpha3)) {
+                activeJob = jobList[2];
+            }
+        }
     }
 
     public void GenerateAvailableJobs() {

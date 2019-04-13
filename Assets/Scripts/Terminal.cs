@@ -183,6 +183,10 @@ public class Terminal : MonoBehaviour
                         "\n\n" +
                         "(Press job number to accept a job)";
 
+        if (jobsManager.activeJob != null) {
+            textOutput += "\n\nActive Job: " + jobsManager.activeJob.jobName;
+        }
+
         monitor.ChangeFontSize(28);
         monitor.ChangeAlignmentToMiddleLeft();
         monitor.WriteToMonitor(textOutput);
