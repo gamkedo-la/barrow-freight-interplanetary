@@ -10,6 +10,7 @@ public class TerminalStore : MonoBehaviour {
     public List<Terminal> terminalList;
 
     public List<Terminal> purchasedTerminals;
+    public Terminal activePurchasedTerminal;
 
     List<string> terminalTypes;
     List<int> terminalTiers;
@@ -51,16 +52,19 @@ public class TerminalStore : MonoBehaviour {
             if (Input.GetKeyUp(KeyCode.Alpha1)) {
                 purchasedTerminals.Add(terminalList[0]);
                 ship.currency -= terminalList[0].terminalCost;
+                activePurchasedTerminal = purchasedTerminals[purchasedTerminals.Count - 1];
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha2)) {
                 purchasedTerminals.Add(terminalList[1]);
                 ship.currency -= terminalList[1].terminalCost;
+                activePurchasedTerminal = purchasedTerminals[purchasedTerminals.Count - 1];
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3)) {
                 purchasedTerminals.Add(terminalList[2]);
                 ship.currency -= terminalList[2].terminalCost;
+                activePurchasedTerminal = purchasedTerminals[purchasedTerminals.Count - 1];
             }
         }
 

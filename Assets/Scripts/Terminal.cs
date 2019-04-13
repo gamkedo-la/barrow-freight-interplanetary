@@ -215,7 +215,7 @@ public class Terminal : MonoBehaviour
                         "Terminal 3: " + terminalStore.terminalList[2].terminalType + " (Tier " + terminalStore.terminalList[2].terminalTier + ") Cost: " + terminalStore.terminalList[2].terminalCost +
                         "\n\n";
         if (terminalStore.purchasedTerminals.Count >= 1) {
-            textOutput += "Purchased: " + terminalStore.purchasedTerminals[0].terminalType + "(Tier " + terminalStore.purchasedTerminals[0].terminalTier + ")";
+            textOutput += "Purchased: " + terminalStore.activePurchasedTerminal.terminalType + "(Tier " + terminalStore.activePurchasedTerminal.terminalTier + ")";
         }
 
         monitor.ChangeFontSize(28);
