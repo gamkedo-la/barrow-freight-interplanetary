@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TerminalStore : MonoBehaviour {
 
+    Ship ship;
+
     int numberOfTerminals = 3;
     public List<Terminal> terminalList;
 
@@ -16,10 +18,12 @@ public class TerminalStore : MonoBehaviour {
 
         public string terminalType;
         public int terminalTier;
+        public int terminalCost;
 
-        public Terminal(string type, int tier) {
+        public Terminal(string type, int tier, int cost) {
             terminalType = type;
             terminalTier = tier;
+            terminalCost = cost;
         }
 
     }
@@ -28,6 +32,7 @@ public class TerminalStore : MonoBehaviour {
     void Start() {
         terminalList = new List<Terminal>();
         purchasedTerminals = new List<Terminal>();
+        ship = GameObject.Find("Ship").GetComponent<Ship>();
 
         terminalTypes = new List<string>() {
             "PowerGenerator", "CoolingUnit", "EngineControl", "NAVCOMComputer", "JobSelection", "TerminalStore"
@@ -45,14 +50,17 @@ public class TerminalStore : MonoBehaviour {
 
             if (Input.GetKeyUp(KeyCode.Alpha1)) {
                 purchasedTerminals.Add(terminalList[0]);
+                ship.currency -= terminalList[0].terminalCost;
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha2)) {
                 purchasedTerminals.Add(terminalList[1]);
+                ship.currency -= terminalList[1].terminalCost;
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3)) {
                 purchasedTerminals.Add(terminalList[2]);
+                ship.currency -= terminalList[2].terminalCost;
             }
         }
 
@@ -63,9 +71,10 @@ public class TerminalStore : MonoBehaviour {
         terminalList.Clear();
 
         for (int i = 0; i < numberOfTerminals; i++) {
-                terminalList.Add(new Terminal(
-                                    terminalTypes[Random.Range(0, terminalTypes.Count)],
-                                    terminalTiers[Random.Range(0, terminalTiers.Count)]));
+            terminalList.Add(new Terminal(
+                                terminalTypes[Random.Range(0, terminalTypes.Count)],
+                                terminalTiers[Random.Range(0, terminalTiers.Count)],
+                                Random.Range(100,500))); //terminal cost
         }
 
     }
