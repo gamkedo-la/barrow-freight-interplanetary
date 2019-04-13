@@ -132,6 +132,7 @@ public class Terminal : MonoBehaviour
             case TerminalTypes.NAVCOMComputer:
                 //sends com range value to the Ship script.
                 ship.UpdateShipMaxComRange(positiveAttribute);
+                jobsManager.UpdateNAVCOMStatus(terminalFailure);
                 DisplayTerminalInfo();
                 break;
             case TerminalTypes.JobSelection:
@@ -172,16 +173,23 @@ public class Terminal : MonoBehaviour
                         "Job 1: " + jobsManager.jobList[0].jobName + "\n" +
                         "Deliver " + jobsManager.jobList[0].cargoName + " to " + jobsManager.jobList[0].destination +
                         " within " + jobsManager.jobList[0].targetDeliveryTime + " days to collect " + jobsManager.jobList[0].cargoValue + " copper coins per cubic meter of cargo." +
-                        "\n\n" +
-                        "Job 2: " + jobsManager.jobList[1].jobName + "\n" +
-                        "Deliver " + jobsManager.jobList[1].cargoName + " to " + jobsManager.jobList[1].destination +
-                        " within " + jobsManager.jobList[1].targetDeliveryTime + " days to collect " + jobsManager.jobList[1].cargoValue + " copper coins per cubic meter of cargo." +
-                        "\n\n" +
-                        "Job 3: " + jobsManager.jobList[2].jobName + "\n" +
-                        "Deliver " + jobsManager.jobList[2].cargoName + " to " + jobsManager.jobList[2].destination +
-                        " within " + jobsManager.jobList[2].targetDeliveryTime + " days to collect " + jobsManager.jobList[2].cargoValue + " copper coins per cubic meter of cargo." +
-                        "\n\n" +
-                        "(Press job number to accept a job)";
+                        "\n\n";
+
+        if (jobsManager.numberOfJobs >= 2) {
+            textOutput += "Job 2: " + jobsManager.jobList[1].jobName + "\n" +
+            "Deliver " + jobsManager.jobList[1].cargoName + " to " + jobsManager.jobList[1].destination +
+            " within " + jobsManager.jobList[1].targetDeliveryTime + " days to collect " + jobsManager.jobList[1].cargoValue + " copper coins per cubic meter of cargo." +
+            "\n\n";
+        }
+
+        if (jobsManager.numberOfJobs >= 3) {
+            textOutput += "Job 3: " + jobsManager.jobList[2].jobName + "\n" +
+            "Deliver " + jobsManager.jobList[2].cargoName + " to " + jobsManager.jobList[2].destination +
+            " within " + jobsManager.jobList[2].targetDeliveryTime + " days to collect " + jobsManager.jobList[2].cargoValue + " copper coins per cubic meter of cargo." +
+            "\n\n";
+        }
+
+        textOutput += "(Press job number to accept a job)";
 
         if (jobsManager.activeJob != null) {
             textOutput += "\n\nActive Job: " + jobsManager.activeJob.jobName;

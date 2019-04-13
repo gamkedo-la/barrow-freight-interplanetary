@@ -4,11 +4,12 @@ using System.Linq;
 using UnityEngine;
 
 public class Jobs : MonoBehaviour {
-    int numberOfJobs = 3;
+    public int numberOfJobs = 3;
     public List<Job> jobList;
     public Job activeJob;
+    public bool navcomFailure = false;
 
-    List<int> jobID; 
+    List<int> jobID;
     List<string> jobNames;
     List<string> destinations;
     List<string> cargoNames;
@@ -62,6 +63,13 @@ public class Jobs : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        if (navcomFailure) {
+            numberOfJobs = 1;
+        } else {
+            numberOfJobs = 3;
+        }
+
         if (jobList.Count == numberOfJobs) {
 
             if (Input.GetKeyUp(KeyCode.Alpha1)) {
@@ -102,7 +110,7 @@ public class Jobs : MonoBehaviour {
             }
         }
         Debug.Log(jobList[0].jobName);
-    } 
+    }
 
     void GenerateJobPool() {
 
@@ -217,5 +225,11 @@ public class Jobs : MonoBehaviour {
         jobTiers.Add(5);
         alreadyListed.Add(false);
         i++;
+    }
+
+    public void UpdateNAVCOMStatus(bool failed) {
+        if (failed) {
+            navcomFailure = true;
+        }
     }
 }
