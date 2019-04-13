@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 
 public class Jobs : MonoBehaviour {
     public int numberOfJobs = 3;
     public List<Job> jobList;
     public Job activeJob;
     public bool navcomFailure = false;
+
+    TerminalMonitor etaClock;
+    float eta;
 
     List<int> jobID;
     List<string> jobNames;
@@ -46,6 +50,7 @@ public class Jobs : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         jobList = new List<Job>();
+        etaClock = GameObject.Find("ETA Clock").GetComponentInChildren<TerminalMonitor>();
 
         jobID = new List<int>();
         jobNames = new List<string>();
@@ -74,16 +79,21 @@ public class Jobs : MonoBehaviour {
 
             if (Input.GetKeyUp(KeyCode.Alpha1)) {
                 activeJob = jobList[0];
+                eta = activeJob.targetDeliveryTime;
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha2)) {
                 activeJob = jobList[1];
+                eta = activeJob.targetDeliveryTime;
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3)) {
                 activeJob = jobList[2];
+                eta = activeJob.targetDeliveryTime;
             }
         }
+
+        UpdateETAClock();
     }
 
     public void GenerateAvailableJobs() {
@@ -94,7 +104,7 @@ public class Jobs : MonoBehaviour {
         }
 
         for (int i = 0; i < numberOfJobs;) {
-            int rand = Random.Range(0, jobID.Count - 1);
+            int rand = UnityEngine.Random.Range(0, jobID.Count - 1);
             if (!alreadyListed[rand]) {
                 jobList.Add(new Job(jobID[rand],
                                     jobNames[rand],
@@ -122,7 +132,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Dusty \"Bubs\" DeKat\'s Ol\' Fashsioned Bubby-Que Sauce");
         cargoTypes.Add("Food");
         cargoValues.Add(101f);
-        targetDeliveryTimes.Add(1001);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(1);
         alreadyListed.Add(false);
         i++;
@@ -133,7 +143,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Farmer Helge's Sour Cream & Pineapple Spaghetti Spread");
         cargoTypes.Add("Food");
         cargoValues.Add(102f);
-        targetDeliveryTimes.Add(1002);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(2);
         alreadyListed.Add(false);
         i++;
@@ -144,7 +154,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Pizza Cakes");
         cargoTypes.Add("Food");
         cargoValues.Add(103f);
-        targetDeliveryTimes.Add(1003);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(3);
         alreadyListed.Add(false);
         i++;
@@ -155,7 +165,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Hand Painted Messenger Bags");
         cargoTypes.Add("Luxary Item");
         cargoValues.Add(104f);
-        targetDeliveryTimes.Add(1004);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(4);
         alreadyListed.Add(false);
         i++;
@@ -166,7 +176,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Barrow Freight Health & Safety Grievences");
         cargoTypes.Add("Mail");
         cargoValues.Add(105f);
-        targetDeliveryTimes.Add(1005);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(5);
         alreadyListed.Add(false);
         i++;
@@ -177,7 +187,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Momo\'s Opaque Nutrition Pellets");
         cargoTypes.Add("Cat Food");
         cargoValues.Add(105f);
-        targetDeliveryTimes.Add(1005);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(5);
         alreadyListed.Add(false);
         i++;
@@ -188,7 +198,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Motivational Posters");
         cargoTypes.Add("Luxaries");
         cargoValues.Add(105f);
-        targetDeliveryTimes.Add(1005);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(5);
         alreadyListed.Add(false);
         i++;
@@ -199,7 +209,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Dinosaur Bones");
         cargoTypes.Add("Cat Food");
         cargoValues.Add(105f);
-        targetDeliveryTimes.Add(1005);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(5);
         alreadyListed.Add(false);
         i++;
@@ -210,7 +220,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Software Updates");
         cargoTypes.Add("Cat Food");
         cargoValues.Add(105f);
-        targetDeliveryTimes.Add(1005);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(5);
         alreadyListed.Add(false);
         i++;
@@ -221,7 +231,7 @@ public class Jobs : MonoBehaviour {
         cargoNames.Add("Miniature Space Ships");
         cargoTypes.Add("Machinery");
         cargoValues.Add(105f);
-        targetDeliveryTimes.Add(1005);
+        targetDeliveryTimes.Add(101001);
         jobTiers.Add(5);
         alreadyListed.Add(false);
         i++;
@@ -231,5 +241,20 @@ public class Jobs : MonoBehaviour {
         if (failed) {
             navcomFailure = true;
         }
+    }
+
+    public void UpdateETAClock() {
+
+        string timeText;
+
+        if (activeJob != null) {
+            eta -= Time.deltaTime;
+            TimeSpan timeSpan = TimeSpan.FromSeconds(eta);
+            timeText = string.Format("{0:D3}:{1:D2}:{2:D2}:{3:D2}", timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+        } else {
+            timeText = "No Destination Selected";
+        }
+
+        etaClock.WriteToMonitor(timeText);
     }
 }

@@ -50,10 +50,9 @@ public class Ship : MonoBehaviour
         textOutput += "\nHeat Generation: " + totalShipHeatGeneration;
         textOutput += "\nCurrency: " + currency;
 
-
-        TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();
+        TerminalMonitor monitor = GameObject.Find("Mission Monitor").GetComponentInChildren<TerminalMonitor>();
         monitor.WriteToMonitor(textOutput);
-
+        
         //Reset current power usage, so that it does not continue to increase every frame.
         currentShipPowerConsumption = 0;
         currentShipPowerCapacity = baseShipPowerCapacity;
