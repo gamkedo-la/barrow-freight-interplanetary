@@ -552,6 +552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927559924}
+  - component: {fileID: 887797097787402237}
   m_Layer: 0
   m_Name: NAVCOM_Terminal
   m_TagString: Untagged
@@ -585,6 +586,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887797097787402237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397004044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042a78d742f77e34caafbd2bdeb6f71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textOutput: 
+  shipAttributeType: 0
+  terminalType: 0
+  terminalStartupAndRunningSound: {fileID: 0}
 --- !u!1 &1450006537
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +884,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 887797097787402237}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 887797097787402237}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PowerlOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PowerOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: buttonType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}

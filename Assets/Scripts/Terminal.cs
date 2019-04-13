@@ -18,6 +18,7 @@ public class Terminal : MonoBehaviour
     private float currentFailureRate;
     private float failureChanceInterval = 30.0f; //in seconds
     private bool terminalFailure = false;
+    private bool terminalPoweredOn = true;
 
     public string textOutput;
     private string label;
@@ -101,65 +102,70 @@ public class Terminal : MonoBehaviour
         basePositiveAttribute = positiveAttribute;
         positiveAttribute *= efficiencyBonus;
 
-        if (ship.currentShipPowerConsumption > ship.currentShipPowerCapacity && terminalType != TerminalTypes.PowerGenerator) {
-            positiveAttribute = 0;
-        }
 
-        if (terminalFailure) {
-            positiveAttribute = 0;
-        }
-
-        if (ship.currentShipTemp > 35.0f){
-            currentFailureRate = baseFailureRate + 0.3f;
-        }
-
-        switch (terminalType) {
-            case TerminalTypes.PowerGenerator:
-                //sends power capacity value to the Ship script.
-                ship.UpdateShipPowerCapacity(positiveAttribute);
-                DisplayTerminalInfo();
-                break;
-            case TerminalTypes.CoolingUnit:
-                //sends cooling rate value to the Ship script.
-                ship.UpdateShipCoolingRate(positiveAttribute);
-                DisplayTerminalInfo();
-                break;
-            case TerminalTypes.EngineControl:
-                //sends engine speed value to the Ship script.
-                ship.UpdateCurrentShipSpeed(positiveAttribute);
-                DisplayTerminalInfo();
-                break;
-            case TerminalTypes.NAVCOMComputer:
-                //sends com range value to the Ship script.
-                ship.UpdateShipMaxComRange(positiveAttribute);
-                jobsManager.UpdateNAVCOMStatus(terminalFailure);
-                DisplayTerminalInfo();
-                break;
-            case TerminalTypes.JobSelection:
-                DisplayJobSelection();
-                break;
-            case TerminalTypes.TerminalStore:
-                DisplayTerminalSelection();
-                break;
-            default:
-                break;
-        }
-
-        failureChanceInterval -= Time.deltaTime;
-        if (failureChanceInterval < 0) {
-            if (Random.Range(0.0f,1.0f) < currentFailureRate) {
-                terminalFailure = true;
+        if (terminalPoweredOn) {
+            if (ship.currentShipPowerConsumption > ship.currentShipPowerCapacity && terminalType != TerminalTypes.PowerGenerator) {
+                positiveAttribute = 0;
             }
-            failureChanceInterval = 30;
+
+            if (terminalFailure) {
+                positiveAttribute = 0;
+            }
+
+            if (ship.currentShipTemp > 35.0f) {
+                currentFailureRate = baseFailureRate + 0.3f;
+            }
+
+            switch (terminalType) {
+                case TerminalTypes.PowerGenerator:
+                    //sends power capacity value to the Ship script.
+                    ship.UpdateShipPowerCapacity(positiveAttribute);
+                    DisplayTerminalInfo();
+                    break;
+                case TerminalTypes.CoolingUnit:
+                    //sends cooling rate value to the Ship script.
+                    ship.UpdateShipCoolingRate(positiveAttribute);
+                    DisplayTerminalInfo();
+                    break;
+                case TerminalTypes.EngineControl:
+                    //sends engine speed value to the Ship script.
+                    ship.UpdateCurrentShipSpeed(positiveAttribute);
+                    DisplayTerminalInfo();
+                    break;
+                case TerminalTypes.NAVCOMComputer:
+                    //sends com range value to the Ship script.
+                    ship.UpdateShipMaxComRange(positiveAttribute);
+                    jobsManager.UpdateNAVCOMStatus(terminalFailure);
+                    DisplayTerminalInfo();
+                    break;
+                case TerminalTypes.JobSelection:
+                    DisplayJobSelection();
+                    break;
+                case TerminalTypes.TerminalStore:
+                    DisplayTerminalSelection();
+                    break;
+                default:
+                    break;
+            }
+
+            failureChanceInterval -= Time.deltaTime;
+            if (failureChanceInterval < 0) {
+                if (Random.Range(0.0f, 1.0f) < currentFailureRate) {
+                    terminalFailure = true;
+                }
+                failureChanceInterval = 30;
+            }
+
+            //sends power consumption value to the Ship script.
+            ship.UpdateShipPowerConsumption(powerConsumption);
+
+            //sends heat generation value to the Ship script.
+            ship.UpdateTotalShipHeatGeneration(heatGeneration);
+        } else {
+            DisplayBlankScreen();
         }
 
-        //sends power consumption value to the Ship script.
-        ship.UpdateShipPowerConsumption(powerConsumption);
-
-        //sends heat generation value to the Ship script.
-        ship.UpdateTotalShipHeatGeneration(heatGeneration);
-
-        //Reset current positiveAttribute and efficiency values, so they does not continue to increase every frame.
+        //Reset current positiveAttribute and efficiency values, so they do not continue to increase every frame.
         positiveAttribute = basePositiveAttribute;
         efficiencyBonus = 1;
     }
@@ -217,10 +223,23 @@ public class Terminal : MonoBehaviour
         monitor.WriteToMonitor(textOutput);
     }
 
+    public void DisplayBlankScreen() {
+        textOutput = "";
+        monitor.WriteToMonitor(textOutput);
+    }
+
     //Sets text output and sends it to the terminal's monitor.
     public void DisplayTerminalInfo() {
         textOutput = label + "\n" + positiveAttributeLabel + positiveAttribute + positiveAttributeUnit +
                         "\nTerminal Failure: " + terminalFailure;
         monitor.WriteToMonitor(textOutput);
+    }
+
+    public void PowerOff() {
+        terminalPoweredOn = false;
+    }
+
+    public void PowerlOn() {
+        terminalPoweredOn = true;
     }
 }

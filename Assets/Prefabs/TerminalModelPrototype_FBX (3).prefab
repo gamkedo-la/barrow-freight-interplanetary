@@ -366,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 1307996754}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.19, y: 1.97, z: -2.02}
-  m_LocalScale: {x: 1.0000005, y: 3, z: 1.0000005}
+  m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children:
   - {fileID: 735368470}
   - {fileID: 2084378774}
@@ -622,6 +622,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1307996755}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1307996755}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PowerlOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OnEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PowerOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: OffEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: buttonType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
