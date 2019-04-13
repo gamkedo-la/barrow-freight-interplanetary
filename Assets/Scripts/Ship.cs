@@ -18,6 +18,7 @@ public class Ship : MonoBehaviour
     public float totalShipCargoCapacity = 100;
     public float consumedShipCargoCapacity;
     public float maxShipComRange = 50;
+    public int currency;
 
     public string textOutput;
 
@@ -30,6 +31,8 @@ public class Ship : MonoBehaviour
         currentShipTemp = baseShipTemp;
         finalShipTemp = baseShipTemp;
         Debug.Log(currentShipTemp);
+
+        currency = 5000;
     }
 
     // Update is called once per frame
@@ -38,13 +41,14 @@ public class Ship : MonoBehaviour
         UpdateInternalShipTemp();
 
         //Sets text output and sends it to the ship's main monitor.
-        textOutput = "Barrow Freight Interplanetary \n\n";
+        textOutput = "Barrow Freight Interplanetary";
         textOutput += "\nShip Power usage: " + currentShipPowerConsumption + "/" + currentShipPowerCapacity + "Gw";
         textOutput += "\nCurrent  Ship Speed " + currentShipSpeed + "KM/H";
         textOutput += "\nCurrent Ship Temp: " + currentShipTemp.ToString("F1") + "C";
         textOutput += "\nCurrent  Ship Cooling Rate: " + currentShipCoolingRate + "";
         textOutput += "\nShip Com Range: " + maxShipComRange + "KM";
         textOutput += "\nHeat Generation: " + totalShipHeatGeneration;
+        textOutput += "\nCurrency: " + currency;
 
 
         TerminalMonitor monitor = GetComponentInChildren<TerminalMonitor>();

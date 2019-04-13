@@ -189,12 +189,16 @@ public class Terminal : MonoBehaviour
     }
 
     public void DisplayTerminalSelection() {
-        textOutput = "Available Terminals\n\n" + 
+        textOutput = "Available Terminals\n\n" +
                         "Terminal 1: " + terminalStore.terminalList[0].terminalType + "(Tier " + terminalStore.terminalList[0].terminalTier + ")" +
                         "\n\n" +
                         "Terminal 2: " + terminalStore.terminalList[1].terminalType + "(Tier " + terminalStore.terminalList[1].terminalTier + ")" +
                         "\n\n" +
-                        "Terminal 3: " + terminalStore.terminalList[2].terminalType + "(Tier " + terminalStore.terminalList[2].terminalTier + ")";
+                        "Terminal 3: " + terminalStore.terminalList[2].terminalType + "(Tier " + terminalStore.terminalList[2].terminalTier + ")" +
+                        "\n\n";
+        if (terminalStore.purchasedTerminals.Count >= 1) {
+            textOutput += "Purchased: " + terminalStore.purchasedTerminals[0].terminalType + "(Tier " + terminalStore.purchasedTerminals[0].terminalTier + ")";
+        }
 
         monitor.ChangeFontSize(28);
         monitor.ChangeAlignmentToMiddleLeft();

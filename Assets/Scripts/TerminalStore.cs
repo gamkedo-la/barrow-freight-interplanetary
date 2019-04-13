@@ -7,6 +7,8 @@ public class TerminalStore : MonoBehaviour {
     int numberOfTerminals = 3;
     public List<Terminal> terminalList;
 
+    public List<Terminal> purchasedTerminals;
+
     List<string> terminalTypes;
     List<int> terminalTiers;
 
@@ -25,6 +27,7 @@ public class TerminalStore : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         terminalList = new List<Terminal>();
+        purchasedTerminals = new List<Terminal>();
 
         terminalTypes = new List<string>() {
             "PowerGenerator", "CoolingUnit", "EngineControl", "NAVCOMComputer", "JobSelection", "TerminalStore"
@@ -37,6 +40,21 @@ public class TerminalStore : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        if (terminalList.Count == numberOfTerminals) {
+
+            if (Input.GetKeyUp(KeyCode.Alpha1)) {
+                purchasedTerminals.Add(terminalList[0]);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Alpha2)) {
+                purchasedTerminals.Add(terminalList[1]);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Alpha3)) {
+                purchasedTerminals.Add(terminalList[2]);
+            }
+        }
 
     }
 
