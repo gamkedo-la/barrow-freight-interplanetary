@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class TerminalMonitor : MonoBehaviour
 {
-    Text text;
-    public string monitorOutput;
+    private Text text;
+    private Image barFillImage;
+    private string monitorOutput;
 
     // Start is called before the first frame update
     void Start()
     {
         text = GetComponentInChildren<Text>();
+        barFillImage = this.transform.Find("BarFilled").GetComponentInChildren<Image>();
     }
 
     // Update is called once per frame
@@ -31,4 +33,10 @@ public class TerminalMonitor : MonoBehaviour
     public void ChangeAlignmentToMiddleLeft() {
         text.alignment = TextAnchor.MiddleLeft;
     }
+
+    public void SetBarFillAmount(float fillAmount, float minValue = 0, float maxValue = 1000) {
+        float fillAmountPercent = fillAmount / maxValue;
+        barFillImage.fillAmount = fillAmountPercent;
+    }
+
 }

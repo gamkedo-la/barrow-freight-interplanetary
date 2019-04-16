@@ -121,22 +121,26 @@ public class Terminal : MonoBehaviour
                     //sends power capacity value to the Ship script.
                     ship.UpdateShipPowerCapacity(positiveAttribute);
                     DisplayTerminalInfo();
+                    monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
                     break;
                 case TerminalTypes.CoolingUnit:
                     //sends cooling rate value to the Ship script.
                     ship.UpdateShipCoolingRate(positiveAttribute);
                     DisplayTerminalInfo();
+                    monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
                     break;
                 case TerminalTypes.EngineControl:
                     //sends engine speed value to the Ship script.
                     ship.UpdateCurrentShipSpeed(positiveAttribute);
                     DisplayTerminalInfo();
+                    monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
                     break;
                 case TerminalTypes.NAVCOMComputer:
                     //sends com range value to the Ship script.
                     ship.UpdateShipMaxComRange(positiveAttribute);
                     jobsManager.UpdateNAVCOMStatus(terminalFailure);
                     DisplayTerminalInfo();
+                    monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
                     break;
                 case TerminalTypes.JobSelection:
                     DisplayJobSelection();
