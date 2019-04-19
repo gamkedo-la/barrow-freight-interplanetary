@@ -18,9 +18,14 @@ public class BoombotSongScript : MonoBehaviour
     private int Channel;
     private int secondsToWait;
 
+    public double BPM = 130f;
+    private double eachTick = 0.0f;
+    private double sampleRate = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         ArrayOfCameraAudioSources = GetComponents<AudioSource>();        ;
 
         BoombotSongSource = ArrayOfCameraAudioSources[1];
@@ -34,9 +39,15 @@ public class BoombotSongScript : MonoBehaviour
 
         BoombotSongSource.Play();
 
-        //secondsToWait = 3;
-        //yield return new WaitForSeconds(secondsToWait);
-        
+        //
+
+        double startTick = AudioSettings.dspTime/1000;
+        sampleRate = AudioSettings.outputSampleRate;
+        eachTick = startTick * sampleRate;
+
+        Debug.Log("startTick = " + startTick);
+        Debug.Log("sampleRate = " + sampleRate);
+        Debug.Log("eachTick = " + eachTick);
     }
 
     // Update is called once per frame
