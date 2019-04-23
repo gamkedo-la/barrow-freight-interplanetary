@@ -10,6 +10,9 @@ public class ObjectInteraction : MonoBehaviour
     float interactionRange = 3.0f;
     float objectMovementStartTime;
     float objectMovementDistance;
+    Quaternion startingRotation;
+    Quaternion endingRotation = Quaternion.Euler(0,0,0);
+    Quaternion objectRotationDistance;
     Vector3 lockedCameraPosition;
     Vector3 initialPlayerPosition;
 
@@ -153,6 +156,9 @@ public class ObjectInteraction : MonoBehaviour
         heldObject.transform.SetParent(this.transform);
         objectMovementDistance = Vector3.Distance(heldObject.transform.position, handPosition);
 
+        startingRotation = heldObject.transform.rotation;
+        objectRotationDistance = Quaternion.Inverse(startingRotation) * endingRotation;
+
         //notifies the heldObject that is has been picked up.
         portableObject po = heldObject.GetComponent<portableObject>();
         po.PickupObject();
@@ -204,16 +210,18 @@ public class ObjectInteraction : MonoBehaviour
     }
 
     void MoveObjectToHands() {
-        float speed = 1.0F;
+        float speed = 1.0f;
+        float rotationSpeed = 1.0f;
 
         // Distance moved = time * speed.
         float distCovered = (Time.time - objectMovementStartTime) * speed;
+        float rotationAmount = (Time.time - objectMovementStartTime) * rotationSpeed;
 
         // Fraction of journey completed = current distance divided by total distance.
         float fracJourney = distCovered / objectMovementDistance;
 
         // Set object position as a fraction of the distance between the object and hand position.
         heldObject.transform.localPosition = Vector3.Lerp(heldObject.transform.localPosition, handPosition, fracJourney);
-        heldObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        heldObject.transform.localRotation = Quaternion.Lerp(startingRotation, endingRotation, rotationAmount);
     }
 }
