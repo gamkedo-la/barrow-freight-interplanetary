@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TerminalBay : MonoBehaviour
 {
-
+    public bool isTerminalPlacementBay;
+   
     private bool isModuleInstalled = false;
     private GameObject installedObject;
 
