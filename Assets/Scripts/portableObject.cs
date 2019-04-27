@@ -8,15 +8,20 @@ public class portableObject : MonoBehaviour
     public bool isInstalled = false;
     public bool isActivated = false;
     public float efficiencyBonus;
+    //public bool isTool = false;
     public Vector3 initialPosition;
     public Vector3 activatedPosition;
+    public GameObject[] indicators;
 
     private AudioSource audioData;
+
+    public enum objectTypes { Module, PowerCell, FireExtinguisher, TerminalPlacer};
+    public objectTypes objectType;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,12 +32,28 @@ public class portableObject : MonoBehaviour
             Terminal parentTerminal = GetComponentInParent<Terminal>();
             parentTerminal.IncreaseEfficiency(efficiencyBonus);
         }
+
+        
     }
 
     public void PickupObject() {
         isHeld = true;
         isInstalled = false;
         gameObject.layer = 2;  //prevents held objects from blocking raycasts.
+
+        if (objectType == objectTypes.TerminalPlacer)
+        {
+            indicators = GameObject.FindGameObjectsWithTag("TerminalPlacementIndicator");
+            foreach (GameObject indicator in indicators)
+            {
+                MeshRenderer highlight = indicator.GetComponent<MeshRenderer>();
+                highlight.enabled = true;
+
+                BoxCollider collider = indicator.GetComponent<BoxCollider>();
+                collider.enabled = true;
+            }
+        }
+
         audioData = GetComponent<AudioSource>();
         if (audioData != null)
         {
@@ -49,6 +70,20 @@ public class portableObject : MonoBehaviour
         isHeld = false;
         isInstalled = false;
         gameObject.layer = 0;
+
+        if (objectType == objectTypes.TerminalPlacer)
+        {
+            indicators = GameObject.FindGameObjectsWithTag("TerminalPlacementIndicator");
+            foreach (GameObject indicator in indicators)
+            {
+                MeshRenderer highlight = indicator.GetComponent<MeshRenderer>();
+                highlight.enabled = false;
+
+                BoxCollider collider = indicator.GetComponent<BoxCollider>();
+                collider.enabled = false;
+            }
+        }
+
     }
 
     public void InstallObject() {

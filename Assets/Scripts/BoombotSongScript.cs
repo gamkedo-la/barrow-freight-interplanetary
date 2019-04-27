@@ -29,7 +29,7 @@ public class BoombotSongScript : MonoBehaviour
         ArrayOfCameraAudioSources = GetComponents<AudioSource>();        ;
 
         BoombotSongSource = ArrayOfCameraAudioSources[1];
-        Debug.Log(BoombotSongSource);
+        //Debug.Log(BoombotSongSource);
 
         BoombotSongClip = BoombotSongSource.clip;
         BoombotSongTimeLength = BoombotSongClip.length;
@@ -45,9 +45,9 @@ public class BoombotSongScript : MonoBehaviour
         sampleRate = AudioSettings.outputSampleRate;
         eachTick = startTick * sampleRate;
 
-        Debug.Log("startTick = " + startTick);
-        Debug.Log("sampleRate = " + sampleRate);
-        Debug.Log("eachTick = " + eachTick);
+        //Debug.Log("startTick = " + startTick);
+        //Debug.Log("sampleRate = " + sampleRate);
+        //Debug.Log("eachTick = " + eachTick);
     }
 
     // Update is called once per frame
@@ -56,9 +56,9 @@ public class BoombotSongScript : MonoBehaviour
         //BoombotSongSpeakerPositions = BoombotSongSource.GetOutputData(1024, 0);
         //Debug.Log(BoombotSongSpeakerPositions);
         BoombotSongSample = BoombotSongSource.timeSamples;
-        Debug.Log(BoombotSongSample);
+        //Debug.Log(BoombotSongSample);
         BoombotSongCurrentTime = BoombotSongSource.time;
-        Debug.Log(BoombotSongCurrentTime);
+        //Debug.Log(BoombotSongCurrentTime);
         
 
     }

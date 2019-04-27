@@ -5,6 +5,9 @@ using UnityEngine;
 using System;
 
 public class Jobs : MonoBehaviour {
+
+    Ship ship;
+
     public int numberOfJobs = 3;
     public List<Job> jobList;
     public Job activeJob;
@@ -28,20 +31,22 @@ public class Jobs : MonoBehaviour {
         public int jobID;
         public string jobName;
         public string destination;
+        public float distanceToDestination;
         public string cargoName;
         public string cargoType;
         public float cargoValue;  //per cubic meter
         public float targetDeliveryTime;
         public int jobTier;
 
-        public Job(int id, string name, string dest, string cargo, string type, float value, float time, int tier) {
+        public Job(int id, string name, string dest, float dist, string cargo, string type, float value, float time, int tier) {
             jobID = id;
             jobName = name;
             destination = dest;
+            distanceToDestination = dist; //in KM
             cargoName = cargo;
             cargoType = type;
             cargoValue = value;
-            targetDeliveryTime = time;
+            targetDeliveryTime = time; // in seconds
             jobTier = tier;
         }
 
@@ -51,6 +56,7 @@ public class Jobs : MonoBehaviour {
     void Start() {
         jobList = new List<Job>();
         etaClock = GameObject.Find("ETA Clock").GetComponentInChildren<TerminalMonitor>();
+        ship = GameObject.Find("Ship").GetComponent<Ship>();
 
         jobID = new List<int>();
         jobNames = new List<string>();
@@ -109,6 +115,7 @@ public class Jobs : MonoBehaviour {
                 jobList.Add(new Job(jobID[rand],
                                     jobNames[rand],
                                     destinations[rand],
+                                    UnityEngine.Random.Range(10000, 9000000000), //random distance
                                     cargoNames[rand],
                                     cargoTypes[rand],
                                     cargoValues[rand],
@@ -119,7 +126,7 @@ public class Jobs : MonoBehaviour {
                 i++;
             }
         }
-        Debug.Log(jobList[0].jobName);
+        //Debug.Log(jobList[0].jobName);
     }
 
     void GenerateJobPool() {
@@ -248,10 +255,15 @@ public class Jobs : MonoBehaviour {
         string timeText;
 
         if (activeJob != null) {
-            eta -= Time.deltaTime;
+
+            activeJob.distanceToDestination = activeJob.distanceToDestination / (ship.currentShipSpeedKMPS * Time.deltaTime);
+            Debug.Log(activeJob.distanceToDestination / 1000000f);
+            Debug.Log(ship.currentShipSpeedKMPS * Time.deltaTime);
+            eta = activeJob.distanceToDestination / ship.currentShipSpeedKMPS;
+
             TimeSpan timeSpan = TimeSpan.FromSeconds(eta);
             timeText = string.Format("{0:D3}:{1:D2}:{2:D2}:{3:D2}", timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
-        } else {
+        } else {  
             timeText = "No Destination Selected";
         }
 

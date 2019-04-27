@@ -73,7 +73,7 @@ public class Terminal : MonoBehaviour
                 label = "Engine Control";
                 powerConsumption = 200;
                 heatGeneration = 500;
-                engineSpeed = 500;
+                engineSpeed = 10000;
                 positiveAttributeLabel = "Engine Speed:\n";
                 positiveAttribute = engineSpeed;
                 positiveAttributeUnit = "KPH";

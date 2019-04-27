@@ -14,7 +14,9 @@ public class Ship : MonoBehaviour
     public float baseShipCoolingRate = 1000;
     public float currentShipCoolingRate;
     public float maxShipSpeed;
-    public float currentShipSpeed = 10;
+    public float previousShipSpeed = 10; //in KM/H
+    public float currentShipSpeed = 10; //in KM/H
+    public float currentShipSpeedKMPS; //in KM/S
     public float totalShipCargoCapacity = 100;
     public float consumedShipCargoCapacity;
     public float maxShipComRange = 50;
@@ -30,7 +32,7 @@ public class Ship : MonoBehaviour
         initialShipPosition = this.transform.position;
         currentShipTemp = baseShipTemp;
         finalShipTemp = baseShipTemp;
-        Debug.Log(currentShipTemp);
+        //Debug.Log(currentShipTemp);
 
         currency = 5000;
     }
@@ -52,7 +54,11 @@ public class Ship : MonoBehaviour
 
         TerminalMonitor monitor = GameObject.Find("Mission Monitor").GetComponentInChildren<TerminalMonitor>();
         monitor.WriteToMonitor(textOutput);
-        
+
+
+        currentShipSpeedKMPS = (currentShipSpeed / 60) / 60; //convert to KM/S
+        previousShipSpeed = currentShipSpeed;
+
         //Reset current power usage, so that it does not continue to increase every frame.
         currentShipPowerConsumption = 0;
         currentShipPowerCapacity = baseShipPowerCapacity;
@@ -78,11 +84,11 @@ public class Ship : MonoBehaviour
 
     public void UpdateInternalShipTemp() {
         finalShipTemp = Mathf.Clamp(baseShipTemp * (totalShipHeatGeneration / currentShipCoolingRate), baseShipTemp , 1000.0f );
-        Debug.Log(finalShipTemp);
+        //Debug.Log(finalShipTemp);
 
         float tempDelta = finalShipTemp - currentShipTemp;
         currentShipTemp += tempDelta * (Time.deltaTime * 0.001f);
-        Debug.Log(currentShipTemp);
+        //Debug.Log(currentShipTemp);
 
     }
 

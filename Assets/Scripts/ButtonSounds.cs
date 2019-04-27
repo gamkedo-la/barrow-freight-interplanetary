@@ -18,7 +18,7 @@ public class ButtonSounds : MonoBehaviour
     void Start()
     {
         buttonSFX = GetComponents<AudioSource>();
-        Debug.Log(buttonSFX);
+        //Debug.Log(buttonSFX);
         ButtonPressSound = buttonSFX[0];
         ButtonPressFirstHalf = buttonSFX[1];
         ButtonPressSecondHalf = buttonSFX[2];
