@@ -80,7 +80,7 @@ public class Terminal : MonoBehaviour
                 break;
             case TerminalTypes.NAVCOMComputer:
                 label = "NAV/COM Computer";
-                rend.material.color = Color.green;
+                //rend.material.color = Color.green;
                 powerConsumption = 50;
                 heatGeneration = 50;
                 comRangeBoost = 100;

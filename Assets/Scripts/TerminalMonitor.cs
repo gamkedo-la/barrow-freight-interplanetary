@@ -8,12 +8,16 @@ public class TerminalMonitor : MonoBehaviour
     private Text text;
     private Image barFillImage;
     private string monitorOutput;
+    public bool hasBar;
 
     // Start is called before the first frame update
     void Start()
     {
         text = GetComponentInChildren<Text>();
-        barFillImage = this.transform.Find("BarFilled").GetComponentInChildren<Image>();
+        if (hasBar)
+        {
+            barFillImage = this.transform.Find("BarFilled").GetComponentInChildren<Image>();
+        }
     }
 
     // Update is called once per frame
