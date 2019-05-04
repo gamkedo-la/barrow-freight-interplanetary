@@ -73,10 +73,10 @@ public class Terminal : MonoBehaviour
                 label = "Engine Control";
                 powerConsumption = 200;
                 heatGeneration = 500;
-                engineSpeed = 10000;
+                engineSpeed = 1;
                 positiveAttributeLabel = "Engine Speed:\n";
                 positiveAttribute = engineSpeed;
-                positiveAttributeUnit = "KPH";
+                positiveAttributeUnit = "LSPS";
                 break;
             case TerminalTypes.NAVCOMComputer:
                 label = "NAV/COM Computer";

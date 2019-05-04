@@ -14,9 +14,8 @@ public class Ship : MonoBehaviour
     public float baseShipCoolingRate = 1000;
     public float currentShipCoolingRate;
     public float maxShipSpeed;
-    public float previousShipSpeed = 10; //in KM/H
-    public float currentShipSpeed = 10; //in KM/H
-    public float currentShipSpeedKMPS; //in KM/S
+    public float previousFrameShipSpeed = 0.01f; //in LSPS
+    public float currentShipSpeed = 0.01f; //in LSPS
     public float totalShipCargoCapacity = 100;
     public float consumedShipCargoCapacity;
     public float maxShipComRange = 50;
@@ -45,7 +44,7 @@ public class Ship : MonoBehaviour
         //Sets text output and sends it to the ship's main monitor.
         textOutput = "Barrow Freight Interplanetary";
         textOutput += "\nShip Power usage: " + currentShipPowerConsumption + "/" + currentShipPowerCapacity + "Gw";
-        textOutput += "\nCurrent  Ship Speed " + currentShipSpeed + "KM/H";
+        textOutput += "\nCurrent  Ship Speed " + previousFrameShipSpeed + "LSPS";
         textOutput += "\nCurrent Ship Temp: " + currentShipTemp.ToString("F1") + "C";
         textOutput += "\nCurrent  Ship Cooling Rate: " + currentShipCoolingRate + "";
         textOutput += "\nShip Com Range: " + maxShipComRange + "KM";
@@ -55,13 +54,12 @@ public class Ship : MonoBehaviour
         TerminalMonitor monitor = GameObject.Find("Mission Monitor").GetComponentInChildren<TerminalMonitor>();
         monitor.WriteToMonitor(textOutput);
 
-
-        currentShipSpeedKMPS = (currentShipSpeed / 60) / 60; //convert to KM/S
-        previousShipSpeed = currentShipSpeed;
+        
 
         //Reset current power usage, so that it does not continue to increase every frame.
         currentShipPowerConsumption = 0;
         currentShipPowerCapacity = baseShipPowerCapacity;
+        previousFrameShipSpeed = currentShipSpeed;
         currentShipSpeed = 10;
         currentShipCoolingRate = baseShipCoolingRate;
         maxShipComRange = 0;

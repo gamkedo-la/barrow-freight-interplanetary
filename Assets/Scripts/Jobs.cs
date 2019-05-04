@@ -7,14 +7,16 @@ using System;
 public class Jobs : MonoBehaviour {
 
     Ship ship;
+    TerminalMonitor etaClock;
 
     public int numberOfJobs = 3;
     public List<Job> jobList;
     public Job activeJob;
+
     public bool navcomFailure = false;
 
-    TerminalMonitor etaClock;
-    float eta;
+    public float currentDist = 0; //in light-seconds
+    public float eta = 0; //in seconds
 
     List<int> jobID;
     List<string> jobNames;
@@ -31,7 +33,7 @@ public class Jobs : MonoBehaviour {
         public int jobID;
         public string jobName;
         public string destination;
-        public float distanceToDestination;
+        public float distanceToDestination; //in light-seconds
         public string cargoName;
         public string cargoType;
         public float cargoValue;  //per cubic meter
@@ -42,7 +44,7 @@ public class Jobs : MonoBehaviour {
             jobID = id;
             jobName = name;
             destination = dest;
-            distanceToDestination = dist; //in KM
+            distanceToDestination = dist; //in light-seconds
             cargoName = cargo;
             cargoType = type;
             cargoValue = value;
@@ -85,17 +87,17 @@ public class Jobs : MonoBehaviour {
 
             if (Input.GetKeyUp(KeyCode.Alpha1)) {
                 activeJob = jobList[0];
-                eta = activeJob.targetDeliveryTime;
+                currentDist = activeJob.distanceToDestination;
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha2)) {
                 activeJob = jobList[1];
-                eta = activeJob.targetDeliveryTime;
+                currentDist = activeJob.distanceToDestination;
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3)) {
                 activeJob = jobList[2];
-                eta = activeJob.targetDeliveryTime;
+                currentDist = activeJob.distanceToDestination;
             }
         }
 
@@ -115,7 +117,7 @@ public class Jobs : MonoBehaviour {
                 jobList.Add(new Job(jobID[rand],
                                     jobNames[rand],
                                     destinations[rand],
-                                    UnityEngine.Random.Range(10000, 9000000000), //random distance
+                                    UnityEngine.Random.Range(1, 3000), //random distance in light-seconds
                                     cargoNames[rand],
                                     cargoTypes[rand],
                                     cargoValues[rand],
@@ -256,10 +258,8 @@ public class Jobs : MonoBehaviour {
 
         if (activeJob != null) {
 
-            activeJob.distanceToDestination = activeJob.distanceToDestination / (ship.currentShipSpeedKMPS * Time.deltaTime);
-            Debug.Log(activeJob.distanceToDestination / 1000000f);
-            Debug.Log(ship.currentShipSpeedKMPS * Time.deltaTime);
-            eta = activeJob.distanceToDestination / ship.currentShipSpeedKMPS;
+            currentDist = currentDist/*LS*/ - (ship.previousFrameShipSpeed/*LSPS*/ * Time.deltaTime/*S*/);
+            eta/*S*/ = currentDist/*LS*/ / ship.previousFrameShipSpeed/*LSPS*/;
 
             TimeSpan timeSpan = TimeSpan.FromSeconds(eta);
             timeText = string.Format("{0:D3}:{1:D2}:{2:D2}:{3:D2}", timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
