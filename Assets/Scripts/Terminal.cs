@@ -9,9 +9,9 @@ public class Terminal : MonoBehaviour
     private float powerCapacity = 0;
     private float heatGeneration = 50;
     private float coolingRate = 0;
-    private float efficiencyRating = 0;
+    //private float efficiencyRating = 0;
     private float engineSpeed = 0;
-    private float navSpeedBonus = 0;
+    //private float navSpeedBonus = 0;
     private float comRangeBoost = 0;
     private float efficiencyBonus = 1;
     private float baseFailureRate = 0.03f;

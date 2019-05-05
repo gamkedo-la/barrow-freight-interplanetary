@@ -60,7 +60,6 @@ public class ObjectInteraction : MonoBehaviour
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            //Debug.Log("Mouse Clicked");
 
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit rhInfo;
@@ -69,7 +68,7 @@ public class ObjectInteraction : MonoBehaviour
 
                 if (rhInfo.collider.gameObject.tag == "TerminalMonitor") {
 
-                    Debug.Log("Monitor Clicked");
+                    //Debug.Log("Monitor Clicked");
                     viewLocked = true;
                     targetMonitor = rhInfo.collider.gameObject.GetComponent<TerminalMonitor>();
                     targetTerminal = targetMonitor.GetComponentInParent<Terminal>();
@@ -137,9 +136,6 @@ public class ObjectInteraction : MonoBehaviour
 
             GetComponent<FirstPersonController>().enabled = false;
             mainCamera.transform.LookAt(targetMonitor.transform);
-            //Vector3 lockedPos = targetTerminal.transform.TransformPoint(Vector3.left);
-
-            
             transform.position = lockedCameraPosition;
 
         }
