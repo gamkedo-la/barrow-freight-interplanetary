@@ -17,6 +17,7 @@ public class Jobs : MonoBehaviour {
 
     public float currentDist = 0; //in light-seconds
     public float eta = 0; //in seconds
+    public bool isInStasis = false;
 
     List<int> jobID;
     List<string> jobNames;
@@ -252,13 +253,24 @@ public class Jobs : MonoBehaviour {
         }
     }
 
+    public void ToggleStasis()
+    {
+        isInStasis = !isInStasis;
+    }
+
     public void UpdateETAClock() {
 
         string timeText;
+        float stasisTimeMultiplier;
 
         if (activeJob != null) {
 
-            currentDist = currentDist/*LS*/ - (ship.previousFrameShipSpeed/*LSPS*/ * Time.deltaTime/*S*/);
+            if (isInStasis) {
+                stasisTimeMultiplier = 1000;
+            } else {
+                stasisTimeMultiplier = 1;
+            }
+            currentDist = currentDist/*LS*/ - (ship.previousFrameShipSpeed/*LSPS*/ * (Time.deltaTime/*S*/ * stasisTimeMultiplier));
             eta/*S*/ = currentDist/*LS*/ / ship.previousFrameShipSpeed/*LSPS*/;
 
             TimeSpan timeSpan = TimeSpan.FromSeconds(eta);
