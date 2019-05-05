@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class TerminalStore : MonoBehaviour {
 
     Ship ship;
+    Text placeableTerminalUI;
 
     int numberOfTerminals = 3;
     public List<Terminal> terminalList;
@@ -34,6 +36,9 @@ public class TerminalStore : MonoBehaviour {
         terminalList = new List<Terminal>();
         purchasedTerminals = new List<Terminal>();
         ship = GameObject.Find("Ship").GetComponent<Ship>();
+
+        placeableTerminalUI = GameObject.Find("Placeable Terminal UI").GetComponent<Text>();
+        //Debug.log(placeableTerminalUI);
 
         terminalTypes = new List<string>() {
             "PowerGenerator", "CoolingUnit", "EngineControl", "NAVCOMComputer", "JobSelection", "TerminalStore"
@@ -68,6 +73,11 @@ public class TerminalStore : MonoBehaviour {
             }
         }
 
+        if (activePurchasedTerminal != null)
+        {
+            placeableTerminalUI.text = activePurchasedTerminal.terminalType;
+        }
+
     }
 
     public void GenerateAvailableTerminals() {
@@ -82,5 +92,8 @@ public class TerminalStore : MonoBehaviour {
         }
 
     }
+
+
+    
 
 }

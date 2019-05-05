@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 587910839704446838}
   m_Layer: 0
   m_Name: Trigger Collider
-  m_TagString: Untagged
+  m_TagString: TerminalPlacementCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70e4a71666293149b11dfea0320f155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTerminalPlacementBay: 0
+  isTerminalPlacementBay: 1
 --- !u!1 &7087442582443362277
 GameObject:
   m_ObjectHideFlags: 0

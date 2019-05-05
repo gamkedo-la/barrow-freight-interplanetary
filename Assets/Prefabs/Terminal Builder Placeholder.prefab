@@ -111,6 +111,8 @@ MonoBehaviour:
   efficiencyBonus: 0
   initialPosition: {x: 0, y: 0, z: 0}
   activatedPosition: {x: 0, y: 0, z: 0}
+  indicators: []
+  terminalPrefab: {fileID: 1307996754, guid: 1f4b0f377e6d08c41a779554c2f98e98, type: 3}
   objectType: 3
 --- !u!54 &1349511808
 Rigidbody:

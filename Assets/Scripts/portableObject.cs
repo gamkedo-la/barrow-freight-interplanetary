@@ -12,6 +12,7 @@ public class portableObject : MonoBehaviour
     public Vector3 initialPosition;
     public Vector3 activatedPosition;
     public GameObject[] indicators;
+    public GameObject terminalPrefab;
 
     private AudioSource audioData;
 
@@ -109,5 +110,9 @@ public class portableObject : MonoBehaviour
 
     public bool IsObjectActivated() {
         return isActivated;
+    }
+
+    public void PlaceTerminal(Vector3 pos) {
+        Instantiate(terminalPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

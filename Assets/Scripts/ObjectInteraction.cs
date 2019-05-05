@@ -64,8 +64,10 @@ public class ObjectInteraction : MonoBehaviour
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit rhInfo;
 
+            //If an object is clicked...
             if (Physics.Raycast(mouseRay, out rhInfo, interactionRange)) {
 
+                //..and if that object is a Terminal Monitor
                 if (rhInfo.collider.gameObject.tag == "TerminalMonitor") {
 
                     //Debug.Log("Monitor Clicked");
@@ -89,24 +91,26 @@ public class ObjectInteraction : MonoBehaviour
                     if (targetTerminal.terminalType == Terminal.TerminalTypes.TerminalStore) {
                         terminalStore.GenerateAvailableTerminals();
                     }
-
+                //..and if that object is a terminal bay and the player holds an object
                 } else if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
 
                     placeObject(rhInfo.collider.gameObject);
 
+                //...and if that object is a terminal bay and the player does not hold an object..
                 } else if (!isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
 
+                    //...and if that terminal bay already has an object installed.
                     targetBay = rhInfo.collider.gameObject.GetComponent<TerminalBay>();
                     if (targetBay.IsModuleInstalled()) {
                         GameObject installedObject = targetBay.GetInstalledObject();
                         portableObject po = installedObject.GetComponent<portableObject>();
                         po.DeactivateObject();
                     }
-
+                //...and if the object is not interactable and the player holds an object.
                 } else if (isHoldingObject) { //end of if isHoldingObject and target is TerminalBay.
 
                     dropObject();
-
+                //...and if the object is a movable object
                 } else if (Physics.Raycast(mouseRay, out rhInfo, 3.0f)) { //end of if isHoldingObject
                     if (rhInfo.collider.gameObject.tag == "MovableObject") {
 
@@ -119,6 +123,14 @@ public class ObjectInteraction : MonoBehaviour
 
 
                     } //end of if hit object is movable
+
+                } else if (rhInfo.collider.gameObject.tag == "TerminalPlacementCollider") {
+
+                    Debug.Log("placement Collider clicked");
+                    targetTerminal = rhInfo.collider.gameObject.GetComponentInParent<Terminal>();
+
+                    portableObject po = heldObject.GetComponent<portableObject>();
+                    po.PlaceTerminal(targetTerminal.transform.position);
 
                 } else { //end of if raycast hits object
 
