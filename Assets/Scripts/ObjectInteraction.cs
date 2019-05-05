@@ -66,10 +66,10 @@ public class ObjectInteraction : MonoBehaviour
 
             //If an object is clicked...
             if (Physics.Raycast(mouseRay, out rhInfo, interactionRange)) {
-
+                Debug.Log("clicked");
                 //..and if that object is a Terminal Monitor
                 if (rhInfo.collider.gameObject.tag == "TerminalMonitor") {
-
+                    Debug.Log("rhInfo.collider.gameObject.tag == TerminalMonitor");
                     //Debug.Log("Monitor Clicked");
                     viewLocked = true;
                     targetMonitor = rhInfo.collider.gameObject.GetComponent<TerminalMonitor>();
@@ -93,12 +93,12 @@ public class ObjectInteraction : MonoBehaviour
                     }
                 //..and if that object is a terminal bay and the player holds an object
                 } else if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
-
+                    Debug.Log("isHoldingObject && rhInfo.collider.gameObject.tag == TerminalBay");
                     placeObject(rhInfo.collider.gameObject);
 
                 //...and if that object is a terminal bay and the player does not hold an object..
                 } else if (!isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
-
+                    Debug.Log("!isHoldingObject && rhInfo.collider.gameObject.tag == TerminalBay");
                     //...and if that terminal bay already has an object installed.
                     targetBay = rhInfo.collider.gameObject.GetComponent<TerminalBay>();
                     if (targetBay.IsModuleInstalled()) {
@@ -106,9 +106,17 @@ public class ObjectInteraction : MonoBehaviour
                         portableObject po = installedObject.GetComponent<portableObject>();
                         po.DeactivateObject();
                     }
+                    
+                } else if (rhInfo.collider.gameObject.tag == "TerminalPlacementCollider") {
+
+                    Debug.Log("placement Collider clicked");
+                    targetTerminal = rhInfo.collider.gameObject.GetComponentInParent<Terminal>();
+
+                    portableObject po = heldObject.GetComponent<portableObject>();
+                    po.PlaceTerminal(targetTerminal.transform.position);
+
                 //...and if the object is not interactable and the player holds an object.
                 } else if (isHoldingObject) { //end of if isHoldingObject and target is TerminalBay.
-
                     dropObject();
                 //...and if the object is a movable object
                 } else if (Physics.Raycast(mouseRay, out rhInfo, 3.0f)) { //end of if isHoldingObject
@@ -124,13 +132,7 @@ public class ObjectInteraction : MonoBehaviour
 
                     } //end of if hit object is movable
 
-                } else if (rhInfo.collider.gameObject.tag == "TerminalPlacementCollider") {
-
-                    Debug.Log("placement Collider clicked");
-                    targetTerminal = rhInfo.collider.gameObject.GetComponentInParent<Terminal>();
-
-                    portableObject po = heldObject.GetComponent<portableObject>();
-                    po.PlaceTerminal(targetTerminal.transform.position);
+                
 
                 } else { //end of if raycast hits object
 

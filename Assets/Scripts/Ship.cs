@@ -19,7 +19,7 @@ public class Ship : MonoBehaviour
     public float totalShipCargoCapacity = 100;
     public float consumedShipCargoCapacity;
     public float maxShipComRange = 50;
-    public int currency;
+    public float currency;
 
     public string textOutput;
 
@@ -100,6 +100,11 @@ public class Ship : MonoBehaviour
 
     public void UpdateCurrentShipSpeed(float engineSpeedFromTerminal ) {
         currentShipSpeed += engineSpeedFromTerminal;
+    }
+
+    public void UpdateCurrency(float payment)
+    {
+        currency += payment;
     }
 
     public void MoveShipToTerminalView(Vector3 shipTerminalPosition) { 

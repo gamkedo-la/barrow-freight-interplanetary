@@ -19,6 +19,7 @@ public class Terminal : MonoBehaviour
     private float failureChanceInterval = 30.0f; //in seconds
     private bool terminalFailure = false;
     private bool terminalPoweredOn = true;
+    private bool isOnFire = false;
 
     public string textOutput;
     private string label;

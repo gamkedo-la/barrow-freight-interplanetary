@@ -40,6 +40,7 @@ public class Jobs : MonoBehaviour {
         public float cargoValue;  //per cubic meter
         public float targetDeliveryTime;
         public int jobTier;
+        public bool jobComplete;
 
         public Job(int id, string name, string dest, float dist, string cargo, string type, float value, float time, int tier) {
             jobID = id;
@@ -51,6 +52,7 @@ public class Jobs : MonoBehaviour {
             cargoValue = value;
             targetDeliveryTime = time; // in seconds
             jobTier = tier;
+            jobComplete = false;
         }
 
     }
@@ -275,7 +277,15 @@ public class Jobs : MonoBehaviour {
 
             TimeSpan timeSpan = TimeSpan.FromSeconds(eta);
             timeText = string.Format("{0:D3}:{1:D2}:{2:D2}:{3:D2}", timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
-        } else {  
+
+            if (eta < 0)
+            {
+                activeJob.jobComplete = true;
+                ship.UpdateCurrency(activeJob.cargoValue);
+                timeText = "Job Complete";
+            }
+
+        } else {
             timeText = "No Destination Selected";
         }
 
