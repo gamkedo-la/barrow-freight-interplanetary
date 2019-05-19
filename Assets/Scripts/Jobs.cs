@@ -121,7 +121,7 @@ public class Jobs : MonoBehaviour {
                 jobList.Add(new Job(jobID[rand],
                                     jobNames[rand],
                                     destinations[rand],
-                                    UnityEngine.Random.Range(1, 3000), //random distance in light-seconds
+                                    UnityEngine.Random.Range(10000000, 30000000), //random distance in light-seconds
                                     cargoNames[rand],
                                     cargoTypes[rand],
                                     cargoValues[rand],
@@ -269,7 +269,7 @@ public class Jobs : MonoBehaviour {
         if (activeJob != null) {
 
             if (isInStasis) {
-                stasisTimeMultiplier = 1000;
+                stasisTimeMultiplier = 100000;
             } else {
                 stasisTimeMultiplier = 1;
             }

@@ -243,11 +243,9 @@ public class Terminal : MonoBehaviour
     }
 
     public void DisplayMessage(){
-        string message1 = "placeholder message 1";
-        string message2 = "Boomba Boomba!Shoot, our ship started floating way and you happen to be in it! " +
-            "You can check our HowToPilotWithoutDying booklet before it's too late. " +
-            "We're going to give you a Boomba-bot as our thanks for taking the wheel. " +
-            "Cee you#-#";
+        string message1 = "Boomba Boomba! Shoot, our ship started floating way and you happen to be in it! " +
+            "You can check our HowToPilotWithoutDying booklet before it's too late. ";
+        string message2 = "We're going to give you a Boomba-bot as our thanks for taking the wheel. Cee you#-#";
         string message3 = "placeholder message 3";
         string message4 = "placeholder message 4";
 
