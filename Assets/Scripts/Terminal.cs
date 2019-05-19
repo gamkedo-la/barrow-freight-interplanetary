@@ -22,6 +22,7 @@ public class Terminal : MonoBehaviour
     private bool isOnFire = false;
 
     public string textOutput;
+    private string currentMessage;
     private string label;
     private string positiveAttributeLabel;
     private float positiveAttribute;
@@ -237,6 +238,16 @@ public class Terminal : MonoBehaviour
     public void DisplayTerminalInfo() {
         textOutput = label + "\n" + positiveAttributeLabel + positiveAttribute + positiveAttributeUnit +
                         "\nTerminal Failure: " + terminalFailure;
+        monitor.WriteToMonitor(textOutput);
+    }
+
+    public void DisplayMessage(){
+        string message1 = "";
+        string message2 = "";
+        string message3 = "";
+        string message4 = "";
+
+        textOutput = currentMessage;
         monitor.WriteToMonitor(textOutput);
     }
 

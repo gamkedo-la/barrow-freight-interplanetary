@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3281102fd70b6046b02472921f6b60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasBar: 0
 --- !u!65 &5588026516439202911
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1009,8 +1010,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textOutput: 
-  shipAttributeType: 0
-  terminalType: 0
+  shipAttributeType: 4
+  terminalType: 3
   terminalStartupAndRunningSound: {fileID: 0}
 --- !u!1 &5912025232912847132
 GameObject:
@@ -1665,17 +1666,7 @@ PrefabInstance:
       propertyPath: buttonType
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4109809681338888007, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4109809679949388904, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1709,6 +1700,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Faces.Array.data[5].m_TextureGroup
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809679949388904, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4109809679949388906, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
@@ -1875,17 +1876,7 @@ PrefabInstance:
       propertyPath: buttonType
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4109809681338888007, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4109809679949388904, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1919,6 +1910,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Faces.Array.data[5].m_TextureGroup
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809679949388904, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95edf206edb36df4c8d31acacfc39002, type: 3}
@@ -2075,17 +2076,7 @@ PrefabInstance:
       propertyPath: buttonType
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4109809681338888007, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4109809679949388904, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2119,6 +2110,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Faces.Array.data[5].m_TextureGroup
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809679949388904, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4109809679949388906, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
@@ -2270,12 +2271,12 @@ PrefabInstance:
       propertyPath: buttonType
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
+    - target: {fileID: 4109809681338888007, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4109809681338888007, guid: 95edf206edb36df4c8d31acacfc39002,
+    - target: {fileID: 4109809681338888004, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_Mesh
       value: 

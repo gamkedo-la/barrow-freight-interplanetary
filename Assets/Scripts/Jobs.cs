@@ -12,6 +12,7 @@ public class Jobs : MonoBehaviour {
     public int numberOfJobs = 3;
     public List<Job> jobList;
     public Job activeJob;
+    public int jobsCompleted = 0;
 
     public bool navcomFailure = false;
 
@@ -283,6 +284,9 @@ public class Jobs : MonoBehaviour {
                 activeJob.jobComplete = true;
                 ship.UpdateCurrency(activeJob.cargoValue);
                 timeText = "Job Complete";
+                jobsCompleted++;
+                activeJob = null;
+                isInStasis = false;
             }
 
         } else {
