@@ -712,7 +712,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36579685}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.05000007}
+  m_LocalPosition: {x: 0, y: 0, z: 0.036}
   m_LocalScale: {x: 0.0030066704, y: 0.0012114284, z: 0.042360045}
   m_Children:
   - {fileID: 604259762}
@@ -32179,7 +32179,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437426851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.27}
+  m_LocalPosition: {x: 0, y: 0, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 36579686}
@@ -37509,7 +37509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799639155}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -1, y: 0.66, z: -0.06526988}
+  m_LocalPosition: {x: -1, y: 0.66, z: -0.036}
   m_LocalScale: {x: 1.7, y: 0.65, z: 0.43379432}
   m_Children: []
   m_Father: {fileID: 4404063975266440537}
@@ -43837,6 +43837,41 @@ PrefabInstance:
     - target: {fileID: 1186694151737855292, guid: f79ca7836f78b4542b663fb32b93a7f8,
         type: 3}
       propertyPath: m_Faces.Array.data[5].m_TextureGroup
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818421465729647691, guid: f79ca7836f78b4542b663fb32b93a7f8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818421465729647691, guid: f79ca7836f78b4542b663fb32b93a7f8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818421465729647691, guid: f79ca7836f78b4542b663fb32b93a7f8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818421465729647691, guid: f79ca7836f78b4542b663fb32b93a7f8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -10.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485749881664610232, guid: f79ca7836f78b4542b663fb32b93a7f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187425299447367626, guid: f79ca7836f78b4542b663fb32b93a7f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320273190405265827, guid: f79ca7836f78b4542b663fb32b93a7f8,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

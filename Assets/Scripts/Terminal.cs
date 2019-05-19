@@ -141,7 +141,8 @@ public class Terminal : MonoBehaviour
                     //sends com range value to the Ship script.
                     ship.UpdateShipMaxComRange(positiveAttribute);
                     jobsManager.UpdateNAVCOMStatus(terminalFailure);
-                    DisplayTerminalInfo();
+                    DisplayMessage();
+                    //DisplayTerminalInfo();
                     monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
                     break;
                 case TerminalTypes.JobSelection:
@@ -242,10 +243,29 @@ public class Terminal : MonoBehaviour
     }
 
     public void DisplayMessage(){
-        string message1 = "";
-        string message2 = "";
-        string message3 = "";
-        string message4 = "";
+        string message1 = "placeholder message 1";
+        string message2 = "Boomba Boomba!Shoot, our ship started floating way and you happen to be in it! " +
+            "You can check our HowToPilotWithoutDying booklet before it's too late. " +
+            "We're going to give you a Boomba-bot as our thanks for taking the wheel. " +
+            "Cee you#-#";
+        string message3 = "placeholder message 3";
+        string message4 = "placeholder message 4";
+
+        switch (jobsManager.jobsCompleted)
+        {
+            case 0:
+                currentMessage = message1;
+                break;
+            case 1:
+                currentMessage = message2;
+                break;
+            case 2:
+                currentMessage = message3;
+                break;
+            case 3:
+                currentMessage = message4;
+                break;
+        }
 
         textOutput = currentMessage;
         monitor.WriteToMonitor(textOutput);
