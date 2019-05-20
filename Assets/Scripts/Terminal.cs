@@ -22,6 +22,7 @@ public class Terminal : MonoBehaviour
     private bool isOnFire = false;
 
     public string textOutput;
+    private string currentMessage;
     private string label;
     private string positiveAttributeLabel;
     private float positiveAttribute;
@@ -140,7 +141,8 @@ public class Terminal : MonoBehaviour
                     //sends com range value to the Ship script.
                     ship.UpdateShipMaxComRange(positiveAttribute);
                     jobsManager.UpdateNAVCOMStatus(terminalFailure);
-                    DisplayTerminalInfo();
+                    DisplayMessage();
+                    //DisplayTerminalInfo();
                     monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
                     break;
                 case TerminalTypes.JobSelection:
@@ -237,6 +239,33 @@ public class Terminal : MonoBehaviour
     public void DisplayTerminalInfo() {
         textOutput = label + "\n" + positiveAttributeLabel + positiveAttribute + positiveAttributeUnit +
                         "\nTerminal Failure: " + terminalFailure;
+        monitor.WriteToMonitor(textOutput);
+    }
+
+    public void DisplayMessage(){
+        string message1 = "Boomba Boomba! Shoot, our ship started floating way and you happen to be in it! " +
+            "You can check our HowToPilotWithoutDying booklet before it's too late. ";
+        string message2 = "We're going to give you a Boomba-bot as our thanks for taking the wheel. Cee you#-#";
+        string message3 = "placeholder message 3";
+        string message4 = "placeholder message 4";
+
+        switch (jobsManager.jobsCompleted)
+        {
+            case 0:
+                currentMessage = message1;
+                break;
+            case 1:
+                currentMessage = message2;
+                break;
+            case 2:
+                currentMessage = message3;
+                break;
+            case 3:
+                currentMessage = message4;
+                break;
+        }
+
+        textOutput = currentMessage;
         monitor.WriteToMonitor(textOutput);
     }
 
