@@ -1,12 +1,23 @@
 fileFormatVersion: 2
-guid: cef87576f3d081449873bcb896445610
+guid: 7fa930331fef6034ebc5ac701c0bba39
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
+    100000: object1
+    100002: //RootNode
+    400000: object1
+    400002: //RootNode
+    2100000: black
+    2100002: Blue
+    2100004: Magenta
+    2100006: Green
+    2100008: Red
+    2100010: ghh
+    2100012: yellow
+    2100014: dfd
+    2300000: object1
+    3300000: object1
+    4300000: object1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -38,7 +49,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -60,7 +71,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -87,7 +98,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
