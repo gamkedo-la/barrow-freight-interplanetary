@@ -8,6 +8,7 @@ public class Jobs : MonoBehaviour {
 
     Ship ship;
     TerminalMonitor etaClock;
+    BlackScreen blackScreen;
 
     public int numberOfJobs = 3;
     public List<Job> jobList;
@@ -63,6 +64,7 @@ public class Jobs : MonoBehaviour {
         jobList = new List<Job>();
         etaClock = GameObject.Find("ETA Clock").GetComponentInChildren<TerminalMonitor>();
         ship = GameObject.Find("Ship").GetComponent<Ship>();
+        blackScreen = GameObject.Find("Black Screen").GetComponent<BlackScreen>();
 
         jobID = new List<int>();
         jobNames = new List<string>();
@@ -270,6 +272,7 @@ public class Jobs : MonoBehaviour {
 
             if (isInStasis) {
                 stasisTimeMultiplier = 100000;
+                blackScreen.SetAlpha(1f);
             } else {
                 stasisTimeMultiplier = 1;
             }
@@ -287,6 +290,7 @@ public class Jobs : MonoBehaviour {
                 jobsCompleted++;
                 activeJob = null;
                 isInStasis = false;
+                blackScreen.SetAlpha(0f);
             }
 
         } else {
