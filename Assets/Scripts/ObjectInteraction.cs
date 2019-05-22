@@ -142,6 +142,18 @@ public class ObjectInteraction : MonoBehaviour
             } //end of if a raycast hits something
         } // end of if mouse button 0 is pressed
 
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (isHoldingObject)
+            {
+                portableObject po = heldObject.GetComponent<portableObject>();
+                if (po.IsFireExtinguisher())
+                {
+                    po.SprayFoam();
+                }
+            }
+        }
+
         if (isHoldingObject) {
             MoveObjectToHands();
         }

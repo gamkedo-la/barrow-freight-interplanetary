@@ -115,4 +115,20 @@ public class portableObject : MonoBehaviour
     public void PlaceTerminal(Vector3 pos) {
         Instantiate(terminalPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
+
+    public bool IsFireExtinguisher()
+    {
+        if(objectType == objectTypes.FireExtinguisher)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    public void SprayFoam()
+    {
+        Debug.Log("Spraying Foam");
+    }
 }
