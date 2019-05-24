@@ -8,18 +8,19 @@ public class Interactor : MonoBehaviour
 	[SerializeField] private Crosshair crosshair = null;
 	[SerializeField] private float interactionRange = 3.0f;
 
-	private const int layerMask = 1 << 9; // Intractable layer
-
 	private GameObject lastLookedObject;
 	private bool pressing = false;
+    private int ignorePlayerMask;
 
-	void Start( )
+
+    void Start( )
 	{
 		Assert.IsNotNull( helpLabel );
 		Assert.IsNotNull( crosshair );
 
 		helpLabel.text = "Nothing to interact with...";
-	}
+        ignorePlayerMask = ~LayerMask.GetMask("Player");
+    }
 
 	void Update( )
 	{
@@ -74,9 +75,14 @@ public class Interactor : MonoBehaviour
 		GameObject foundObject = null;
 
 		if ( Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward,
-                out hitInfo, interactionRange, layerMask ) )
-			foundObject = hitInfo.collider.gameObject;
+                out hitInfo, interactionRange, ignorePlayerMask ))
+        {
+            if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hitInfo.collider.gameObject.tag == "MovableObject")
+            {
+                foundObject = hitInfo.collider.gameObject;
+            }
+        }
 
-		return foundObject;
+        return foundObject;
 	}
 }

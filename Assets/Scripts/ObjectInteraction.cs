@@ -34,6 +34,8 @@ public class ObjectInteraction : MonoBehaviour
     private Jobs jobsManager;
     private TerminalStore terminalStore;
 
+    private int ignorePlayerMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,7 @@ public class ObjectInteraction : MonoBehaviour
         jobsManager = GameObject.Find("Game Managers").GetComponent<Jobs>();
         terminalStore = GameObject.Find("Game Managers").GetComponent<TerminalStore>();
 
+        ignorePlayerMask = ~LayerMask.GetMask("Player");
     }
 
     // Update is called once per frame
@@ -64,8 +67,9 @@ public class ObjectInteraction : MonoBehaviour
             RaycastHit rhInfo;
 
             //If an object is clicked...
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, interactionRange)) {
-                Debug.Log("clicked");
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, interactionRange, ignorePlayerMask)) {
+                Debug.Log("clicked on " + rhInfo.collider.name + " with tag" + rhInfo.collider.gameObject.tag);
+                Debug.Log("holding? "+ isHoldingObject + " " );
                 //..and if that object is a Terminal Monitor
                 if (rhInfo.collider.gameObject.tag == "TerminalMonitor") {
                     Debug.Log("rhInfo.collider.gameObject.tag == TerminalMonitor");
@@ -91,21 +95,23 @@ public class ObjectInteraction : MonoBehaviour
                         terminalStore.GenerateAvailableTerminals();
                     }
                 //..and if that object is a terminal bay and the player holds an object
-                } else if (isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
-                    Debug.Log("isHoldingObject && rhInfo.collider.gameObject.tag == TerminalBay");
-                    placeObject(rhInfo.collider.gameObject);
-
-                //...and if that object is a terminal bay and the player does not hold an object..
-                } else if (!isHoldingObject && rhInfo.collider.gameObject.tag == "TerminalBay") {
-                    Debug.Log("!isHoldingObject && rhInfo.collider.gameObject.tag == TerminalBay");
-                    //...and if that terminal bay already has an object installed.
-                    targetBay = rhInfo.collider.gameObject.GetComponent<TerminalBay>();
-                    if (targetBay.IsModuleInstalled()) {
-                        GameObject installedObject = targetBay.GetInstalledObject();
-                        portableObject po = installedObject.GetComponent<portableObject>();
-                        po.DeactivateObject();
+                } else if (rhInfo.collider.gameObject.tag == "TerminalBay") {
+                    if(isHoldingObject) {
+                        placeObject(rhInfo.collider.gameObject);
                     }
-                    
+                    else
+                    {
+                        //...and if that terminal bay already has an object installed.
+                        targetBay = rhInfo.collider.gameObject.GetComponent<TerminalBay>();
+                        if (targetBay.IsModuleInstalled())
+                        {
+                            GameObject installedObject = targetBay.GetInstalledObject();
+                            portableObject po = installedObject.GetComponent<portableObject>();
+                            po.DeactivateObject();
+                        }
+
+                    }
+
                 } else if (rhInfo.collider.gameObject.tag == "TerminalPlacementCollider") {
 
                     Debug.Log("placement Collider clicked");
@@ -118,26 +124,15 @@ public class ObjectInteraction : MonoBehaviour
                 } else if (isHoldingObject) { //end of if isHoldingObject and target is TerminalBay.
                     dropObject();
                 //...and if the object is a movable object
-                } else if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, 3.0f)) { //end of if isHoldingObject
-                    if (rhInfo.collider.gameObject.tag == "MovableObject") {
+                } else if (rhInfo.collider.gameObject.tag == "MovableObject") { // wasn't yet isHoldingObject
+                    portableObject po = rhInfo.collider.gameObject.GetComponent<portableObject>();
+                    if (!po.IsObjectInstalled()) {
+                        pickUpObject(rhInfo.collider.gameObject);
+                    } else {
+                        po.ActivateObject();
+                    }
 
-                        portableObject po = rhInfo.collider.gameObject.GetComponent<portableObject>();
-                        if (!po.IsObjectInstalled()) {
-                            pickUpObject(rhInfo.collider.gameObject);
-                        } else {
-                            po.ActivateObject();
-                        }
-
-
-                    } //end of if hit object is movable
-
-                
-
-                } else { //end of if raycast hits object
-
-                    //Debug.Log("Mouse ray hit nothing.");
-
-                } //end of else
+                }
             } //end of if a raycast hits something
         } // end of if mouse button 0 is pressed
 
@@ -168,6 +163,7 @@ public class ObjectInteraction : MonoBehaviour
     } // end of Update()
 
     void pickUpObject(GameObject targetObject) {
+        Debug.Log("picking up object");
 
         objectMovementStartTime = Time.time;
 
@@ -193,6 +189,7 @@ public class ObjectInteraction : MonoBehaviour
     }
 
     void dropObject() {
+        Debug.Log("dropping object");
         isHoldingObject = false;
         heldObject.transform.SetParent(null);
 
@@ -204,6 +201,7 @@ public class ObjectInteraction : MonoBehaviour
     }
 
     void placeObject(GameObject bay) {
+        Debug.Log("placing object");
         isHoldingObject = false;
         heldObject.transform.SetParent(null);
 
