@@ -59,13 +59,13 @@ public class ObjectInteraction : MonoBehaviour
             terminalBeepsScript.terminalOffSound.Play();
         }
 
-        if (Input.GetMouseButtonDown(0)) {
-
-            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Ray mouseRay = Camera.main.transform.forward;
             RaycastHit rhInfo;
 
             //If an object is clicked...
-            if (Physics.Raycast(mouseRay, out rhInfo, interactionRange)) {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, interactionRange)) {
                 Debug.Log("clicked");
                 //..and if that object is a Terminal Monitor
                 if (rhInfo.collider.gameObject.tag == "TerminalMonitor") {
@@ -119,7 +119,7 @@ public class ObjectInteraction : MonoBehaviour
                 } else if (isHoldingObject) { //end of if isHoldingObject and target is TerminalBay.
                     dropObject();
                 //...and if the object is a movable object
-                } else if (Physics.Raycast(mouseRay, out rhInfo, 3.0f)) { //end of if isHoldingObject
+                } else if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, 3.0f)) { //end of if isHoldingObject
                     if (rhInfo.collider.gameObject.tag == "MovableObject") {
 
                         portableObject po = rhInfo.collider.gameObject.GetComponent<portableObject>();
