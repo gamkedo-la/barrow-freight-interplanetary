@@ -45,15 +45,13 @@ public class ObjectInteraction : MonoBehaviour
         terminalBeepsManager = GameObject.Find("TerminalBeepsManager");
         jobsManager = GameObject.Find("Game Managers").GetComponent<Jobs>();
         terminalStore = GameObject.Find("Game Managers").GetComponent<TerminalStore>();
-
         ignorePlayerMask = ~LayerMask.GetMask("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        handPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y - 0.5f, Camera.main.transform.localPosition.z + 1f);
+        handPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y - 1f, Camera.main.transform.localPosition.z + 1f);
 
         if (Input.GetMouseButtonDown(1)){
             viewLocked = false;
@@ -136,14 +134,26 @@ public class ObjectInteraction : MonoBehaviour
             } //end of if a raycast hits something
         } // end of if mouse button 0 is pressed
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (isHoldingObject)
             {
                 portableObject po = heldObject.GetComponent<portableObject>();
                 if (po.IsFireExtinguisher())
                 {
-                    po.SprayFoam();
+                    po.ToggleIsSpraying();
+                }
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (isHoldingObject)
+            {
+                portableObject po = heldObject.GetComponent<portableObject>();
+                if (po.IsFireExtinguisher())
+                {
+                    po.ToggleIsSpraying();
                 }
             }
         }

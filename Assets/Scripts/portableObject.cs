@@ -8,11 +8,13 @@ public class portableObject : MonoBehaviour
     public bool isInstalled = false;
     public bool isActivated = false;
     public float efficiencyBonus;
-    //public bool isTool = false;
     public Vector3 initialPosition;
     public Vector3 activatedPosition;
     public GameObject[] indicators;
     public GameObject terminalPrefab;
+    public GameObject foam;
+    public bool isSpraying = false;
+    private ParticleSystem ps;
 
     private AudioSource audioData;
 
@@ -22,7 +24,13 @@ public class portableObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (objectType == objectTypes.FireExtinguisher)
+        {
+            foam = GameObject.Find("Foam Particle System");
+            ps = foam.GetComponent<ParticleSystem>();
+            var emission = ps.emission;
+            emission.enabled = isSpraying;
+        }
     }
 
     // Update is called once per frame
@@ -34,7 +42,6 @@ public class portableObject : MonoBehaviour
             parentTerminal.IncreaseEfficiency(efficiencyBonus);
         }
 
-        
     }
 
     public void PickupObject() {
@@ -127,8 +134,11 @@ public class portableObject : MonoBehaviour
         }
     }
 
-    public void SprayFoam()
+    public void ToggleIsSpraying()
     {
-        Debug.Log("Spraying Foam");
+        isSpraying = !isSpraying;
+        var emission = ps.emission;
+        emission.enabled = isSpraying;
     }
+
 }
