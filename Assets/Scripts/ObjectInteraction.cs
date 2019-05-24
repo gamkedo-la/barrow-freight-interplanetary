@@ -61,7 +61,6 @@ public class ObjectInteraction : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            //Ray mouseRay = Camera.main.transform.forward;
             RaycastHit rhInfo;
 
             //If an object is clicked...

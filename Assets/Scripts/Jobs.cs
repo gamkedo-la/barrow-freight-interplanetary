@@ -9,7 +9,7 @@ public class Jobs : MonoBehaviour {
     Ship ship;
     TerminalMonitor etaClock;
     BlackScreen blackScreen;
-    GameObject boombot;
+    public GameObject boombot;
 
     public int numberOfJobs = 3;
     public List<Job> jobList;
@@ -66,7 +66,7 @@ public class Jobs : MonoBehaviour {
         etaClock = GameObject.Find("ETA Clock").GetComponentInChildren<TerminalMonitor>();
         ship = GameObject.Find("Ship").GetComponent<Ship>();
         blackScreen = GameObject.Find("Black Screen").GetComponent<BlackScreen>();
-        boombot = GameObject.Find("BoomBot");
+        // boombot = GameObject.Find("BoomBot");
         boombot.SetActive(false);
 
         jobID = new List<int>();

@@ -51,6 +51,11 @@ public class Terminal : MonoBehaviour
 
         Renderer rend = GetComponent<Renderer>();
 
+        if(rend == null)
+        {
+            return;
+        }
+
         switch (terminalType) {
             case TerminalTypes.PowerGenerator:
                 rend.material.color = Color.yellow;
