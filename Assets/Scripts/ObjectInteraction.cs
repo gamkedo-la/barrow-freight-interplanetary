@@ -8,6 +8,7 @@ public class ObjectInteraction : MonoBehaviour
 
     bool isHoldingObject = false;
     float interactionRange = 3.0f;
+    float fireExtinguisherRange = 6.0f;
     float objectMovementStartTime;
     float objectMovementDistance;
     Quaternion startingRotation;
@@ -146,7 +147,7 @@ public class ObjectInteraction : MonoBehaviour
                     RaycastHit rhInfo;
 
                     //If an object is clicked...
-                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, interactionRange, ignorePlayerMask))
+                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, fireExtinguisherRange, ignorePlayerMask))
                     {
                         //..and if that object is a Fire Collider
                         if (rhInfo.collider.gameObject.tag == "FireCollider")
