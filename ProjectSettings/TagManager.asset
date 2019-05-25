@@ -9,7 +9,7 @@ TagManager:
   - TerminalMonitor
   - TerminalPlacementIndicator
   - Indicator
-  - TerminalPlacementCollider
+  - FireCollider
   layers:
   - Default
   - TransparentFX

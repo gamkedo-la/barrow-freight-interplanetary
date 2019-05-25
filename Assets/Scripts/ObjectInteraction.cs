@@ -142,6 +142,28 @@ public class ObjectInteraction : MonoBehaviour
                 if (po.IsFireExtinguisher())
                 {
                     po.ToggleIsSpraying();
+
+                    RaycastHit rhInfo;
+
+                    //If an object is clicked...
+                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, interactionRange, ignorePlayerMask))
+                    {
+                        //..and if that object is a Fire Collider
+                        if (rhInfo.collider.gameObject.tag == "FireCollider")
+                        {
+                            Debug.Log("FC clicked");
+                            targetTerminal = rhInfo.collider.gameObject.transform.parent.gameObject.GetComponent<Terminal>();
+                            if (targetTerminal.isBurning)
+                            {
+                                targetTerminal.ToggleIsBurning();
+                            }
+                        }
+                        //    if (targetTerminal.isBurning)
+                        //{
+                        //    targetTerminal.ToggleIsBurning();
+                        //}
+
+                    }
                 }
             }
         }

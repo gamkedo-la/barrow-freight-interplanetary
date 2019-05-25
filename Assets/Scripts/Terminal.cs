@@ -19,7 +19,9 @@ public class Terminal : MonoBehaviour
     private float failureChanceInterval = 30.0f; //in seconds
     private bool terminalFailure = false;
     private bool terminalPoweredOn = true;
-    private bool isOnFire = false;
+    public bool isBurning = false;
+    private GameObject fire;
+    private ParticleSystem ps;
 
     public string textOutput;
     private string currentMessage;
@@ -42,6 +44,9 @@ public class Terminal : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+
+        fire = this.transform.Find("Fire Particle System").gameObject;
+        ps = fire.GetComponent<ParticleSystem>();
 
         currentFailureRate = baseFailureRate;
 
@@ -173,6 +178,10 @@ public class Terminal : MonoBehaviour
 
             //sends heat generation value to the Ship script.
             ship.UpdateTotalShipHeatGeneration(heatGeneration);
+
+            
+            var emission = ps.emission;
+            emission.enabled = isBurning;
         } else {
             DisplayBlankScreen();
         }
@@ -280,5 +289,12 @@ public class Terminal : MonoBehaviour
 
     public void PowerlOn() {
         terminalPoweredOn = true;
+    }
+
+    public void ToggleIsBurning()
+    {
+        isBurning = !isBurning;
+        var emission = ps.emission;
+        emission.enabled = isBurning;
     }
 }

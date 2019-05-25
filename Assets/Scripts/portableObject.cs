@@ -10,7 +10,7 @@ public class portableObject : MonoBehaviour
     public float efficiencyBonus;
     public Vector3 initialPosition;
     public Vector3 activatedPosition;
-    public GameObject[] indicators;
+    public GameObject[] firecolliders;
     public GameObject terminalPrefab;
     public GameObject foam;
     public bool isSpraying = false;
@@ -49,15 +49,15 @@ public class portableObject : MonoBehaviour
         isInstalled = false;
         gameObject.layer = 2;  //prevents held objects from blocking raycasts.
 
-        if (objectType == objectTypes.TerminalPlacer)
+        if (objectType == objectTypes.FireExtinguisher)
         {
-            indicators = GameObject.FindGameObjectsWithTag("TerminalPlacementIndicator");
-            foreach (GameObject indicator in indicators)
+            firecolliders = GameObject.FindGameObjectsWithTag("FireCollider");
+            foreach (GameObject firecollider in firecolliders)
             {
-                MeshRenderer highlight = indicator.GetComponent<MeshRenderer>();
-                highlight.enabled = true;
+                //MeshRenderer highlight = indicator.GetComponent<MeshRenderer>();
+                //highlight.enabled = true;
 
-                BoxCollider collider = indicator.GetComponent<BoxCollider>();
+                BoxCollider collider = firecollider.GetComponent<BoxCollider>();
                 collider.enabled = true;
             }
         }
@@ -79,15 +79,15 @@ public class portableObject : MonoBehaviour
         isInstalled = false;
         gameObject.layer = 0;
 
-        if (objectType == objectTypes.TerminalPlacer)
+        if (objectType == objectTypes.FireExtinguisher)
         {
-            indicators = GameObject.FindGameObjectsWithTag("TerminalPlacementIndicator");
-            foreach (GameObject indicator in indicators)
+            firecolliders = GameObject.FindGameObjectsWithTag("FireCollider");
+            foreach (GameObject firecollider in firecolliders)
             {
-                MeshRenderer highlight = indicator.GetComponent<MeshRenderer>();
-                highlight.enabled = false;
+                //MeshRenderer highlight = indicator.GetComponent<MeshRenderer>();
+                //highlight.enabled = false;
 
-                BoxCollider collider = indicator.GetComponent<BoxCollider>();
+                BoxCollider collider = firecollider.GetComponent<BoxCollider>();
                 collider.enabled = false;
             }
         }
