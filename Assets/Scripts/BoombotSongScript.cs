@@ -6,6 +6,7 @@ public class BoombotSongScript : MonoBehaviour
 {
     private AudioSource BoombotSongSource;
     private AudioSource[] ArrayOfCameraAudioSources;
+
     
     private AudioClip BoombotSongClip;
 
@@ -26,9 +27,10 @@ public class BoombotSongScript : MonoBehaviour
     void Start()
     {
         
-        ArrayOfCameraAudioSources = GetComponents<AudioSource>();        ;
+        ArrayOfCameraAudioSources = GetComponents<AudioSource>();
 
-        BoombotSongSource = ArrayOfCameraAudioSources[1];
+        //BoombotSongSource = GetComponents<AudioSource>();
+        BoombotSongSource = ArrayOfCameraAudioSources[0];
         //Debug.Log(BoombotSongSource);
 
         BoombotSongClip = BoombotSongSource.clip;

@@ -8211,7 +8211,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 557f9b1e463be674fb7b351f8005e9d8, type: 3}
   m_Name: 
@@ -37073,7 +37073,7 @@ MonoBehaviour:
   m_RunstepLenghten: 0
   m_JumpSpeed: 0
   m_StickToGroundForce: 100
-  m_GravityMultiplier: 0
+  m_GravityMultiplier: 1
   m_MouseLook: {fileID: 1985118315}
   m_UseFovKick: 0
   m_FovKick:
