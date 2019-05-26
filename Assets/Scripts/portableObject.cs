@@ -13,7 +13,7 @@ public class portableObject : MonoBehaviour
     public GameObject[] firecolliders;
     public GameObject terminalPrefab;
     public GameObject foam;
-    public bool isSpraying = false;
+    public bool isSpraying = true;
     private ParticleSystem ps;
 
     private AudioSource audioData;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -6,12 +7,17 @@ public class Door : MonoBehaviour
     Animator anim;
     public bool isLocked = false;
     public TerminalBay powerBay;
+    Scene currentScene;
+    Movement boombotMovement;
+
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         powerBay = GameObject.Find("Power Bay").GetComponent<TerminalBay>();
+        currentScene = SceneManager.GetActiveScene();
+        boombotMovement = GameObject.Find("Boom Bot").GetComponent<Movement>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +35,12 @@ public class Door : MonoBehaviour
                 UnlockDoor();
             }
         }
+
+        Debug.Log(currentScene.buildIndex);
+        if (currentScene.buildIndex == 1)
+        {
+            boombotMovement.StartMovement();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -37,6 +49,10 @@ public class Door : MonoBehaviour
         {
             anim.SetTrigger("Close");
             anim.ResetTrigger("Open");
+
+
+
+
         }
     }
 

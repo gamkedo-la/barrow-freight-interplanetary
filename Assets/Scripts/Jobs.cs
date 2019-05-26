@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Jobs : MonoBehaviour {
 
@@ -24,6 +25,8 @@ public class Jobs : MonoBehaviour {
     public Job activeJob;
     public int jobsCompleted = 0;
     public bool mission3Started = false;
+    public bool mission4Started = false;
+    public portableObject fireExt;
 
     public bool navcomFailure = false;
 
@@ -310,7 +313,7 @@ public class Jobs : MonoBehaviour {
             
             if (isInStasis) {
                 stasisTimeMultiplier = 1000000;
-                //blackScreen.SetAlpha(1f);
+                blackScreen.SetAlpha(1f);
                 Debug.Log("in stasis");
             } else {
                 Debug.Log("Not in stasis");
@@ -368,7 +371,7 @@ public class Jobs : MonoBehaviour {
         {
             navTerm.ToggleIsBurning();
             engineTerm.ToggleIsBurning();
-            powerTerm.ToggleIsBurning();
+            //powerTerm.ToggleIsBurning();
             //coolingTerm.ToggleIsBurning();
 
             mission3Started = true;
@@ -377,6 +380,14 @@ public class Jobs : MonoBehaviour {
 
     public void Job4() 
     {
-        //Change Scene to Ending
+        if (!mission4Started)
+        {
+            //fireExt = GameObject.Find("FireExt").GetComponent<portableObject>();
+            //fireExt.ToggleIsSpraying();
+
+            SceneManager.LoadScene("Ending");
+
+            mission4Started = true;
+        }
     }
 }

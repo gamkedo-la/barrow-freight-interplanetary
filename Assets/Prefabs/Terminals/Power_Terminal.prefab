@@ -179,8 +179,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9040508, y: 3.2768438, z: 2.7636187}
-  m_Center: {x: -0.09469182, y: 0.36326277, z: -0.09590839}
+  m_Size: {x: 1.6053138, y: 3.2768438, z: 2.179886}
+  m_Center: {x: 0.054676794, y: 0.36326277, z: -0.02176039}
 --- !u!114 &5752650525107084966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTerminalPlacementBay: 0
+  isModuleInstalled: 0
 --- !u!1 &2644223986982196866
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &241778110913217982
 Transform:
   m_ObjectHideFlags: 0
@@ -267,8 +268,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.405073, y: 8.368299, z: 4.8996925}
-  m_Center: {x: 0.9756938, y: 2.2058327, z: 1.24184}
+  m_Size: {x: 7.430029, y: 8.368299, z: 8.841605}
+  m_Center: {x: 0.46321785, y: 2.2058327, z: 3.212795}
 --- !u!1001 &8788742427225765594
 PrefabInstance:
   m_ObjectHideFlags: 0
