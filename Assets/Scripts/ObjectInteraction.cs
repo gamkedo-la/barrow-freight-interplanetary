@@ -17,6 +17,8 @@ public class ObjectInteraction : MonoBehaviour
     Vector3 lockedCameraPosition;
     Vector3 initialPlayerPosition;
 
+    AudioSource source;
+
     bool viewLocked = false;
 
     Vector3 handPosition;
@@ -142,7 +144,11 @@ public class ObjectInteraction : MonoBehaviour
                 portableObject po = heldObject.GetComponent<portableObject>();
                 if (po.IsFireExtinguisher())
                 {
+
                     po.ToggleIsSpraying();
+
+                    source = po.GetComponent<AudioSource>();
+                    source.Play();
 
                     RaycastHit rhInfo;
 

@@ -9,7 +9,10 @@ public class Jobs : MonoBehaviour {
     Ship ship;
     TerminalMonitor etaClock;
     BlackScreen blackScreen;
-    public GameObject boombot;
+    //public GameObject boombot;
+    public GameObject boombotspawn;
+    public GameObject boomBotPrefab;
+    private bool boombotPresent = false;
 
     public int numberOfJobs = 3;
     public List<Job> jobList;
@@ -67,7 +70,7 @@ public class Jobs : MonoBehaviour {
         ship = GameObject.Find("Ship").GetComponent<Ship>();
         blackScreen = GameObject.Find("Black Screen").GetComponent<BlackScreen>();
         // boombot = GameObject.Find("BoomBot");
-        boombot.SetActive(false);
+        //boombot.SetActive(false);
 
         jobID = new List<int>();
         jobNames = new List<string>();
@@ -110,10 +113,12 @@ public class Jobs : MonoBehaviour {
             }
         }
 
-        if (jobsCompleted > 0)
+        if (jobsCompleted == 1)
         {
-            boombot.SetActive(true);
+            Job2();
         }
+
+
 
         UpdateETAClock();
     }
@@ -277,15 +282,20 @@ public class Jobs : MonoBehaviour {
         float stasisTimeMultiplier;
 
         if (activeJob != null) {
-
+            
             if (isInStasis) {
-                stasisTimeMultiplier = 100000;
-                blackScreen.SetAlpha(1f);
+                stasisTimeMultiplier = 1000000;
+                //blackScreen.SetAlpha(1f);
+                Debug.Log("in stasis");
             } else {
+                Debug.Log("Not in stasis");
                 stasisTimeMultiplier = 1;
             }
             currentDist = currentDist/*LS*/ - (ship.previousFrameShipSpeed/*LSPS*/ * (Time.deltaTime/*S*/ * stasisTimeMultiplier));
             eta/*S*/ = currentDist/*LS*/ / ship.previousFrameShipSpeed/*LSPS*/;
+
+            Debug.Log(currentDist);
+            Debug.Log(eta);
 
             TimeSpan timeSpan = TimeSpan.FromSeconds(eta);
             timeText = string.Format("{0:D3}:{1:D2}:{2:D2}:{3:D2}", timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
@@ -306,5 +316,35 @@ public class Jobs : MonoBehaviour {
         }
 
         etaClock.WriteToMonitor(timeText);
+    }
+
+    public void Job1()
+    {
+
+    }
+
+    public void Job2()
+    {
+        //GameObject boombotspawn = GameObject.Find("BootbotSpawnPos");
+        Debug.Log("spawn test " + boombotspawn);
+
+        if (!boombotPresent)
+        {
+
+            Vector3 spawnpoint = boombotspawn.transform.position;
+            Instantiate(boomBotPrefab, spawnpoint, Quaternion.Euler(0, 90, 0));
+            boombotPresent = true;
+
+        }
+    }
+
+    public void Job3()
+    {
+
+    }
+
+    public void Job4()
+    {
+
     }
 }
