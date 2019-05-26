@@ -69,11 +69,12 @@ public class ObjectInteraction : MonoBehaviour
 
             //If an object is clicked...
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, interactionRange, ignorePlayerMask)) {
-                Debug.Log("clicked on " + rhInfo.collider.name + " with tag" + rhInfo.collider.gameObject.tag);
-                Debug.Log("holding? "+ isHoldingObject + " " );
+                //Debug.Log("clicked on " + rhInfo.collider.name + " with tag" + rhInfo.collider.gameObject.tag);
+                //Debug.Log("holding? "+ isHoldingObject + " " );
+
                 //..and if that object is a Terminal Monitor
                 if (rhInfo.collider.gameObject.tag == "TerminalMonitor") {
-                    Debug.Log("rhInfo.collider.gameObject.tag == TerminalMonitor");
+                    //Debug.Log("rhInfo.collider.gameObject.tag == TerminalMonitor");
                     //Debug.Log("Monitor Clicked");
                     viewLocked = true;
                     targetMonitor = rhInfo.collider.gameObject.GetComponent<TerminalMonitor>();
@@ -106,9 +107,9 @@ public class ObjectInteraction : MonoBehaviour
                         targetBay = rhInfo.collider.gameObject.GetComponent<TerminalBay>();
                         if (targetBay.IsModuleInstalled())
                         {
-                            GameObject installedObject = targetBay.GetInstalledObject();
-                            portableObject po = installedObject.GetComponent<portableObject>();
-                            po.DeactivateObject();
+                            //GameObject installedObject = targetBay.GetInstalledObject();
+                            //portableObject po = installedObject.GetComponent<portableObject>();
+                            //po.DeactivateObject();
                         }
 
                     }

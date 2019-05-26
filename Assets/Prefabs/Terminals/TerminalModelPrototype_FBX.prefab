@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTerminalPlacementBay: 0
+  isModuleInstalled: 0
 --- !u!1 &872672159
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +549,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b72e8ff74d471f447a02d0ed2d361ae2, type: 2}
+  - {fileID: 2100000, guid: b1500365afea72b4295c49fe74b8f320, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -643,6 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTerminalPlacementBay: 0
+  isModuleInstalled: 0
 --- !u!1 &1759895572
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTerminalPlacementBay: 0
+  isModuleInstalled: 0
 --- !u!1 &3378771043469579179
 GameObject:
   m_ObjectHideFlags: 0

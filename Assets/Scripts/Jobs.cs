@@ -14,10 +14,16 @@ public class Jobs : MonoBehaviour {
     public GameObject boomBotPrefab;
     private bool boombotPresent = false;
 
+    private Terminal powerTerm;
+    private Terminal coolingTerm;
+    private Terminal navTerm;
+    private Terminal engineTerm;
+
     public int numberOfJobs = 1;
     public List<Job> jobList;
     public Job activeJob;
     public int jobsCompleted = 0;
+    public bool mission3Started = false;
 
     public bool navcomFailure = false;
 
@@ -69,6 +75,12 @@ public class Jobs : MonoBehaviour {
         etaClock = GameObject.Find("ETA Clock").GetComponentInChildren<TerminalMonitor>();
         ship = GameObject.Find("Ship").GetComponent<Ship>();
         blackScreen = GameObject.Find("Black Screen").GetComponent<BlackScreen>();
+        navTerm = GameObject.Find("NAVCOM_Terminal").GetComponent<Terminal>();
+        powerTerm = GameObject.Find("Power_Terminal").GetComponent<Terminal>();
+        engineTerm = GameObject.Find("Engine_Terminal").GetComponent<Terminal>();
+        coolingTerm = GameObject.Find("Cooling_Terminal").GetComponent<Terminal>();
+
+
         // boombot = GameObject.Find("BoomBot");
         //boombot.SetActive(false);
 
@@ -348,14 +360,19 @@ public class Jobs : MonoBehaviour {
 
         }
 
-        //walking to boombot locks door.
-        //Unlock door to take job and comolete mission
-
     }
 
     public void Job3()
     {
-        //put out serveral Fires
+        if (!mission3Started)
+        {
+            navTerm.ToggleIsBurning();
+            engineTerm.ToggleIsBurning();
+            powerTerm.ToggleIsBurning();
+            //coolingTerm.ToggleIsBurning();
+
+            mission3Started = true;
+        }
     }
 
     public void Job4() 

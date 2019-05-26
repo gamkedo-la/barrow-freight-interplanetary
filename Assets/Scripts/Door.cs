@@ -5,11 +5,13 @@ public class Door : MonoBehaviour
 
     Animator anim;
     public bool isLocked = false;
+    public TerminalBay powerBay;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        powerBay = GameObject.Find("Power Bay").GetComponent<TerminalBay>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +20,14 @@ public class Door : MonoBehaviour
         {
             anim.SetTrigger("Open");
             anim.ResetTrigger("Close");
+        }
+
+        if (isLocked)
+        {
+            if (powerBay.IsModuleInstalled())
+            {
+                UnlockDoor();
+            }
         }
     }
 

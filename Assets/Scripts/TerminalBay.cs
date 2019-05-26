@@ -6,7 +6,7 @@ public class TerminalBay : MonoBehaviour
 {
     public bool isTerminalPlacementBay;
    
-    private bool isModuleInstalled = false;
+    public bool isModuleInstalled = false;
     private GameObject installedObject;
 
     // Start is called before the first frame update

@@ -322,4 +322,5 @@ public class Terminal : MonoBehaviour
         var emission = ps.emission;
         emission.enabled = isBurning;
     }
+
 }
