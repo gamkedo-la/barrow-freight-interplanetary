@@ -45,8 +45,12 @@ public class Terminal : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
 
-        fire = this.transform.Find("Fire Particle System").gameObject;
-        ps = fire.GetComponent<ParticleSystem>();
+        Transform firePSTransform = this.transform.Find("Fire Particle System");
+        if(firePSTransform)
+        {
+            fire = this.transform.Find("Fire Particle System").gameObject;
+            ps = fire.GetComponent<ParticleSystem>();
+        }
 
         currentFailureRate = baseFailureRate;
 
@@ -133,19 +137,28 @@ public class Terminal : MonoBehaviour
                     //sends power capacity value to the Ship script.
                     ship.UpdateShipPowerCapacity(positiveAttribute);
                     DisplayTerminalInfo();
-                    monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
+                    if(monitor)
+                    {
+                        monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
+                    }
                     break;
                 case TerminalTypes.CoolingUnit:
                     //sends cooling rate value to the Ship script.
                     ship.UpdateShipCoolingRate(positiveAttribute);
                     DisplayTerminalInfo();
-                    monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
+                    if (monitor)
+                    {
+                        monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
+                    }
                     break;
                 case TerminalTypes.EngineControl:
                     //sends engine speed value to the Ship script.
                     ship.UpdateCurrentShipSpeed(positiveAttribute);
                     DisplayTerminalInfo();
-                    monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
+                    if (monitor)
+                    {
+                        monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
+                    }
                     break;
                 case TerminalTypes.NAVCOMComputer:
                     //sends com range value to the Ship script.
@@ -153,7 +166,10 @@ public class Terminal : MonoBehaviour
                     jobsManager.UpdateNAVCOMStatus(terminalFailure);
                     DisplayMessage();
                     //DisplayTerminalInfo();
-                    monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
+                    if (monitor)
+                    {
+                        monitor.SetBarFillAmount(positiveAttribute, 0, 1000);
+                    }
                     break;
                 case TerminalTypes.JobSelection:
                     DisplayJobSelection();
@@ -179,9 +195,12 @@ public class Terminal : MonoBehaviour
             //sends heat generation value to the Ship script.
             ship.UpdateTotalShipHeatGeneration(heatGeneration);
 
-            
-            var emission = ps.emission;
-            emission.enabled = isBurning;
+
+            if (ps)
+            {
+                var emission = ps.emission;
+                emission.enabled = isBurning;
+            }
         } else {
             DisplayBlankScreen();
         }
@@ -246,14 +265,20 @@ public class Terminal : MonoBehaviour
 
     public void DisplayBlankScreen() {
         textOutput = "";
-        monitor.WriteToMonitor(textOutput);
+        if(monitor)
+        {
+            monitor.WriteToMonitor(textOutput);
+        }
     }
 
     //Sets text output and sends it to the terminal's monitor.
     public void DisplayTerminalInfo() {
         textOutput = label + "\n" + positiveAttributeLabel + positiveAttribute + positiveAttributeUnit +
-                        "\nTerminal Failure: " + terminalFailure;
-        monitor.WriteToMonitor(textOutput);
+                            "\nTerminal Failure: " + terminalFailure;
+        if(monitor)
+        {
+            monitor.WriteToMonitor(textOutput);
+        }
     }
 
     public void DisplayMessage(){

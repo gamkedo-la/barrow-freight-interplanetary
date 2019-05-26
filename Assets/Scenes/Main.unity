@@ -2999,11 +2999,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2071013410}
     m_Modifications:
-    - target: {fileID: 4109809680480040107, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Name
-      value: Button
-      objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040106, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3058,6 +3053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040107, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Name
+      value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
@@ -6356,7 +6356,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Brian J. Boucher: Project lead, core functionality, object carrying and
     snapping, ship prototype, computer stats relationships, job system functionality
-    and related authoring, ETA clock, progress bars, pipes, burning terminal support
+    and related authoring, ETA clock, progress bars, pipes, burning terminal support,
+    fire extinguisher functionality
 
 
     Andy King: Nebulae skybox, models and textures (monitors, motherboard, ship parts,
@@ -6385,7 +6386,7 @@ MonoBehaviour:
 
     Christer "McFunkypants" Kaitila: scrolling hologram panel textures (several),
     computer lab props, environment lighting, steam leak particles, corridor wall
-    panels
+    panels, environment collider fixes, fire and extinguisher audio
 
 
     Tyler Funk: Door animations triggers implementation
@@ -6406,7 +6407,10 @@ MonoBehaviour:
     Vaan Hope Khani: 2 story messages for NAVCOM terminal
 
 
-    Chris DeLeon: Fire particle effect
+    Vince McKeown: Door seam fixes
+
+
+    Chris DeLeon: Fire particle effect, interaction alignment debugging
 
 
     Game made in Gamkedo Club - for more information or to join visit Gamkedo.com
@@ -37492,11 +37496,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1293534278}
     m_Modifications:
-    - target: {fileID: 4109809680480040107, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Name
-      value: Button
-      objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040106, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37551,6 +37550,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040107, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Name
+      value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
@@ -37917,11 +37921,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 824117942}
     m_Modifications:
-    - target: {fileID: 4109809680480040107, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Name
-      value: Button
-      objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040106, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37976,6 +37975,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040107, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Name
+      value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
@@ -39969,11 +39973,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1439637841}
     m_Modifications:
-    - target: {fileID: 4109809680480040107, guid: 95edf206edb36df4c8d31acacfc39002,
-        type: 3}
-      propertyPath: m_Name
-      value: Button
-      objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040106, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40028,6 +40027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109809680480040107, guid: 95edf206edb36df4c8d31acacfc39002,
+        type: 3}
+      propertyPath: m_Name
+      value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 4109809680480040104, guid: 95edf206edb36df4c8d31acacfc39002,
         type: 3}
