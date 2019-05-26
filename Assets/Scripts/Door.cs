@@ -4,6 +4,7 @@ public class Door : MonoBehaviour
 {
 
     Animator anim;
+    public bool isLocked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -13,7 +14,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isLocked)
         {
             anim.SetTrigger("Open");
             anim.ResetTrigger("Close");
@@ -27,5 +28,15 @@ public class Door : MonoBehaviour
             anim.SetTrigger("Close");
             anim.ResetTrigger("Open");
         }
+    }
+
+    public void LockDoor()
+    {
+        isLocked = true;
+    }
+
+    public void UnlockDoor()
+    {
+        isLocked = false;
     }
 }

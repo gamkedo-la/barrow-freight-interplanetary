@@ -14,7 +14,7 @@ public class Jobs : MonoBehaviour {
     public GameObject boomBotPrefab;
     private bool boombotPresent = false;
 
-    public int numberOfJobs = 3;
+    public int numberOfJobs = 1;
     public List<Job> jobList;
     public Job activeJob;
     public int jobsCompleted = 0;
@@ -92,7 +92,7 @@ public class Jobs : MonoBehaviour {
         if (navcomFailure) {
             numberOfJobs = 1;
         } else {
-            numberOfJobs = 3;
+            numberOfJobs = 1;
         }
 
         if (jobList.Count == numberOfJobs) {
@@ -113,12 +113,25 @@ public class Jobs : MonoBehaviour {
             }
         }
 
+        if (jobsCompleted == 0)
+        {
+            Job1();
+        }
+
         if (jobsCompleted == 1)
         {
             Job2();
         }
 
+        if (jobsCompleted == 2)
+        {
+            Job3();
+        }
 
+        if (jobsCompleted == 3)
+        {
+            Job4();
+        }
 
         UpdateETAClock();
     }
@@ -320,13 +333,11 @@ public class Jobs : MonoBehaviour {
 
     public void Job1()
     {
-
+        //take job and comolete mission.
     }
 
     public void Job2()
     {
-        //GameObject boombotspawn = GameObject.Find("BootbotSpawnPos");
-        Debug.Log("spawn test " + boombotspawn);
 
         if (!boombotPresent)
         {
@@ -336,15 +347,19 @@ public class Jobs : MonoBehaviour {
             boombotPresent = true;
 
         }
+
+        //walking to boombot locks door.
+        //Unlock door to take job and comolete mission
+
     }
 
     public void Job3()
     {
-
+        //put out serveral Fires
     }
 
-    public void Job4()
+    public void Job4() 
     {
-
+        //Change Scene to Ending
     }
 }
