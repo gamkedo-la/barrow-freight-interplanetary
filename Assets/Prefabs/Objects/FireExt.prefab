@@ -103,7 +103,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -350,6 +350,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.079009965
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340567072722169007, guid: 33823a6979d18b946b296d8d9dd69270,
+        type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340567072722169007, guid: 33823a6979d18b946b296d8d9dd69270,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33823a6979d18b946b296d8d9dd69270, type: 3}
