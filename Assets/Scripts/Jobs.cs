@@ -24,6 +24,8 @@ public class Jobs : MonoBehaviour {
     public List<Job> jobList;
     public Job activeJob;
     public int jobsCompleted = 0;
+    public bool mission1Started = false;
+    public bool mission2Started = false;
     public bool mission3Started = false;
     public bool mission4Started = false;
     public portableObject fireExt;
@@ -348,7 +350,12 @@ public class Jobs : MonoBehaviour {
 
     public void Job1()
     {
-        //take job and comolete mission.
+        if (!mission1Started && SceneManager.GetActiveScene().name == "Main")
+        {
+            SpeechService.Instance.SpeakMessage("Welcome pilot. Please sign in at the Job Terminal, right outside the bridge to accept your first assignment.  Once you have a job, and the ship looks to be in good shape, you can activate the stasis chamber, which you can find at the far end of the ship, opposite the bridge.");
+
+            mission1Started = true;
+        }
     }
 
     public void Job2()
@@ -363,6 +370,13 @@ public class Jobs : MonoBehaviour {
 
         }
 
+        if (!mission2Started)
+        {
+            SpeechService.Instance.SpeakMessage("Welcome back pilot.  A delivery has arrived while you were in stasis.  I placed it on the bridge. It is an object of unusual additude.");
+
+            mission2Started = true;
+        }
+
     }
 
     public void Job3()
@@ -374,6 +388,8 @@ public class Jobs : MonoBehaviour {
             //powerTerm.ToggleIsBurning();
             //coolingTerm.ToggleIsBurning();
 
+            SpeechService.Instance.SpeakMessage("Warning! Smoke and high levels of heat detected on the bridge. Please retrieve your company issued fire extinguisher and report the bridge immediately. Your company issued fire extinguisher can be activated by pressing the eee key.  Once you have eliminated all fires, you may resume accepting deliveries.");
+
             mission3Started = true;
         }
     }
@@ -384,6 +400,7 @@ public class Jobs : MonoBehaviour {
         {
             //fireExt = GameObject.Find("FireExt").GetComponent<portableObject>();
             //fireExt.ToggleIsSpraying();
+            SpeechService.Instance.SpeakMessage("Warning! All Systems Critical!  Proceed to the bridge immediately for further instructions.");
 
             SceneManager.LoadScene("Ending");
 

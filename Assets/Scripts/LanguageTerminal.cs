@@ -36,7 +36,7 @@ public class LanguageTerminal : MonoBehaviour
 
 		OutputSpeachData( voices, langID );
 
-		SpeechService.Instance.SpeakMessage( "Welcome pilot. Where would you like us to go first?" );
+		//SpeechService.Instance.SpeakMessage( "Welcome pilot. Please sign in at the Job Terminal, right outside the bridge to accept your first assignment.  Once you have a job, and the ship looks to be in good shape, you can activate the stasis chamber, which you can find at the far end of the ship, opposite the bridge." );
 	}
 
 	private void OutputSpeachData( List<string> voices, int langID )
